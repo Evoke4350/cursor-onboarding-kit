@@ -13,6 +13,10 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/cli/overview
 - Cloud Agent API docs  
   https://cursor.com/docs/cloud-agent/api/endpoints
+- Cursor API overview  
+  https://cursor.com/docs/api
+- Cursor API key settings  
+  https://cursor.com/docs/settings/api-keys
 - GitHub integration docs  
   https://cursor.com/docs/integrations/github
 - Bugbot docs  
@@ -38,6 +42,13 @@ This list prioritizes practical onboarding resources.
   https://github.com/Dicklesworthstone/destructive_command_guard
 - Release tracking wrapper (third-party)  
   https://releasebot.io/updates/cursor
+
+## Community Proxy Experiments (Unofficial)
+
+- cursor-openrouter-proxy  
+  https://github.com/pezzos/cursor-openrouter-proxy
+- cursor-deepseek  
+  https://github.com/danilofalcao/cursor-deepseek
 
 ## WASM + Isolation Landscape (Optional Advanced)
 

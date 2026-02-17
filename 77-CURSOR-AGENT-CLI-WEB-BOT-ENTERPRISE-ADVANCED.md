@@ -157,6 +157,30 @@ Practical interpretation:
 - if you want "open-router-like" internal automation patterns, start with official Cloud Agents API + service accounts
 - treat this as governed platform automation, not ad hoc personal scripting
 
+How API keys work in practice:
+
+- model-provider keys (OpenAI/Anthropic/etc) are configured in Cursor model settings for BYOK model usage
+- Cursor API keys are used for Cursor API surfaces (for example Cloud Agent API)
+- enterprise service accounts provide non-human keys for governed automation
+- repo automation depends on team GitHub integration and repo authorization
+
+Docs:
+
+- https://cursor.com/docs/settings/api-keys
+- https://cursor.com/docs/api
+- https://cursor.com/docs/account/enterprise/service-accounts
+
+Open-router-style proxy pattern:
+
+- yes, teams can run proxy layers to route Cursor-compatible traffic to alternate backends
+- this is usually community tooling, not official Cursor product behavior
+- treat proxy mode as custom infrastructure with security ownership (auth, logging, key handling, abuse controls)
+
+Community examples (unofficial):
+
+- https://github.com/pezzos/cursor-openrouter-proxy
+- https://github.com/danilofalcao/cursor-deepseek
+
 ---
 
 ## 9) Doc Sync (Fast)
