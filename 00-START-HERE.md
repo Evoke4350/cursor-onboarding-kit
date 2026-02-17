@@ -1,59 +1,73 @@
-# Start Here: 45-Minute Cursor Onboarding
+# Start Here: Five-Step Habit
 
-Use this agenda to train engineers who are new to Cursor.
+You do not need to read this whole repo. Most teams get most of the value from one chain run well.
 
-## Learning Goals
+If you're panicking because you feel like you need to understand everything: you don't. You need one win.
 
-- Understand where guidance should live (team vs personal)
-- Execute a complete coding loop with verification
-- Use prompts that reduce iteration churn
-- Know when to introduce model switching
+## Lifeline (Pick One File)
 
-## 45-Minute Agenda
+Forget the repo for now. Pick one file that's breaking your flow and paste this into your agent chat:
 
-## 0-5 min: Mental Model
+```text
+No repo tour. No docs.
+Read only this file.
 
-Explain the stack:
+1) What is it supposed to do?
+2) What is it doing instead?
+3) What's the smallest safe fix?
 
-1. Team baseline (`AGENTS.md` or equivalent)
-2. Local/personal overrides (`AGENTS.local.md` or local equivalent)
-3. Scoped rules (`.cursor/rules/*.mdc`)
-4. Working notes (blackboard/markdown workspace)
+Then stop and ask me one question if you need to.
+```
 
-## 5-15 min: Show Rule Layering
+Ship the smallest fix with evidence. Then decide if you want the deeper loop.
 
-Demo one simple coding preference rule and one safety rule.
+## Minimum Viable Chain (Use This First)
 
-Outcome: attendees understand that not all preferences belong in team policy.
+Run one real ticket with these five prompts:
 
-## 15-30 min: Live Ticket Workflow
+1. Discussion
+`No edits yet. Restate the problem, likely risks, and fix order in five bullets.`
+2. Scope
+`Write a strict contract: in-scope, out-of-scope, and measurable done condition.`
+3. Execute
+`Implement only this contract with minimal blast radius. Ask before crossing scope.`
+4. Verify
+`Show a scenario table with expected vs actual and pass/fail. Call out uncertainty.`
+5. Package
+`Propose commit groups by intent and draft a PR summary, test plan, and rollback note.`
 
-Run a real small task:
+If this loop is clean, stop there and ship. Deeper docs are optional.
 
-1. Ask agent to inspect context
-2. Implement change
-3. Run lint/tests/typecheck
-4. Summarize risks/assumptions
+## Fast Path (Senior Engineer Edition)
 
-## 30-38 min: Commit + PR Quality
+If this is a tiny change and you already understand the bug:
 
-Show how to ask for:
+1. Scope + execute in one prompt.
+`Fix <bug> with minimal blast radius. No refactors. If you need to touch another file, ask first.`
+2. Verify + package in one prompt.
+`Run the relevant checks and give me: what changed, what ran, results, risks, rollback, and a PR summary.`
 
-- clean staging (only related files)
-- commit message in repo style
-- PR summary + test plan + risk notes
+If the problem is ambiguous, cross-cutting, or multi-file: use the full five-step chain.
 
-## 38-45 min: Team Adoption + Next Steps
+## 45-Minute Team Onboarding (Optional)
 
-- Establish minimum workflow standard
-- Introduce markdown templates
-- Flag model switching as phase-2 capability
-- Show local-only personalization via `.git/info/exclude`
-- Assign one sample lab from `80-SAMPLE-PROJECT-LAB.md`
+Use this when training a group:
 
-## Definition Of "Good First Week"
+1. 0-5 min: mental model (team rules vs local rules vs scoped rules)
+2. 5-15 min: one live "discussion then scope" pass
+3. 15-30 min: one scoped fix + verification table
+4. 30-38 min: commit grouping + PR draft
+5. 38-45 min: adoption defaults for week one
 
-- 2-3 merged PRs using this workflow
-- no drop in quality gates
-- reduced review noise
-- at least one documented prompt/rule experiment
+## Demo
+
+- Lab bugs are intentionally planted for teaching.
+- Real production bugs are messier.
+- The chain still holds because it was designed for ambiguity, not toy perfection.
+
+## Definition of a Good First Week
+
+- 2-3 merged PRs using the five-step chain
+- No drop in quality gates
+- Lower review noise (smaller diffs, clearer PRs)
+- At least one prompt or rule promoted after proving value

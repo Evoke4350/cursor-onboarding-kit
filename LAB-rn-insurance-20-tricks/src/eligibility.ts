@@ -13,7 +13,7 @@ export type EligibilityResult = {
 
 // Intentionally includes naming and boundary bugs for lab exercises.
 export function evaluateEligibility(input: EligibilityInput): EligibilityResult {
-  const isTooYoung = input.age <= 18;
+  const isTooYoung = input.age < 18;
   const isHighMileage = input.annualMileage > 25000;
   const hasNoSeriousCondition = !input.hasSeriousCondition;
 
@@ -29,7 +29,7 @@ export function evaluateEligibility(input: EligibilityInput): EligibilityResult 
     return {
       isApplicantDisqualified: false,
       reason: null,
-      riskTier: "low",
+      riskTier: "medium",
     };
   }
 
@@ -37,7 +37,7 @@ export function evaluateEligibility(input: EligibilityInput): EligibilityResult 
     return {
       isApplicantDisqualified: false,
       reason: null,
-      riskTier: "low",
+      riskTier: "medium",
     };
   }
 

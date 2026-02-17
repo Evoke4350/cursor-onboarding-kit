@@ -11,14 +11,13 @@ Use this as a practical week-one guide for new engineers shipping with Cursor.
 
 ---
 
-## 🗓️ Day 1: Setup + Orientation
+## 🗓️ Day 1: One Win (No Reading Required)
 
 ### Must-do
 
-- [ ] Read `00-START-HERE.md` (quick runbook).
-- [ ] Read `02-NO-FLUFF-OPERATING-GUIDE.md` (10-minute front door).
-- [ ] Read `10-WORKFLOW-FOUNDATIONS.md` (daily loop).
-- [ ] Read `03-EXPERIENCED-ENGINEER-LENS-QA.md` if you are skeptical or time-constrained.
+- [ ] Pick one file that is breaking your flow.
+- [ ] Run the "Lifeline (Pick One File)" prompt from `00-START-HERE.md`.
+- [ ] Ship the smallest fix with evidence (commands run + results).
 
 ### Environment and instruction setup
 
@@ -27,10 +26,11 @@ Use this as a practical week-one guide for new engineers shipping with Cursor.
 - [ ] Confirm local exclude setup (`.git/info/exclude`) for local-only files.
 - [ ] Confirm you can run lint/typecheck/test commands for this repo.
 
-### Quick confidence check
+### Optional reading (only if you want it)
 
-- [ ] Ask Cursor to restate one module's architecture in 5 bullets.
-- [ ] Verify the summary against real files.
+- [ ] `02-NO-FLUFF-OPERATING-GUIDE.md` (10-minute map)
+- [ ] `10-WORKFLOW-FOUNDATIONS.md` (daily loop)
+- [ ] `03-EXPERIENCED-ENGINEER-LENS-QA.md` if you're skeptical or time-constrained
 
 ---
 

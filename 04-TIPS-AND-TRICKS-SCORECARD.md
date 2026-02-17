@@ -39,6 +39,12 @@ Why it works: reduces incidental edits and noisy commits.
 
 Require lint/typecheck/tests and command-backed result summary before signoff.
 
+## Trick 5A: Property-Based Tests as Oracles (optional)
+
+Turn "this should never happen" into executable properties, then let the generator hunt edge cases.
+
+Why it works: you get a real oracle (pass/fail) that a long-running agent can grind against.
+
 ## Trick 6: Plan-Then-Build for Multi-File Work (multi-step)
 
 1. run planning pass

@@ -2,6 +2,10 @@
 
 A lightweight scheduling service that models weekly on-call operations for small engineering teams.
 
+North star: spot who needs a nudge before they burn out.
+
+Training note: this lab includes intentionally planted defects and noisy context artifacts so teams can practice triage under ambiguity.
+
 ## Overview
 
 The service provides:
@@ -63,6 +67,19 @@ PORT=4310 tsx ui/server.ts
 cd cursor-onboarding-kit/LAB-scheduling-demo
 tsx --test src/__tests__/*.ts
 ```
+
+## Verification Upgrades (Property, E2E, Visual)
+
+Agents are hypothesis generators; verification is the truth machine.
+
+This lab includes optional verification layers you can add on top:
+
+- Property-based tests (`fast-check`)
+- End-to-end tests (`@playwright/test`)
+- Visual regression (Playwright screenshots)
+- Property-based UI testing (Bombadil)
+
+See `VERIFICATION.md` for how to run them and why they matter.
 
 ## Docker
 

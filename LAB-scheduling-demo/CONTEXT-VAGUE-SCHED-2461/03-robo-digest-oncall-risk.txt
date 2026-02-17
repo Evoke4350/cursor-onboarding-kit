@@ -18,4 +18,3 @@ Risk flags:
 - Conflicting stakeholder goals: "hide confusion" vs "preserve raw truth."
 - If only labels change, incident review trust may worsen.
 - If only logic changes, CSV consumers may break.
-

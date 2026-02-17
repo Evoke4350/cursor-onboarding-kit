@@ -2,6 +2,8 @@
 
 This lab is a compact, instructor-ready exercise for teaching prompt quality and workflow discipline in Cursor.
 
+Training note: the bugs are intentionally planted. The point is to practice the habit (triage -> scope -> fix -> verify -> package), not to pretend this is the chaos of production.
+
 ## Lab Shape
 
 - 3 source files with intentionally small, realistic bugs

@@ -178,8 +178,14 @@ async function boot() {
   });
 
   if (data.scenarios.length > 0) {
-    scenarioSelect.value = data.scenarios[0].id;
-    await loadScenario(data.scenarios[0].id);
+    const requested = new URLSearchParams(window.location.search).get("scenario");
+    const initialScenario =
+      requested && data.scenarios.some((s) => s.id === requested)
+        ? requested
+        : data.scenarios[0].id;
+
+    scenarioSelect.value = initialScenario;
+    await loadScenario(initialScenario);
   }
 }
 

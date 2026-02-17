@@ -106,6 +106,23 @@ References:
 
 ---
 
+## 2.6) Long-Running / "Grind" Runs (Research Preview)
+
+Some teams are experimenting with letting an agent grind on a task for longer than a normal chat run.
+
+My opinion: this is only good when your halting condition is real.
+
+- Good: "keep iterating until lint/tests pass and the PR summary matches the contract."
+- Bad: "keep iterating until it's done" (that's how you get infinite yak-shaving).
+
+If you want grind mode to be useful, upgrade your oracles:
+
+- typecheck and unit tests as the baseline
+- property-based tests for invariants
+- E2E + visual regression for web UX changes
+
+---
+
 ## 3) Web Agent Advanced Usage
 
 Useful advanced patterns:

@@ -3,6 +3,39 @@
 This note captures the working pattern used to build this onboarding kit.  
 It is not about reproducing identical output. It is about reproducing **reliable trajectory**.
 
+## Minimum Viable Chain (Default)
+
+If you are new to this repo, start here and ignore the rest for now.
+
+1. **Discussion**: no edits yet, triage likely bugs and prioritize.
+2. **Contract**: write in-scope, out-of-scope, done condition.
+3. **Scoped Fix**: implement one bug cluster with minimal blast radius.
+4. **Verification**: produce explicit expected vs actual evidence.
+5. **Delivery**: group commits by intent and draft PR summary.
+
+Most teams get most of the value from this five-step chain.  
+Everything below is optional depth and optimization.
+
+## Fast Path (When You Don't Need Ceremony)
+
+- If it's a tiny change and you already understand the bug: compress to **scope+fix**, then **verify+package**.
+- If it's ambiguous: do the discussion step first. No heroics.
+- If it touches multiple files: keep the contract step, or you will end up with an "AI diff salad."
+
+## Category Theory Lens (Optional Nerd Stuff)
+
+- **Objects**: ticket states (untriaged, scoped, changed, verified, packaged).
+- **Morphisms**: prompts that move you between states (discussion, contract, fix, verify, delivery).
+- **Composition**: chaining only works if each step emits a usable artifact (plan, contract, evidence).
+- **Functors**: the same loop across tools/harnesses (Cursor, CLI, Copilot) if capabilities match.
+- **Natural transformations**: prompt tweaks per tool that preserve the intent of the loop.
+- **Products**: combining independent context streams (code × logs × UX) without mixing them into soup.
+- **Limits**: "minimal blast radius that still satisfies contract + tests" (constraints intersect, change shrinks).
+- **Adjunctions**: spec <-> implementation. Without a contract, the agent happily wanders in the wrong direction.
+- **Monads**: the effectful loop (read files, edit code, run commands) with explicit "done" as the bind condition.
+
+Where it falls apart is always the same: missing oracle (no tests), hidden state (memory soup), or untyped outputs ("looks good").
+
 ## What This Pattern Optimizes For
 
 - high-throughput ideation via dictation/conversation
@@ -45,9 +78,9 @@ This pattern is strong because it combines:
 
 ---
 
-## Prompt Chain (Repeatable)
+## Expanded Prompt Chain (Optional)
 
-Use this exact chain for similar projects.
+Use this when you need the full productization path.
 
 ## Step 0 - Intent seed (dictation)
 

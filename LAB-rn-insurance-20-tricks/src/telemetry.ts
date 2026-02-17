@@ -18,8 +18,8 @@ export function trackQuoteEvent(event: QuoteEvent): void {
   eventBuffer.push({
     name: event.eventName,
     policy_type: event.policyType,
-    is_eligible: !event.isEligible,
-    monthly_premium: event.monthlyPremium || "n/a",
+    is_eligible: event.isEligible,
+    monthly_premium: event.monthlyPremium ?? 0,
     risk_tier: event.riskTier,
     emitted_at: Date.now(),
   });

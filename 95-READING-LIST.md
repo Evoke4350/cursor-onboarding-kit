@@ -2,6 +2,8 @@
 
 This list prioritizes practical onboarding resources.
 
+This is optional depth. Do not hand this to new users as “homework” unless they asked for links.
+
 ## Cursor (Product + Engineering)
 
 - Cursor home: https://cursor.com/
@@ -121,6 +123,11 @@ This list prioritizes practical onboarding resources.
   https://github.com/vercel-labs/agent-browser
 - iOS automation notes  
   https://agent-browser.dev/ios
+
+## Property-Based Testing (Optional)
+
+- Bombadil (property-based UI testing, Antithesis)  
+  https://github.com/antithesishq/bombadil
 
 ## WASM + Isolation Landscape (Optional Advanced)
 

@@ -1,79 +1,61 @@
 # Agentic Blackboard - AI Engineering and Workflow Jumpstart Kit
 
-A GitHub-friendly package for onboarding engineers to AI engineering workflows quickly.
+This repo is intentionally deep. Treat it like a library, not required reading.
 
-Built for:
-- teams using Cursor, Claude Code, Copilot, and other agent harnesses
-- engineering leads onboarding new contributors
-- consultants sharing reusable internal operating systems
+If you're drowning: forget the repo. Pick one file that's breaking your flow and fix that first.
 
-## Quick Start (10 Minutes)
+## Lifeline (One File, 10 Minutes)
 
-1. Read [`00-START-HERE.md`](./00-START-HERE.md)
-2. Run [`01-WEEK-ONE-CHECKLIST.md`](./01-WEEK-ONE-CHECKLIST.md)
-3. Read [`02-NO-FLUFF-OPERATING-GUIDE.md`](./02-NO-FLUFF-OPERATING-GUIDE.md)
-4. Skim [`04-TIPS-AND-TRICKS-SCORECARD.md`](./04-TIPS-AND-TRICKS-SCORECARD.md)
+Pick one file that hurts (the one you touch 10 times a day), then paste this:
 
-## Navigation
+```text
+No repo tour. No docs.
+Read only this file.
 
-- **Week 1 onboarding**
-  - [`00-START-HERE.md`](./00-START-HERE.md)
-  - [`01-WEEK-ONE-CHECKLIST.md`](./01-WEEK-ONE-CHECKLIST.md)
-  - [`02-NO-FLUFF-OPERATING-GUIDE.md`](./02-NO-FLUFF-OPERATING-GUIDE.md)
-  - [`03-EXPERIENCED-ENGINEER-LENS-QA.md`](./03-EXPERIENCED-ENGINEER-LENS-QA.md)
-  - [`06-DAY-IN-THE-LIFE-CURSOR-ENGINEER.md`](./06-DAY-IN-THE-LIFE-CURSOR-ENGINEER.md)
+1) What is it supposed to do?
+2) What is it doing instead?
+3) What's the smallest safe fix?
 
-- **Execution system**
-  - [`10-WORKFLOW-FOUNDATIONS.md`](./10-WORKFLOW-FOUNDATIONS.md)
-  - [`20-PROMPT-PATTERNS.md`](./20-PROMPT-PATTERNS.md)
-  - [`04-TIPS-AND-TRICKS-SCORECARD.md`](./04-TIPS-AND-TRICKS-SCORECARD.md)
-  - [`05-AGENT-OPERATOR-PATTERN.md`](./05-AGENT-OPERATOR-PATTERN.md)
-  - [`06-DAY-IN-THE-LIFE-CURSOR-ENGINEER.md`](./06-DAY-IN-THE-LIFE-CURSOR-ENGINEER.md)
+Then stop and ask me one question if you need to.
+```
 
-- **Rules + instruction files**
-  - [`35-INSTRUCTION-FILES-ADVANCED.md`](./35-INSTRUCTION-FILES-ADVANCED.md)
-  - [`40-TEMPLATES/INSTRUCTION-STARTER-PACK/README.md`](./40-TEMPLATES/INSTRUCTION-STARTER-PACK/README.md)
-  - [`60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`](./60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md)
+Ship the smallest evidence-backed fix. Come back for depth only if you want it.
 
-- **Templates + documentation ops**
-  - [`40-TEMPLATES/README-GENERIC-TEMPLATE-CLUSTERS.md`](./40-TEMPLATES/README-GENERIC-TEMPLATE-CLUSTERS.md)
-  - [`50-MARKDOWN-OPS.md`](./50-MARKDOWN-OPS.md)
-  - [`90-GLOSSARY-AND-FRONTMATTER.md`](./90-GLOSSARY-AND-FRONTMATTER.md)
+## Core Loop (5 Prompts)
 
-- **Labs + advanced modules**
-  - [`80-SAMPLE-PROJECT-LAB.md`](./80-SAMPLE-PROJECT-LAB.md)
-  - [`LAB-rn-insurance-20-tricks/README.md`](./LAB-rn-insurance-20-tricks/README.md)
-  - [`99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md`](./99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md)
-  - [`99B-SUBAGENT-PROMPT-LIBRARY.md`](./99B-SUBAGENT-PROMPT-LIBRARY.md)
-  - [`99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`](./99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md)
+Run one real ticket with this chain:
+
+1. Discussion: `No edits yet. Restate problem, risks, and fix order.`
+2. Scope: `Define in-scope, out-of-scope, and done criteria.`
+3. Execute: `Fix one bug cluster with minimal blast radius.`
+4. Verify: `Show scenario table with expected vs actual.`
+5. Package: `Propose commit groups and a PR summary.`
+
+If you only open three docs:
+
+- [`00-START-HERE.md`](./00-START-HERE.md)
+- [`05-AGENT-OPERATOR-PATTERN.md`](./05-AGENT-OPERATOR-PATTERN.md)
+- [`20-PROMPT-PATTERNS.md`](./20-PROMPT-PATTERNS.md)
+
+## What This Repo Is
+
+- A depth layer behind a short live demo.
+- A reusable set of prompts and templates for teams that want to go further.
+- Two training labs with intentionally planted bugs for teaching workflow discipline.
+
+## Optional Depth (Open Only When Needed)
+
+- Team rollout: [`01-WEEK-ONE-CHECKLIST.md`](./01-WEEK-ONE-CHECKLIST.md), [`35-INSTRUCTION-FILES-ADVANCED.md`](./35-INSTRUCTION-FILES-ADVANCED.md), [`40-TEMPLATES/INSTRUCTION-STARTER-PACK/README.md`](./40-TEMPLATES/INSTRUCTION-STARTER-PACK/README.md)
+- Quality and review: [`10-WORKFLOW-FOUNDATIONS.md`](./10-WORKFLOW-FOUNDATIONS.md), [`04-TIPS-AND-TRICKS-SCORECARD.md`](./04-TIPS-AND-TRICKS-SCORECARD.md), [`97-DEVILS-ADVOCATE-ADVERSARIAL-TAKE.md`](./97-DEVILS-ADVOCATE-ADVERSARIAL-TAKE.md)
+- Labs: [`80-SAMPLE-PROJECT-LAB.md`](./80-SAMPLE-PROJECT-LAB.md), [`LAB-rn-insurance-20-tricks/README.md`](./LAB-rn-insurance-20-tricks/README.md), [`LAB-scheduling-demo/README.md`](./LAB-scheduling-demo/README.md)
 
 ## Multi-Harness Compatibility
 
-The kit includes Cursor-focused guidance plus compatibility patterns for other harnesses and models:
+- Cursor runtime details: [`77-CURSOR-AGENT-CLI-WEB-BOT-ENTERPRISE-ADVANCED.md`](./77-CURSOR-AGENT-CLI-WEB-BOT-ENTERPRISE-ADVANCED.md)
+- Copilot and other harnesses: [`75-GITHUB-COPILOT-CONFIG-ADVANCED.md`](./75-GITHUB-COPILOT-CONFIG-ADVANCED.md), [`76-OTHER-AGENT-HARNESSES-ADVANCED.md`](./76-OTHER-AGENT-HARNESSES-ADVANCED.md)
 
-- [`76-OTHER-AGENT-HARNESSES-ADVANCED.md`](./76-OTHER-AGENT-HARNESSES-ADVANCED.md)
-- [`75-GITHUB-COPILOT-CONFIG-ADVANCED.md`](./75-GITHUB-COPILOT-CONFIG-ADVANCED.md)
+## Licensing and Contribution
 
-## Rendering Notes (GitHub)
-
-This package is optimized for standard GitHub Markdown rendering:
-
-- relative links between docs
-- checklists (`- [ ]`)
-- tables
-- code fences
-- Mermaid support where used
-
-## Licensing
-
-- Default repository license: MIT (`LICENSE`)
-- Scope and overrides: `LICENSES.md`
-- Scheduling lab mixed-license detail: `LAB-scheduling-demo/LICENSE`, `LAB-scheduling-demo/LICENSE-CONTENT.md`
-- Contribution sign-off policy: `CONTRIBUTING.md` and `DCO`
-- CLA policy (ICLA + CCLA): `CLA/README.md`
-
-## Releasing
-
-- Release guide: `RELEASING.md`
-- Automated release workflow: `.github/workflows/release-package.yml`
-- Release provenance dossier: `PROVENANCE/releases/v1.0.0/README.md`
+- License: `LICENSE`, `LICENSES.md`
+- Contribution sign-off policy: `CONTRIBUTING.md`, `DCO`
+- CLA policy: `CLA/README.md`

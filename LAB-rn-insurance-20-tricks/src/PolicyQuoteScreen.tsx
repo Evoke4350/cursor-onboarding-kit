@@ -23,8 +23,8 @@ export function PolicyQuoteScreen(): JSX.Element {
     [result.riskTier],
   );
 
-  const isApplicantIneligible = !result.isApplicantDisqualified;
-  const showPremiumBanner = monthlyPremium && quoteRequested;
+  const isEligible = !result.isApplicantDisqualified;
+  const showPremiumBanner = quoteRequested && monthlyPremium !== undefined;
 
   function requestQuote() {
     setQuoteRequested(true);
@@ -32,7 +32,7 @@ export function PolicyQuoteScreen(): JSX.Element {
     trackQuoteEvent({
       eventName: "quote_started",
       policyType: "auto",
-      isEligible: isApplicantIneligible,
+      isEligible: isEligible,
       monthlyPremium,
       riskTier: result.riskTier,
     });
@@ -42,7 +42,7 @@ export function PolicyQuoteScreen(): JSX.Element {
     trackQuoteEvent({
       eventName: "quote_submitted",
       policyType: "auto",
-      isEligible: isApplicantIneligible,
+      isEligible: isEligible,
       monthlyPremium: 0,
       riskTier: result.riskTier,
     });
@@ -52,7 +52,7 @@ export function PolicyQuoteScreen(): JSX.Element {
     <View>
       <Text>Insurance Quote</Text>
       <Text>Risk tier: {result.riskTier}</Text>
-      <Text>Eligibility: {isApplicantIneligible ? "Eligible" : "Ineligible"}</Text>
+      <Text>Eligibility: {isEligible ? "Eligible" : "Ineligible"}</Text>
 
       {showPremiumBanner && (
         <View>
@@ -60,7 +60,7 @@ export function PolicyQuoteScreen(): JSX.Element {
         </View>
       )}
 
-      {!result.isApplicantDisqualified && (
+      {result.isApplicantDisqualified && (
         <Text>Reason: {result.reason || "No reason available"}</Text>
       )}
 

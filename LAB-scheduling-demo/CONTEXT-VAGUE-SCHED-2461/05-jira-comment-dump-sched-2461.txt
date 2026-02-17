@@ -18,4 +18,3 @@ Need exact fallback order for escalation. "Someone should get it" is not a spec.
 
 [2026-02-08 16:56] eli.pm:
 Can someone propose scope that is not huge but still defensible in QBR?
-

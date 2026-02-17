@@ -6,6 +6,7 @@ Single-operator demo optimized for a live client audience.
 
 - Show that prompt structure controls outcome quality
 - Demonstrate discussion → constraints → execution → verification
+- Land the core claim: agents generate hypotheses; verification is the truth machine
 - Progressive disclosure: start simple, build to multi-file coordination
 - Produce review-ready artifacts from the same workflow
 
@@ -70,6 +71,21 @@ Run Prompt 12. The model produces concrete production failure risks with stress 
 
 **Instructor line:** "Most teams skip this. The AI won't get tired or embarrassed to ask hard questions."
 
+### Beat E — Oracles beat vibes (Optional, 3 min)
+If someone asks "why does any of this matter?", show the punchline: the agent makes hypotheses, and the oracles decide what's real.
+
+```bash
+cd LAB-scheduling-demo
+npm install
+npm run test:e2e   # passes (smoke)
+npm run test:spec  # fails (Team Coverage 200%)
+npm run test:pbt   # fails (shrunk counterexample)
+```
+
+Optional upgrade: Bombadil is property-based testing for web UIs (generative action sequences + temporal-logic properties). See `VERIFICATION.md`.
+
+**Instructor line:** "Same AI. Same code. Different outcome because the oracle is sharp."
+
 ## Opening Script
 
 > "I just inherited this scheduling module from a departing engineer. It 'mostly works' but QA flagged some edge cases. Let me show you how to use AI to triage and fix this — and more importantly, how the structure of what you ask determines whether you get a clean PR or a mess."
@@ -106,7 +122,7 @@ Then say: "Now let me show you how to actually do this." → Move to Prompt 1.
 "For one bug, maybe. For 12 bugs across 5 files that need to land as a reviewable PR? The structure pays for itself in the second file."
 
 **"What if the model gets it wrong?"**
-"That's exactly why we use verification tables and plan mode. The workflow assumes the model will be wrong sometimes — the gates catch it."
+"That's exactly why we use verification tables and executable checks. The workflow assumes the model will be wrong sometimes — the oracles catch it."
 
 **"Can junior engineers use this?"**
 "The structured prompts are training wheels. Juniors get better outcomes immediately. Over time they internalize the patterns and write their own prompts."

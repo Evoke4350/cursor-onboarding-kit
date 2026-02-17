@@ -99,7 +99,7 @@ Columns: Scenario | Input | Expected Result | Actual (with current bugs) | Pass/
 Use the FIXED code from Prompts 3-4, not the original buggy code.
 ```
 
-*Workflow concept: verification table, evidence-based completion. The audience sees proof, not "looks good to me."*
+*Workflow concept: verification table, evidence-based completion. The audience sees proof, not "looks good to me." If you want to show the "truth machine" version, jump to `VERIFICATION.md` and run `npm run test:spec` (fails with 200% coverage) and `npm run test:pbt` (fails with a shrunk counterexample).*
 
 ---
 
