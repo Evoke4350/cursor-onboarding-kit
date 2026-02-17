@@ -72,3 +72,4 @@ This package is optimized for standard GitHub Markdown rendering:
 - Default repository license: MIT (`LICENSE`)
 - Scope and overrides: `LICENSES.md`
 - Scheduling lab mixed-license detail: `LAB-scheduling-demo/LICENSE`, `LAB-scheduling-demo/LICENSE-CONTENT.md`
+- Contribution sign-off policy: `CONTRIBUTING.md` and `DCO`
