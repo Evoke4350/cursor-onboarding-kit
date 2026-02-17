@@ -22,6 +22,7 @@ All examples are generic and reference the insurance lab only:
 - `AGENTS.template.automatic-session-review.md`
 
 Use these as drop-in starting points when you want explicit learning capture or a strict end-of-session review loop.
+For labs/workshops, start with `AGENTS.template.learning-example.md` and adapt constraints to your repo.
 
 ## Recommended Usage
 
