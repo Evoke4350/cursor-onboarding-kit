@@ -13,6 +13,22 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/cli/overview
 - Cloud Agent API docs  
   https://cursor.com/docs/cloud-agent/api/endpoints
+- Hooks docs  
+  https://cursor.com/docs/agent/hooks
+- Third-party hooks docs  
+  https://cursor.com/docs/agent/third-party-hooks
+- Skills docs  
+  https://cursor.com/docs/context/skills
+- Subagents docs  
+  https://cursor.com/docs/context/subagents
+- Chat commands docs  
+  https://cursor.com/docs/agent/chat/commands
+- Mentions/docs context overview  
+  https://docs.cursor.com/en/context/%40-symbols/overview
+- Browser tool docs  
+  https://cursor.com/docs/agent/browser
+- Keyboard shortcuts docs  
+  https://docs.cursor.com/advanced/keyboard-shortcuts
 - Cursor API overview  
   https://cursor.com/docs/api
 - Cursor API key settings  
