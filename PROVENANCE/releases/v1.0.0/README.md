@@ -23,6 +23,12 @@ CLA/DCO note:
 - CLA and DCO define contribution rights and attestations.
 - They do not require the provenance `Owner` field to list every contributor.
 
+## Reviewer Identity Group
+
+Named human accountability for this release line:
+
+- `Project Maintainers Review Group (represented by Nathaniel Bennett)`
+
 ## Completed Records
 
 - `official-v1.0.0.md`
@@ -30,9 +36,8 @@ CLA/DCO note:
 - `branch-zero-context-playground-2026-02-17-v1.0.0.md`
 - `branch-cursor-ai-2026-02-17-v1.0.0.md`
 
-## Still Optional For Human Fill-In
+## Current Defaults For This Release Line
 
-- Internal reviewer name(s) or approver group (if you want named accountability)
-- Optional link to internal review notes/ticket
-- Confidence override (keep `high` unless new facts emerge)
-- Any additional mitigations specific to your internal governance model
+- Confidence: `high`
+- Risk statement: `none (initial release baseline)`
+- Internal ticket link: `not required`

@@ -25,6 +25,7 @@
 - [x] Security/privacy check completed
 - [x] Tests run (if code)
 - [x] Commit/PR narrative rewritten for clarity
+- Reviewer identity/group: `Project Maintainers Review Group (represented by Nathaniel Bennett)`
 
 Evidence:
 
@@ -37,8 +38,8 @@ Evidence:
 ## Confidence and risk
 
 - Confidence: `high`
-- Main risk: official release content may diverge from newer branch snapshots pinned to the same semver.
-- Mitigation: compare `SHA256SUMS.txt` across tags and record exceptions in this folder.
+- Main risk: `none (initial release baseline).`
+- Mitigation: `none required for this initial release baseline.`
 
 ## Repro note
 

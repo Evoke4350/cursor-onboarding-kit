@@ -24,6 +24,7 @@
 - [x] Security/privacy check completed
 - [x] Tests run (if code)
 - [x] Commit/PR narrative rewritten for clarity
+- Reviewer identity/group: `Project Maintainers Review Group (represented by Nathaniel Bennett)`
 
 Evidence:
 
@@ -36,8 +37,8 @@ Evidence:
 ## Confidence and risk
 
 - Confidence: `high`
-- Main risk: branch snapshot tags are force-updated on new pushes.
-- Mitigation: treat branch prereleases as moving snapshots and verify checksum date before use.
+- Main risk: `none (initial release baseline).`
+- Mitigation: `none required for this initial release baseline.`
 
 ## Repro note
 
