@@ -467,8 +467,8 @@ Docs:
 
 Open-source observability tools (optional):
 
-- Gryph: local-first audit trail across coding agents, including Cursor
-- CodexBar: local usage visibility and model/session monitoring
+- Gryph: local-first audit trail across coding agents, including Cursor hooks
+- CodexBar: local usage visibility and model/session monitoring, including Cursor
 - cursor-otel-hook: OpenTelemetry-style instrumentation path
 
 References:
@@ -483,9 +483,44 @@ Who can use these:
 - org policy may restrict local hooks, telemetry forwarding, or extension installs
 - treat these tools as optional overlays, not required baseline workflow
 
+UI expectations:
+
+- CodexBar provides a macOS menu-bar UI for usage visibility
+- Gryph is primarily hook + local database + CLI workflow (not a polished web dashboard by default)
+- if you need dashboards, pair trace capture with your own BI/OTel stack
+
+Compatibility note:
+
+- CodexBar advertises Cursor support, but community reports include occasional plan-detection edge cases
+- Gryph integrates through Cursor hooks and is better for action/audit traces than plan-usage meters
+
 ---
 
-## 21) Extension and Module Caution
+## 21) Voice Dictation Input (Optional)
+
+For prompt-heavy workflows, local dictation can speed up ideation and command entry.
+
+Practical options:
+
+- Handy: push-to-talk dictation into any text box, local-first
+- whisper.cpp: local CLI transcription pipeline
+- MacWhisper-class apps: local desktop transcription UX
+
+References:
+
+- https://handy.computer/
+- https://github.com/cjpais/Handy
+- https://github.com/ggerganov/whisper.cpp
+
+Guidance:
+
+- default to local transcription for sensitive repos
+- test latency/accuracy before team rollout
+- keep voice tools optional; keyboard-first workflow remains baseline
+
+---
+
+## 22) Extension and Module Caution
 
 For security-sensitive teams:
 
@@ -501,7 +536,7 @@ If your personal setup enables many modules:
 
 ---
 
-## 22) Lightweight Maintenance Loop
+## 23) Lightweight Maintenance Loop
 
 - run `scripts/check-cursor-docs.sh`
 - update links that fail or redirect unexpectedly

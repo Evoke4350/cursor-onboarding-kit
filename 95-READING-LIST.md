@@ -63,6 +63,15 @@ This list prioritizes practical onboarding resources.
 - cursor-otel-hook (OpenTelemetry integration)  
   https://github.com/LangGuard-AI/cursor-otel-hook
 
+## Dictation Input Tooling (Optional)
+
+- Handy app  
+  https://handy.computer/
+- Handy GitHub repo  
+  https://github.com/cjpais/Handy
+- whisper.cpp (local speech-to-text engine)  
+  https://github.com/ggerganov/whisper.cpp
+
 ## WASM + Isolation Landscape (Optional Advanced)
 
 - NVIDIA: sandboxing agentic workflows with WASM  
