@@ -315,7 +315,8 @@ Loop:
 
 Optional tool support:
 
-- DevSQL-style query tooling can correlate conversation patterns with commit/review outcomes
+- DevSQL can correlate conversation patterns with commit/review outcomes:
+  https://github.com/douglance/devsql
 - treat query outputs as signals, not truth
 
 Reflection prompts that work well:

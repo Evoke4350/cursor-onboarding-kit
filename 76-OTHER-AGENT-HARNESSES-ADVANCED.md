@@ -27,6 +27,12 @@ Then add cross-tool compatibility only when needed.
 3. Keep personal preferences local-only (`*.local.md`, local excludes).
 4. Review for drift every 2-4 weeks.
 
+## Claude Code insights workflow (optional)
+
+- `/insights` can be used as a reflection surface for workflow tuning
+- use it for pattern-finding, not automatic policy changes
+- promote outputs only after evidence from shipped work
+
 ## What to read next
 
 - `35-INSTRUCTION-FILES-ADVANCED.md` (AGENTS/CLAUDE compatibility)
