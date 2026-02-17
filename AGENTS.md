@@ -1,9 +1,9 @@
 # Agent Commit Workflow (Repository Policy)
 
-Use this repository-local Git identity:
+Set a repository-local Git identity for the current contributor:
 
-- `user.name`: `Nathaniel Bennett`
-- `user.email`: `nathanib@pm.me`
+- `git config --local user.name "<Your Name>"`
+- `git config --local user.email "<your.email@example.com>"`
 
 Use these repository-local aliases:
 
