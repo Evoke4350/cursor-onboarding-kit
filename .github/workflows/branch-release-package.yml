@@ -53,11 +53,13 @@ jobs:
           BRANCH_SLUG="$(echo "${BRANCH}" | tr '[:upper:]' '[:lower:]' | sed -E 's#[^a-z0-9]+#-#g; s#(^-|-$)##g')"
           TAG="branch-${BRANCH_SLUG}-v${SEMVER}"
 
-          echo "semver=${SEMVER}" >> "$GITHUB_OUTPUT"
-          echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
-          echo "branch_slug=${BRANCH_SLUG}" >> "$GITHUB_OUTPUT"
-          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
-          echo "release_name=v${SEMVER} (${BRANCH})" >> "$GITHUB_OUTPUT"
+          {
+            echo "semver=${SEMVER}"
+            echo "branch=${BRANCH}"
+            echo "branch_slug=${BRANCH_SLUG}"
+            echo "tag=${TAG}"
+            echo "release_name=v${SEMVER} (${BRANCH})"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Upsert branch tag
         shell: bash
@@ -93,7 +95,7 @@ jobs:
         run: |
           (
             cd dist
-            shasum -a 256 *.zip > SHA256SUMS.txt
+            shasum -a 256 -- ./*.zip > SHA256SUMS.txt
           )
 
       - name: Publish branch release

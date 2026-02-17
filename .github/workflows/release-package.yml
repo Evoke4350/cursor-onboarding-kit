@@ -22,8 +22,10 @@ jobs:
         run: |
           TAG="${GITHUB_REF_NAME}"
           VERSION="${TAG#v}"
-          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
-          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          {
+            echo "tag=${TAG}"
+            echo "version=${VERSION}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Build full package zip
         run: |
@@ -51,7 +53,7 @@ jobs:
         run: |
           (
             cd dist
-            shasum -a 256 *.zip > SHA256SUMS.txt
+            shasum -a 256 -- ./*.zip > SHA256SUMS.txt
           )
 
       - name: Publish release
