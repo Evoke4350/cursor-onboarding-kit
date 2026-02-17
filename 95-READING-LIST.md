@@ -29,6 +29,8 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/agent/browser
 - Keyboard shortcuts docs  
   https://docs.cursor.com/advanced/keyboard-shortcuts
+- Shell configuration docs  
+  https://docs.cursor.com/configuration/shell
 - Cursor API overview  
   https://cursor.com/docs/api
 - Cursor API key settings  
@@ -104,6 +106,13 @@ This list prioritizes practical onboarding resources.
   https://github.com/cjpais/Handy
 - whisper.cpp (local speech-to-text engine)  
   https://github.com/ggerganov/whisper.cpp
+
+## Agent Browser Automation (Optional)
+
+- Vercel Agent Browser  
+  https://github.com/vercel-labs/agent-browser
+- iOS automation notes  
+  https://agent-browser.dev/ios
 
 ## WASM + Isolation Landscape (Optional Advanced)
 

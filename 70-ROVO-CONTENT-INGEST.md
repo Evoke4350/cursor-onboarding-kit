@@ -119,3 +119,29 @@ Rule of thumb:
 - Do not log token values.
 - Rotate tokens routinely.
 - If sharing outside project scope, redact identifiers.
+
+## Advanced Artifact Triage (Security Workflow Note)
+
+Use this for quick first-pass assessment of third-party tools and files.
+
+Triage loop:
+
+1. identify source and provenance
+2. inspect file/container structure
+3. run lightweight string/metadata scans
+4. decide: proceed, isolate, or reject
+
+Office artifact reality:
+
+- many office formats (`.docx`, `.xlsx`, `.pptx`) are ZIP containers with XML parts
+- useful metadata and links can often be extracted quickly without opening GUI apps
+
+Binary triage shortcut:
+
+- a quick `strings` pass can surface URLs, domains, suspicious command references, and obvious external calls
+- this is a signal pass, not full reverse engineering
+
+Guardrail:
+
+- never trust a single signal
+- combine static triage with source trust, signatures/checksums, and runtime policy controls

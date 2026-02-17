@@ -32,6 +32,25 @@ Docs:
 - https://cursor.com/docs/cli/reference/parameters
 - https://cursor.com/docs/cli/reference/permissions
 
+### Shell Environment and External CLI Tools
+
+Cursor terminal and agent shell workflows can use tools available in your shell environment (`PATH`, exported vars, profiles).
+
+What this enables:
+
+- use local CLIs directly (`psql`, `aws`, `react-native`, `expo`, custom binaries)
+- compose Cursor with personal/team toolchains instead of replacing them
+- expose additional tools by installing them and ensuring shell/profile loading is correct
+
+Practical note:
+
+- if expected tools are missing in terminal sessions, verify shell profile loading and integrated shell settings first
+
+References:
+
+- https://docs.cursor.com/configuration/shell
+- https://cursor.com/docs/agent/terminal
+
 ---
 
 ## 2) Cursor Web/Cloud Agents
@@ -72,6 +91,15 @@ Good fit:
 - large repo scans
 - repetitive doc or migration work
 - overnight non-blocking tasks
+
+Agent Browser note:
+
+- tools like Vercel `agent-browser` can extend automation workflows (web + iOS simulator/device automation)
+- useful for repeatable UI/debug automation when paired with clear constraints and verification checks
+
+Reference:
+
+- https://github.com/vercel-labs/agent-browser
 
 ---
 
@@ -542,6 +570,11 @@ Workflow note:
 ## 22) Voice Dictation Input (Optional)
 
 For prompt-heavy workflows, local dictation can speed up ideation and command entry.
+
+Built-in note:
+
+- Cursor voice-capable input features may be available depending on version/settings
+- keep voice workflows optional and verify privacy posture before team rollout
 
 Practical options:
 

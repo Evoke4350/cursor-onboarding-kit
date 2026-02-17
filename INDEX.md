@@ -24,6 +24,8 @@
 - `79-CURSOR-CONTEXT-FOCUS-30-WAYS.md`
 - `80-SAMPLE-PROJECT-LAB.md`
 - `81-CURSOR-SHORTCUTS-ADVANCED-FOLLOW-UP.md`
+- `82-CURSOR-DEBUG-MODE-10-MISSED-FEATURES.md`
+- `83-CURSOR-SETTINGS-CONFIG-FIRST.md`
 - `LAB-rn-insurance-20-tricks/README.md`
 - `LAB-rn-insurance-20-tricks/PROMPT-PACK-20-TRICKS.md`
 - `LAB-rn-insurance-20-tricks/SOLUTION-KEY.md`
@@ -68,8 +70,10 @@
 18. Add operational mechanics from `78-HOOKS-SKILLS-COMMANDS-SUBAGENTS-ADVANCED.md`
 19. Improve prompt quality via `79-CURSOR-CONTEXT-FOCUS-30-WAYS.md`
 20. Add keyboard efficiency from `81-CURSOR-SHORTCUTS-ADVANCED-FOLLOW-UP.md`
-21. Normalize terms/metadata via `90-GLOSSARY-AND-FRONTMATTER.md`
-22. Review `96` evidence map to align risks with controls
-23. Run `97` adversarial review before scaling adoption
-24. Use `99` + `99B` for large-task orchestration and prompt contracts
-25. Apply `99C` for review-ready commit narrative and governance alignment
+21. Add debug/run patterns from `82-CURSOR-DEBUG-MODE-10-MISSED-FEATURES.md`
+22. Add config-first setup from `83-CURSOR-SETTINGS-CONFIG-FIRST.md`
+23. Normalize terms/metadata via `90-GLOSSARY-AND-FRONTMATTER.md`
+24. Review `96` evidence map to align risks with controls
+25. Run `97` adversarial review before scaling adoption
+26. Use `99` + `99B` for large-task orchestration and prompt contracts
+27. Apply `99C` for review-ready commit narrative and governance alignment
