@@ -23,6 +23,8 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/context/subagents
 - Chat commands docs  
   https://cursor.com/docs/agent/chat/commands
+- Chat export docs  
+  https://docs.cursor.com/en/agent/chat/export
 - Mentions/docs context overview  
   https://docs.cursor.com/en/context/%40-symbols/overview
 - Browser tool docs  
@@ -47,6 +49,8 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/cli/reference/permissions
 - Changelog  
   https://www.cursor.com/changelog
+- Dynamic context discovery (official)  
+  https://cursor.com/blog/dynamic-context-discovery
 
 ## Sandbox + Backpressure Tooling (Optional)
 

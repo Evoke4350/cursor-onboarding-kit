@@ -77,6 +77,35 @@ Docs:
 
 ---
 
+## 2.5) In-Flight Steering (While Agent Is Running)
+
+Treat agent execution as steerable, not fire-and-forget.
+
+Useful operator behavior:
+
+- send follow-up steering instructions while a run is active
+- queue next instructions so they execute in order
+- keep steering messages short and constraint-focused
+- interrupt early when scope drifts, then restate objective
+
+UI affordance pattern:
+
+- the composer action controls (arrow/run/stop style controls, by version) indicate whether input will run now, queue, or interrupt
+- draft next steps while the model is working to reduce idle time
+
+Practical guidance:
+
+- use one objective per steering message
+- prefer "change X, keep Y unchanged" language
+- if edit/delete controls are unavailable in your build, treat sent messages as immutable and send corrective follow-ups
+
+References:
+
+- https://docs.cursor.com/en/background-agent/api/add-followup
+- https://cursor.com/docs/agent/overview
+
+---
+
 ## 3) Web Agent Advanced Usage
 
 Useful advanced patterns:
@@ -524,12 +553,14 @@ Official Cursor surfaces:
 
 - chat history for prior agent conversations
 - shared transcripts for review, handoff, and audit-style context
+- export/transcript sharing workflows for cross-team transfer
 - team controls and plan features can affect what is available
 
 Docs:
 
 - https://cursor.com/docs/agent/chat/history
 - https://cursor.com/docs/shared-transcripts
+- https://docs.cursor.com/en/agent/chat/export
 
 Open-source observability tools (optional):
 
@@ -564,6 +595,7 @@ Workflow note:
 
 - tools like DevSQL can query local history/transcript + git patterns to support reinforcement loops
 - use results to improve workflow policy and prompt structure, not to overfit one-off sessions
+- keep chat scope to one task when possible; start a new chat when objective changes materially
 
 ---
 
@@ -609,6 +641,73 @@ If your personal setup enables many modules:
 - document which are mandatory vs optional
 - validate that baseline workflow still works without extras
 - keep enterprise-safe defaults in team docs
+
+### UI Language Map (Status Bar + Small Panels)
+
+Use these terms in team docs so people can find the controls quickly:
+
+- **Status Bar**: bottom bar showing `Ln/Col`, indentation (`Spaces`), encoding (`UTF-8`), line endings (`LF/CRLF`), language mode (`Markdown`, `TypeScript`), diagnostics/tool status, and extension-contributed items
+- **Language Mode picker**: the status-bar control that switches file language (for syntax + tooling behavior)
+- **Language Status panel**: popup with per-language/tool states (example: markdown link validation state, formatter/tool actions, logs)
+- **Problems indicator**: diagnostics count (errors/warnings) tied to workspace and active tooling
+- **Notifications Center**: bell/notification surface for alerts, task completion, and extension/runtime notices
+
+Practical use:
+
+- click status-bar items as first stop before opening full settings
+- expect extra status items when extensions are installed (Prettier, security scanners, linters, etc.)
+- treat these as runtime affordances, not static preferences
+
+### Layout and Panel Workflow Patterns (Senior Use)
+
+1. **Deep implementation window**
+- Layout: `Editor` + minimal side panels, `Zen` when writing/refactoring
+- Use case: dense implementation or review-response patches
+- Effect: reduces visual interrupt rate and preserves chain-of-thought
+
+2. **Triage window**
+- Layout: `Agent` + `Panel` + `Problems` + notifications visible
+- Use case: failing CI, lint storms, multi-error cleanup
+- Effect: shortens detect -> fix -> verify loop by keeping feedback in one frame
+
+3. **Investigation window**
+- Layout: `Browser` + editor split + terminal panel
+- Use case: UI/debug/network reproduction with source edits
+- Effect: reduces tool hopping and lowers context reconstruction overhead
+
+4. **Coordination window**
+- Layout: chat-focused sidebar with status bar and notifications on
+- Use case: long-running agent tasks, queued follow-ups, review gating
+- Effect: keeps execution state visible while you prepare next steering prompts
+
+### Cognitive Changes to Expect
+
+- **Lower allostatic load**: explicit layout modes reduce constant micro-decisions ("where do I look now?"), which lowers sustained cognitive strain over long sessions.
+- **Cleaner context switching**: moving between named modes (implement, triage, investigate, coordinate) creates clearer mental boundaries, so you reload task context faster and with less drift.
+
+### Built-In Git Review for Massive AI-Assisted Diffs
+
+When a branch has very large changes, use the Source Control view as a staged review surface instead of reviewing everything in one pass.
+
+Recommended flow:
+
+1. open Source Control and select the target repository row
+2. use the branch/review affordance (the review popover button near branch actions) to focus review on that branch
+3. review by file clusters (core logic, tests, docs, tooling), not by raw file order
+4. commit in milestone units after each cluster is validated
+
+Useful controls:
+
+- **Collapse All Repositories**: reduces noise when multiple repos/worktrees are visible
+- **Repository `...` (More Actions)**: common repo-level actions like fetch/pull/push/sync, branch actions, stash operations, and open-in-terminal variants (exact menu labels vary by version and enabled extensions)
+- **Review button/popover**: enters a review-oriented state for larger diffs and helps keep the commit narrative coherent
+
+Stacked-diff mindset in practice:
+
+- treat each commit as one reviewable layer
+- verify layer N before opening layer N+1
+- keep commit message intent aligned with the visible diff layer
+- map this directly to `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`
 
 ---
 

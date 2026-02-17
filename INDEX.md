@@ -2,6 +2,8 @@
 
 ## Core Docs
 
+### Foundations
+
 - `README.md`
 - `00-START-HERE.md`
 - `01-WEEK-ONE-CHECKLIST.md`
@@ -17,15 +19,24 @@
 - `50-MARKDOWN-OPS.md`
 - `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
 - `70-ROVO-CONTENT-INGEST.md`
-- `75-GITHUB-COPILOT-CONFIG-ADVANCED.md`
-- `76-OTHER-AGENT-HARNESSES-ADVANCED.md`
+
+### Cursor Runtime and Controls
+
 - `77-CURSOR-AGENT-CLI-WEB-BOT-ENTERPRISE-ADVANCED.md`
 - `78-HOOKS-SKILLS-COMMANDS-SUBAGENTS-ADVANCED.md`
 - `79-CURSOR-CONTEXT-FOCUS-30-WAYS.md`
-- `80-SAMPLE-PROJECT-LAB.md`
 - `81-CURSOR-SHORTCUTS-ADVANCED-FOLLOW-UP.md`
 - `82-CURSOR-DEBUG-MODE-UI-AFFORDANCES.md`
 - `83-CURSOR-SETTINGS-CONFIG-FIRST.md`
+
+### Mixed-Harness Compatibility
+
+- `75-GITHUB-COPILOT-CONFIG-ADVANCED.md`
+- `76-OTHER-AGENT-HARNESSES-ADVANCED.md`
+
+### Labs
+
+- `80-SAMPLE-PROJECT-LAB.md`
 - `LAB-rn-insurance-20-tricks/README.md`
 - `LAB-rn-insurance-20-tricks/PROMPT-PACK-20-TRICKS.md`
 - `LAB-rn-insurance-20-tricks/SOLUTION-KEY.md`
@@ -33,6 +44,9 @@
 - `LAB-rn-insurance-20-tricks/FAQ-BY-WORKFLOW.md`
 - `LAB-rn-insurance-20-tricks/FAQ-BY-TRICK-20.md`
 - `LAB-rn-insurance-20-tricks/LLM-MECHANICS-FOR-ENGINEERS.md`
+
+### Governance and Review
+
 - `90-GLOSSARY-AND-FRONTMATTER.md`
 - `95-READING-LIST.md`
 - `96-EXTERNAL-EVIDENCE-MAP-2026.md`
@@ -53,27 +67,9 @@
 1. Start with `00-START-HERE.md`
 2. Run `01-WEEK-ONE-CHECKLIST.md` through your first week
 3. Read `02-NO-FLUFF-OPERATING-GUIDE.md`
-4. Read `03-EXPERIENCED-ENGINEER-LENS-QA.md`
-5. Skim `04-TIPS-AND-TRICKS-SCORECARD.md` for immediate wins
-6. Read `05-AGENT-OPERATOR-PATTERN.md` and adopt minimum viable chain
-7. Use `10-WORKFLOW-FOUNDATIONS.md` on a live ticket
-8. Reuse prompt snippets from `20-PROMPT-PATTERNS.md`
-9. Add markdown lifecycle from `50-MARKDOWN-OPS.md`
-10. Add local-only config strategy from `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
-11. Run one onboarding lab from `80-SAMPLE-PROJECT-LAB.md`
-12. Run `LAB-rn-insurance-20-tricks` for ready-to-run instructor workflow
-13. Introduce model switching from `30-MODEL-SWITCHING-ADVANCED.md`
-14. Add compatibility guidance from `35-INSTRUCTION-FILES-ADVANCED.md`
-15. Configure Copilot instructions via `75-GITHUB-COPILOT-CONFIG-ADVANCED.md`
-16. Use `76-OTHER-AGENT-HARNESSES-ADVANCED.md` only if your team is mixed-tool
-17. Add advanced Cursor surfaces from `77-CURSOR-AGENT-CLI-WEB-BOT-ENTERPRISE-ADVANCED.md`
-18. Add operational mechanics from `78-HOOKS-SKILLS-COMMANDS-SUBAGENTS-ADVANCED.md`
-19. Improve prompt quality via `79-CURSOR-CONTEXT-FOCUS-30-WAYS.md`
-20. Add keyboard efficiency from `81-CURSOR-SHORTCUTS-ADVANCED-FOLLOW-UP.md`
-21. Add debug/run affordance patterns from `82-CURSOR-DEBUG-MODE-UI-AFFORDANCES.md`
-22. Add config-first setup from `83-CURSOR-SETTINGS-CONFIG-FIRST.md`
-23. Normalize terms/metadata via `90-GLOSSARY-AND-FRONTMATTER.md`
-24. Review `96` evidence map to align risks with controls
-25. Run `97` adversarial review before scaling adoption
-26. Use `99` + `99B` for large-task orchestration and prompt contracts
-27. Apply `99C` for review-ready commit narrative and governance alignment
+4. Use `10-WORKFLOW-FOUNDATIONS.md` on a live ticket
+5. Reuse snippets in `20-PROMPT-PATTERNS.md`
+6. Add local/workflow hygiene from `50-MARKDOWN-OPS.md` and `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
+7. Add Cursor runtime controls with `77`, `78`, `79`, `82`, `83`
+8. Run one lab (`80` or `LAB-rn-insurance-20-tricks`)
+9. Add governance layers from `90`, `95`, `96`, `97`, `99`, `99B`, `99C`
