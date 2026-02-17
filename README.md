@@ -67,3 +67,8 @@ This package is optimized for standard GitHub Markdown rendering:
 - code fences
 - Mermaid support where used
 
+## Licensing
+
+- Default repository license: MIT (`LICENSE`)
+- Scope and overrides: `LICENSES.md`
+- Scheduling lab mixed-license detail: `LAB-scheduling-demo/LICENSE`, `LAB-scheduling-demo/LICENSE-CONTENT.md`
