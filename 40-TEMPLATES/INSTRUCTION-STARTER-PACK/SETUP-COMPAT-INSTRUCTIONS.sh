@@ -5,7 +5,7 @@ set -euo pipefail
 # - Keeps AGENTS.md as canonical by default
 # - Bridges CLAUDE.md to AGENTS.md (import or symlink)
 # - Adds local-only exclusions to .git/info/exclude
-# - Note: **I do this for Cursor for when I switch to Anthropic models and use other harnesses**
+# - Supports teams working across multiple models and harnesses
 
 ROOT_DIR="${1:-.}"
 MODE="${2:-import}" # import | symlink

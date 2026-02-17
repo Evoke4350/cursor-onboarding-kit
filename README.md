@@ -1,9 +1,9 @@
-# Agentic Blackboard - Cursor Onboarding Kit
+# Agentic Blackboard - AI Engineering and Workflow Jumpstart Kit
 
-A GitHub-friendly package for onboarding engineers to Cursor workflows quickly.
+A GitHub-friendly package for onboarding engineers to AI engineering workflows quickly.
 
 Built for:
-- Cursor-first teams
+- teams using Cursor, Claude Code, Copilot, and other agent harnesses
 - engineering leads onboarding new contributors
 - consultants sharing reusable internal operating systems
 
@@ -47,15 +47,12 @@ Built for:
   - [`99B-SUBAGENT-PROMPT-LIBRARY.md`](./99B-SUBAGENT-PROMPT-LIBRARY.md)
   - [`99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`](./99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md)
 
-## Cursor-First, Compatibility-Second
+## Multi-Harness Compatibility
 
-Default path is Cursor-first. Add other harness compatibility only when your team needs it:
+The kit includes Cursor-focused guidance plus compatibility patterns for other harnesses and models:
 
 - [`76-OTHER-AGENT-HARNESSES-ADVANCED.md`](./76-OTHER-AGENT-HARNESSES-ADVANCED.md)
 - [`75-GITHUB-COPILOT-CONFIG-ADVANCED.md`](./75-GITHUB-COPILOT-CONFIG-ADVANCED.md)
-
-
-- Included: full onboarding kit docs, templates, labs, and scripts
 
 ## Rendering Notes (GitHub)
 
@@ -74,3 +71,8 @@ This package is optimized for standard GitHub Markdown rendering:
 - Scheduling lab mixed-license detail: `LAB-scheduling-demo/LICENSE`, `LAB-scheduling-demo/LICENSE-CONTENT.md`
 - Contribution sign-off policy: `CONTRIBUTING.md` and `DCO`
 - CLA policy (ICLA + CCLA): `CLA/README.md`
+
+## Releasing
+
+- Release guide: `RELEASING.md`
+- Automated release workflow: `.github/workflows/release-package.yml`
