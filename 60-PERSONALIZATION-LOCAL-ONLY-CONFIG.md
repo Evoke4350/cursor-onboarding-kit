@@ -20,7 +20,6 @@ Edit `.git/info/exclude` in the current repo:
 ```gitignore
 # Personal AI workflow files (local only)
 AGENTS.local.md
-CLAUDE.local.md
 .cursor/local/**
 .cursor/private/**
 .agentic-blackboard/private/**

@@ -3,7 +3,7 @@
 A GitHub-friendly package for onboarding engineers to AI engineering workflows quickly.
 
 Built for:
-- teams using Cursor, Claude Code, Copilot, and other agent harnesses
+- teams using Cursor for production engineering workflows
 - engineering leads onboarding new contributors
 - consultants sharing reusable internal operating systems
 
@@ -46,13 +46,6 @@ Built for:
   - [`99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md`](./99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md)
   - [`99B-SUBAGENT-PROMPT-LIBRARY.md`](./99B-SUBAGENT-PROMPT-LIBRARY.md)
   - [`99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`](./99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md)
-
-## Multi-Harness Compatibility
-
-The kit includes Cursor-focused guidance plus compatibility patterns for other harnesses and models:
-
-- [`76-OTHER-AGENT-HARNESSES-ADVANCED.md`](./76-OTHER-AGENT-HARNESSES-ADVANCED.md)
-- [`75-GITHUB-COPILOT-CONFIG-ADVANCED.md`](./75-GITHUB-COPILOT-CONFIG-ADVANCED.md)
 
 ## Rendering Notes (GitHub)
 

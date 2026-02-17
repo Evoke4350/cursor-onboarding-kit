@@ -8,10 +8,7 @@
 - **`alwaysApply`**: Cursor rule toggle for always-on vs conditional activation.
 - **`globs`**: file patterns controlling where conditional rules apply.
 - **`AGENTS.md`**: agent instruction file used by multiple agent workflows.
-- **`CLAUDE.md`**: alternative instruction file used by Claude-oriented toolchains.
-- **`AGENTS.local.md` / `CLAUDE.local.md`**: local-only personal instruction files (exclude from git).
-- **Repository instructions**: `.github/copilot-instructions.md` for Copilot repo-wide guidance.
-- **Path instructions**: `.github/instructions/*.instructions.md` for Copilot scoped guidance.
+- **`AGENTS.local.md`**: local-only personal instruction file (exclude from git).
 - **Blackboard**: local markdown workspace for notes, RFCs, prompts, and experiments.
 - **ROVO content ingest**: pulling Jira/Confluence/Figma context into local markdown safely.
 
@@ -38,7 +35,6 @@ tags: [cursor, onboarding]
 You use frontmatter in:
 
 - Cursor rules (`.cursor/rules/*.mdc`)
-- Copilot path-specific instructions (`.github/instructions/*.instructions.md`)
 - Blackboard markdown documents (optional but recommended)
 
 ## Minimal Safe Frontmatter Standard

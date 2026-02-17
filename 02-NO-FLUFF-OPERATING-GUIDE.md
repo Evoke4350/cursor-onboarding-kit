@@ -30,8 +30,8 @@ If someone has 10 minutes, this is the first file they should read.
 
 ### Instruction files and local personalization
 
-- **Instruction stack (`AGENTS`, `CLAUDE`, Cursor rules, Copilot instructions)**.  
-  **Why**: shared team policy + tool compatibility across agent systems.  
+- **Instruction stack (`AGENTS`, Cursor rules)**.
+  **Why**: shared team policy with minimal drift and clear ownership.
   **Read**: `35-INSTRUCTION-FILES-ADVANCED.md`
 - **Starter pack templates for instruction files**.  
   **Why**: copy/paste baseline for new repos.  
@@ -96,10 +96,6 @@ If someone has 10 minutes, this is the first file they should read.
 - **Operator pattern (real-world workflow + memory drift cautions)**.  
   **Why**: shows what worked, what failed, and how to recover.  
   **Read**: `05-AGENT-OPERATOR-PATTERN.md`
-- **Other harness compatibility (optional)**.  
-  **Why**: helps mixed-tool teams without bloating Cursor-first onboarding.  
-  **Read**: `76-OTHER-AGENT-HARNESSES-ADVANCED.md`
-
 **Full navigation**: see `INDEX.md` for adoption sequence and all doc links.
 
 ---

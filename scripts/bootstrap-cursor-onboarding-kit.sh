@@ -36,7 +36,6 @@ append_if_missing() {
 # Local-only patterns to avoid git noise.
 append_if_missing "# Cursor local-only personalization" "$EXCLUDE_FILE"
 append_if_missing "AGENTS.local.md" "$EXCLUDE_FILE"
-append_if_missing "CLAUDE.local.md" "$EXCLUDE_FILE"
 append_if_missing ".cursor/local/**" "$EXCLUDE_FILE"
 append_if_missing ".cursor/private/**" "$EXCLUDE_FILE"
 append_if_missing ".agentic-blackboard/private/**" "$EXCLUDE_FILE"

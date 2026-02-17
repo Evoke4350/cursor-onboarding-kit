@@ -112,7 +112,7 @@ Then say: "Now let me show you how to actually do this." → Move to Prompt 1.
 "The structured prompts are training wheels. Juniors get better outcomes immediately. Over time they internalize the patterns and write their own prompts."
 
 **"Is this Cursor-specific?"**
-"The prompt patterns work in any AI coding tool. Cursor gives you the best workflow around them — inline chat, multi-file context, agent mode. But the disciplines are portable."
+"Yes. This branch is intentionally Cursor-first, including prompts and workflow examples optimized for Cursor agent mode."
 
 ## Instructor Checklist
 

@@ -133,15 +133,6 @@ This list prioritizes practical onboarding resources.
 
 Note: Cursor publishing cadence and URLs change quickly. Validate links before sharing externally.
 
-## GitHub Copilot (Instructions + Customization)
-
-- Add repository instructions  
-  https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode
-- Use custom instructions for code review  
-  https://docs.github.com/en/copilot/tutorials/use-custom-instructions
-- Custom instruction support matrix  
-  https://docs.github.com/en/copilot/reference/custom-instructions-support
-
 ## Frontmatter + Structured Markdown
 
 - GitHub docs: YAML frontmatter  

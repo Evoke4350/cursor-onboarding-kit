@@ -12,7 +12,7 @@ Use this when you want transparent labels for AI-assisted or AI-generated artifa
 ## Generation metadata
 
 - Source type: `human-authored | ai-assisted | ai-generated`
-- Model/provider label: <e.g., "Robo", "Copilot", "Cursor agent">
+- Model/provider label: <e.g., "Robo", "Cursor agent">
 - Prompt style: <discussion-first / scoped task / template-driven>
 - Inputs used: <files, tickets, links>
 

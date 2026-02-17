@@ -23,7 +23,7 @@ Use this as a practical week-one guide for new engineers shipping with Cursor.
 ### Environment and instruction setup
 
 - [ ] Add team baseline instructions (`AGENTS.md`, Cursor rules).
-- [ ] Add personal local files (`AGENTS.local.md`, `CLAUDE.local.md`) if needed.
+- [ ] Add personal local files (`AGENTS.local.md`) if needed.
 - [ ] Confirm local exclude setup (`.git/info/exclude`) for local-only files.
 - [ ] Confirm you can run lint/typecheck/test commands for this repo.
 

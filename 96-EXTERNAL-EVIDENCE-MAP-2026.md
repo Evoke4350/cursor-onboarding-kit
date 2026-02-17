@@ -51,8 +51,8 @@ It intentionally excludes user-forum bug reports as core evidence.
 
 9. Third-party hooks docs
 - Source: https://cursor.com/docs/agent/third-party-hooks
-- Why it matters: cross-harness hook interoperability.
-- Kit mapping: `76-OTHER-AGENT-HARNESSES-ADVANCED.md`
+- Why it matters: policy/event automation through external hook handlers.
+- Kit mapping: `78-HOOKS-SKILLS-COMMANDS-SUBAGENTS-ADVANCED.md`
 
 10. Permissions reference (CLI)
 - Source: https://cursor.com/docs/cli/reference/permissions

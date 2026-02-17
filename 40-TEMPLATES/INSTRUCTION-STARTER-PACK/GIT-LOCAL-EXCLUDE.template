@@ -1,6 +1,5 @@
 # Copy into .git/info/exclude (local-only)
 AGENTS.local.md
-CLAUDE.local.md
 .cursor/local/**
 .cursor/private/**
 .agentic-blackboard/private/**

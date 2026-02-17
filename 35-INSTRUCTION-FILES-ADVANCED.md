@@ -1,53 +1,39 @@
-# Instruction Files Advanced (AGENTS / CLAUDE / Local Variants)
+# Instruction Files Advanced (AGENTS + Local Variants)
 
-This guide explains how to stay portable across toolchains that look for different instruction files.
+This guide describes a Cursor-first instruction setup with one canonical policy file.
 
-## Naming Clarification
-
-If your team says `clod.md` / `clodlocal.md`, treat that as shorthand for:
-
-- `CLAUDE.md`
-- `CLAUDE.local.md`
-
-## Practical Compatibility Strategy
+## Practical Strategy
 
 Use a layered approach:
 
-1. `AGENTS.md` for broadly compatible agent instructions
-2. `CLAUDE.md` as optional compatibility surface for Claude-oriented tooling
-3. Local-only personal file (`AGENTS.local.md` or `CLAUDE.local.md`) excluded from git
+1. `AGENTS.md` as the single committed team policy
+2. `.cursor/rules/*.mdc` for scoped behavior
+3. `AGENTS.local.md` for local-only personal preferences
 
 ## Recommended Source Of Truth
 
-- Team policy: one canonical committed file (usually `AGENTS.md`)
-- Optional compatibility: keep `CLAUDE.md` aligned to the canonical file
+- Team policy: one canonical committed file (`AGENTS.md`)
+- Scoped rules: keep task or directory-specific constraints in `.cursor/rules/*.mdc`
 - Personal preferences: local-only file + local excludes
 
 ## Discovery Behavior (What To Expect)
 
-Different tools may load:
+Cursor workflows typically rely on:
 
 - nearest `AGENTS.md` in directory tree
-- repo-root `CLAUDE.md` / `GEMINI.md` alternatives
 - project rules from `.cursor/rules/*.mdc`
 
-Behavior varies by product/version, so optimize for redundancy without drift:
+To reduce drift:
 
 - Keep rules concise
 - Avoid contradictory guidance between files
-- Add a header note pointing to canonical source
-
-## Drift Prevention Pattern
-
-In compatibility files, add:
-
-`Canonical policy lives in AGENTS.md. Keep this file aligned.`
+- Treat `AGENTS.md` as canonical
 
 ## Local Personalization Pattern
 
 Store local-only preferences in:
 
-- `AGENTS.local.md` or `CLAUDE.local.md`
+- `AGENTS.local.md`
 - `.cursor/local/**`
 - private blackboard folders
 

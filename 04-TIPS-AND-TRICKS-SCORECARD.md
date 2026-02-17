@@ -60,7 +60,6 @@ Why it works: avoids policy churn and git noise.
 Use `.git/info/exclude` for personal config:
 
 - `AGENTS.local.md`
-- `CLAUDE.local.md`
 - local/private cursor folders
 
 ## Trick 9: Positive Boolean Naming Rule
@@ -239,7 +238,6 @@ These are distilled from:
 - `10-WORKFLOW-FOUNDATIONS.md`
 - `50-MARKDOWN-OPS.md`
 - `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
-- `75-GITHUB-COPILOT-CONFIG-ADVANCED.md`
 - `99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md`
 - `99B-SUBAGENT-PROMPT-LIBRARY.md`
 - `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`
