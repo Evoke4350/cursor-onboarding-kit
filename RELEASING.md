@@ -11,7 +11,7 @@ Both channels can share the same semver.
 
 - Canonical semver is stored in `VERSION`.
 - Keep `VERSION` identical across branches when snapshots should stay pinned to one semver line.
-- Example: `1.0.0` on `main` and `codex/cursor-ai-2026-02-17`.
+- Example: `1.0.0` on `main` and `cursor-ai/2026-02-17`.
 
 ## Official Tagged Release
 

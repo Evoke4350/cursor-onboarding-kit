@@ -3,7 +3,7 @@
 ## Artifact
 
 - Name: `v1.0.0` branch prerelease package (`zero-context-playground/2026-02-17`)
-- Location: https://github.com/Evoke4350/cursor-onboarding-kit/releases/tag/branch-zero-context-playground-2026-02-17-v1.0.0
+- Location: release tag `branch-zero-context-playground-2026-02-17-v1.0.0` in the current repository
 - Owner: Project maintainers (represented by Nathaniel Bennett)
 - Date: 2026-02-17
 
@@ -13,9 +13,7 @@
 - Model/provider label: `Cursor agent (Codex, GPT-5 family)`
 - Prompt style: `template-driven` + `scoped task`
 - Inputs used:
-  - `.github/workflows/branch-release-package.yml`
-  - `VERSION`
-  - GitHub Releases metadata/API for `branch-zero-context-playground-2026-02-17-v1.0.0`
+  - `none (initial release baseline)`
 
 ## Human controls applied
 
@@ -24,15 +22,15 @@
 - [x] Security/privacy check completed
 - [x] Tests run (if code)
 - [x] Commit/PR narrative rewritten for clarity
-- Reviewer identity/group: `Project Maintainers Review Group (represented by Nathaniel Bennett)`
+- Reviewer identity/group: `Nathaniel Bennett (first reviewer identity group)`
 
 Evidence:
 
-- Branch release run: https://github.com/Evoke4350/cursor-onboarding-kit/actions/runs/22091512547
-- Asset URLs:
-  - https://github.com/Evoke4350/cursor-onboarding-kit/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/ai-engineering-workflow-jumpstart-kit-v1.0.0-zero-context-playground-2026-02-17.zip
-  - https://github.com/Evoke4350/cursor-onboarding-kit/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/ai-engineering-workflow-jumpstart-docs-v1.0.0-zero-context-playground-2026-02-17.zip
-  - https://github.com/Evoke4350/cursor-onboarding-kit/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/SHA256SUMS.txt
+- Branch release run: `actions/runs/22091512547` in the current repository
+- Asset paths in the current repository:
+  - `/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/ai-engineering-workflow-jumpstart-kit-v1.0.0-zero-context-playground-2026-02-17.zip`
+  - `/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/ai-engineering-workflow-jumpstart-docs-v1.0.0-zero-context-playground-2026-02-17.zip`
+  - `/releases/download/branch-zero-context-playground-2026-02-17-v1.0.0/SHA256SUMS.txt`
 
 ## Confidence and risk
 

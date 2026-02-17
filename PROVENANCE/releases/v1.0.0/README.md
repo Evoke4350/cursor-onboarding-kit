@@ -27,7 +27,7 @@ CLA/DCO note:
 
 Named human accountability for this release line:
 
-- `Project Maintainers Review Group (represented by Nathaniel Bennett)`
+- `Nathaniel Bennett (first reviewer identity group)`
 
 ## Completed Records
 
