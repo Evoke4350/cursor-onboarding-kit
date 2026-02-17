@@ -31,7 +31,6 @@ When licenses appear to conflict, resolve scope in this order:
 - Reusing templates from `40-TEMPLATES/`: Unlicense terms apply.
 - Reusing instructional/narrative docs from `LAB-scheduling-demo/`: provide CC BY attribution.
 
-
 ## Attribution and Adaptation
 
 For scheduling-lab documentation, attribution and remix/adaptation rights are
