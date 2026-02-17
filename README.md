@@ -73,3 +73,4 @@ This package is optimized for standard GitHub Markdown rendering:
 - Scope and overrides: `LICENSES.md`
 - Scheduling lab mixed-license detail: `LAB-scheduling-demo/LICENSE`, `LAB-scheduling-demo/LICENSE-CONTENT.md`
 - Contribution sign-off policy: `CONTRIBUTING.md` and `DCO`
+- CLA policy (ICLA + CCLA): `CLA/README.md`

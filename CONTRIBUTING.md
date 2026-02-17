@@ -4,7 +4,8 @@
 
 - Send focused PRs with a clear problem statement.
 - Keep changes small enough to review quickly.
-- Add or update tests when behavior changes.
+- Add or update tests when runtime behavior changes.
+- Docs/templates/process-only changes can mark testing as `N/A` with a one-line reason in the PR.
 
 ## Licensing Model (Read First)
 
@@ -40,9 +41,25 @@ The trailer format must match your commit identity:
 Signed-off-by: Your Name <your.email@example.com>
 ```
 
-## CLA Status
+## CLA (Required)
 
-No Contributor License Agreement (CLA) is required right now.
+This project uses an inbound=outbound CLA model:
 
-If project governance later needs explicit patent grants or centralized
-relicensing rights, this may move to an Apache-style ICLA/CCLA model.
+- Individual CLA: `CLA/ICLA.md`
+- Corporate CLA for employer-owned work: `CLA/CCLA.md`
+- Process details: `CLA/README.md`
+- Corporate authorization ledger: `CLA/COMPANIES.md`
+
+Rules:
+
+- Individual contributors must accept the ICLA.
+- If your employer may own your contribution, your organization must complete
+  the CCLA onboarding path in `CLA/README.md`.
+- Anonymous and pseudonymous identities are not accepted.
+- A government-issued legal name is not required, but your name and email must
+  identify a real accountable person.
+
+## Enforcement
+
+PR checks enforce CLA acceptance, and maintainers verify CCLA authorization when
+applicable. DCO sign-off is still required on each commit.
