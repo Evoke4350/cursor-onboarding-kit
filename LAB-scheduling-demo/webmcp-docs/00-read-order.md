@@ -1,7 +1,10 @@
-# WebMCP Docs Read Order
+# WebMCP Docs // Index
+
+`mode`: compressed
+
+`read-order`:
 
 1. `01-protocol-delta-2025-11-25.md`
-2. `02-vercel-hosting-and-cli.md`
-3. `03-next16-runtime-notes.md`
+2. `02-hosting-and-cli-patterns.md`
 
-Treat model memory as potentially stale for WebMCP work.
+`rule`: runtime evidence > prose when they conflict.

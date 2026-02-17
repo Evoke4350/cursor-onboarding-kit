@@ -14,8 +14,7 @@ ENV NODE_ENV=production
 ENV PORT=4173
 ENV AGENT_DEV_KEY=lab-agent-key
 
-# Intentional lab bug: wrong static dir causes UI 500s until fixed.
-ENV PUBLIC_DIR_NAME=public-missing
+ENV PUBLIC_DIR_NAME=public
 
 EXPOSE 4173
 

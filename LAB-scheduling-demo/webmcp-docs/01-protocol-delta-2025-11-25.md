@@ -1,37 +1,38 @@
-# WebMCP Protocol Delta (2025-11-25 Spec Snapshot)
+# WebMCP // Protocol Contract (Compressed)
 
-Use this file when working on `/mcp` behavior.  
-Assume pre-training memory is stale.
+`scope`: `/mcp` behavior and client/server envelope expectations.
 
-## Transport Defaults
+## Envelope
 
-- Preferred transport: Streamable HTTP.
-- Client -> server JSON-RPC uses HTTP POST.
-- Server may return:
-  - `200` with JSON-RPC response body,
-  - `202` with no immediate response body (accepted/async),
-  - SSE stream for streaming responses.
+- JSON-RPC: `2.0`
+- request fields: `jsonrpc`, `id`, `method`, `params`
+- lab methods: `tools/list`, `tools/call`
 
-## Header-Level Requirements (Practical)
+## Transport
 
-- Client SHOULD send `Accept: application/json, text/event-stream`.
-- Client SHOULD send `MCP-Protocol-Version: <version>`.
-- Session-aware flows can include `Mcp-Session-Id`.
+- HTTP `POST /mcp`
+- request content type: `application/json`
+- response modes to handle:
+  - `200` JSON-RPC payload
+  - `202` accepted/no immediate body
+  - stream-capable response paths
 
-## Session Notes
+## Header Expectations
 
-- Some servers create session id on initialize.
-- Client should reuse session id for follow-up calls when provided.
-- Session termination semantics should be explicit (server policy dependent).
+- required (lab): `x-agent-key`
+- recommended: `Accept: application/json, text/event-stream`
+- recommended: `MCP-Protocol-Version`
+- optional: `Mcp-Session-Id` for session continuity
 
-## Compatibility Guardrails
+## Error Model
 
-- Never hardcode one response mode; handle JSON and stream-capable flows.
-- Treat missing protocol-version negotiation as compatibility risk.
-- Fail closed for malformed JSON-RPC envelopes.
+- `-32700`: parse error
+- `-32600`: invalid request
+- `-32601`: method not found
+- `-32602`: invalid params / unknown tool
+- `-32001`: unauthorized (lab-specific)
 
-## For This Lab
+## Change Guardrail
 
-- Current lab `/mcp` endpoint is intentionally minimal and not fully spec-complete.
-- If ticket requests "WebMCP correctness," first add protocol conformance tests.
-
+- do not assume full spec conformance from this lab runtime
+- add protocol conformance tests before strict compatibility changes
