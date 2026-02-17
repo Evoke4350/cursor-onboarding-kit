@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "source": "Figma REST export",
+    "exportedAt": "2026-02-08T18:42:11Z",
+    "fileKey": "FAKE_ops_handoff_v7_118",
+    "frameId": "118:22"
+  },
+  "document": {
+    "name": "Ops Handoff Dashboard",
+    "version": "7.0-draft",
+    "team": "Core Platform"
+  },
+  "nodes": [
+    {
+      "id": "118:22",
+      "type": "FRAME",
+      "name": "On-Call Confidence",
+      "layoutMode": "VERTICAL"
+    },
+    {
+      "id": "118:41",
+      "type": "TEXT",
+      "name": "coverage_title",
+      "characters": "Coverage Confidence"
+    },
+    {
+      "id": "118:56",
+      "type": "TEXT",
+      "name": "coverage_value_raw",
+      "characters": "{coverageRawPercent}%",
+      "visible": false
+    },
+    {
+      "id": "118:57",
+      "type": "TEXT",
+      "name": "coverage_value_effective",
+      "characters": "{coverageEffectivePercent}%",
+      "visible": true
+    },
+    {
+      "id": "118:63",
+      "type": "TEXT",
+      "name": "coverage_caption",
+      "characters": "Includes overlap and backup in legacy mode.",
+      "visible": true
+    },
+    {
+      "id": "118:70",
+      "type": "COMPONENT",
+      "name": "escalation_badge",
+      "variantProperties": {
+        "state": "fallback-engaged"
+      }
+    }
+  ],
+  "tokens": {
+    "status_good": "#1F8A4D",
+    "status_warning": "#F1A208",
+    "status_critical": "#D43A2F",
+    "text_subtle": "#5B6470"
+  },
+  "annotations": [
+    {
+      "author": "pm-core-platform",
+      "text": "Please make numbers less alarming without hiding what happened."
+    },
+    {
+      "author": "sre-review",
+      "text": "Do not remove raw metric. Incident review needs both."
+    }
+  ]
+}
+

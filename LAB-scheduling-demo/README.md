@@ -93,3 +93,9 @@ See `INSTRUCTOR-RUNBOOK.md` for the full 3-act demo sequence. Quick summary:
 | `INSTRUCTOR-RUNBOOK.md` | Demo beats, timeboxes, troubleshooting |
 | `PROMPT-PACK.md` | 13 prompts for the 3-act flow |
 | `SOLUTION-KEY.md` | Canonical fixes per file |
+| `RFP-ORBITAL-COVERAGE-REVIVAL.md` | Fake PM-style RFP with messy cross-cutting requirements |
+| `JIRA-SCHED-2419.md` | Ticket for dual coverage metrics and shadow-gap classification |
+| `JIRA-SCHED-2427.md` | Ticket for escalation fallback hardening and half-hour timezone support |
+| `JIRA-SCHED-2453-SEV1-CI-GREEN-PROD-BURNING.md` | Incident-style ticket where prod fails while CI stays green |
+| `JIRA-SCHED-2461-VAGUE-HANDOFF-IMPROVEMENTS.md` | Intentionally vague ticket for progressive-disclosure exercises |
+| `CONTEXT-VAGUE-SCHED-2461/` | 10 mixed-source context files (Slack, Confluence, Robo, Figma JSON, etc.) |

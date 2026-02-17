@@ -1,0 +1,6 @@
+ticket_id,created_at,region,summary,observed_behavior,expected_behavior,severity
+ZD-44192,2026-02-03T07:11:00Z,APAC,"Primary unavailable, no one paged","Only primary notification sent; no fallback","Escalate to lead or manager","high"
+ZD-44207,2026-02-04T11:22:00Z,NA,"Coverage shows 150 but outage occurred","Overlap inflated dashboard value","Effective coverage should reflect true ownership","medium"
+ZD-44291,2026-02-05T09:45:00Z,APAC,"UTC+5:30 shift conflict missed","Half-hour timezone parsed as zero","Correct half-hour offset handling","high"
+ZD-44308,2026-02-06T15:30:00Z,EMEA,"Critical alert arrived via email only","No pager path on critical","Pager-first critical routing","high"
+

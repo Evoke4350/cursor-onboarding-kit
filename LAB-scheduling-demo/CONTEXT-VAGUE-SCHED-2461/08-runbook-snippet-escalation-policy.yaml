@@ -1,0 +1,30 @@
+policy_version: 1.7
+owner: platform-ops
+last_reviewed: 2025-12-18
+
+escalation:
+  critical:
+    primary_channel: pager
+    secondary_channel: slack
+    fallback_order:
+      - direct_escalation_contact
+      - available_lead
+      - all_managers
+    max_handoff_hops: 2
+  medium:
+    primary_channel: slack
+  low:
+    primary_channel: email
+
+coverage:
+  legacy_metric_retention_days: 60
+  effective_metric_cap_percent: 100
+  treat_secondary_as_effective_coverage: false
+
+timezone:
+  accepted_formats:
+    - "UTC+N"
+    - "UTC-N"
+    - "UTC+H:MM"
+    - "UTC-H:MM"
+

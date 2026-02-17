@@ -1,0 +1,21 @@
+ROBO DIGEST AUTO-SUMMARY
+Generated: 2026-02-10T02:11:03Z
+Confidence: 0.62
+
+Summary:
+- Stakeholders want "fewer scary numbers" in weekly report output.
+- Engineering keeps asking if this is cosmetic or logic correction. No final answer.
+- Incident responders report escalations can stop without fallback target.
+- APAC timezone complaints likely involve half-hour offset parsing.
+- PM asked for minimal blast radius and no schema changes.
+
+Suggested action clusters:
+1) Reporting labels and dual-metric explanation
+2) Escalation fallback reliability
+3) Timezone parse resilience
+
+Risk flags:
+- Conflicting stakeholder goals: "hide confusion" vs "preserve raw truth."
+- If only labels change, incident review trust may worsen.
+- If only logic changes, CSV consumers may break.
+

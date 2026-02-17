@@ -1,0 +1,21 @@
+Comment stream export for SCHED-2461
+Generated: 2026-02-10 03:55 UTC
+
+[2026-02-08 16:11] eli.pm:
+Can we just cap coverage at 99 so nobody asks hard questions?
+
+[2026-02-08 16:14] dan.sre:
+No. If raw is 132 then raw is 132. Add effective metric, don't fake raw.
+
+[2026-02-08 16:22] sara.finance:
+Do not break weekly CSV. We have workbook macros tied to current columns.
+
+[2026-02-08 16:29] priya.support:
+Timezone support for UTC+5:30 is not optional anymore.
+
+[2026-02-08 16:41] anita.eng:
+Need exact fallback order for escalation. "Someone should get it" is not a spec.
+
+[2026-02-08 16:56] eli.pm:
+Can someone propose scope that is not huge but still defensible in QBR?
+
