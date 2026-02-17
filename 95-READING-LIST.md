@@ -31,6 +31,10 @@ This list prioritizes practical onboarding resources.
   https://cursor.com/docs/agent/browser
 - Keyboard shortcuts docs  
   https://docs.cursor.com/advanced/keyboard-shortcuts
+- Tab docs overview  
+  https://cursor.com/docs/tab/overview
+- Tab product page  
+  https://cursor.com/product/tab
 - Shell configuration docs  
   https://docs.cursor.com/configuration/shell
 - Cursor API overview  

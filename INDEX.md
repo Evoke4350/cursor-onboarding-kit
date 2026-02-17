@@ -12,6 +12,7 @@
 - `04-TIPS-AND-TRICKS-SCORECARD.md`
 - `05-AGENT-OPERATOR-PATTERN.md`
 - `06-DAY-IN-THE-LIFE-CURSOR-ENGINEER.md`
+- `07-CURSOR-TAB-KEY.md`
 - `10-WORKFLOW-FOUNDATIONS.md`
 - `20-PROMPT-PATTERNS.md`
 - `30-MODEL-SWITCHING-ADVANCED.md`
@@ -67,9 +68,10 @@
 1. Start with `00-START-HERE.md`
 2. Run `01-WEEK-ONE-CHECKLIST.md` through your first week
 3. Read `02-NO-FLUFF-OPERATING-GUIDE.md`
-4. Use `10-WORKFLOW-FOUNDATIONS.md` on a live ticket
-5. Reuse snippets in `20-PROMPT-PATTERNS.md`
-6. Add local/workflow hygiene from `50-MARKDOWN-OPS.md` and `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
-7. Add Cursor runtime controls with `77`, `78`, `79`, `82`, `83`
-8. Run one lab (`80` or `LAB-rn-insurance-20-tricks`)
-9. Add governance layers from `90`, `95`, `96`, `97`, `99`, `99B`, `99C`
+4. Read `07-CURSOR-TAB-KEY.md` and practice one Tab-first implementation pass
+5. Use `10-WORKFLOW-FOUNDATIONS.md` on a live ticket
+6. Reuse snippets in `20-PROMPT-PATTERNS.md`
+7. Add local/workflow hygiene from `50-MARKDOWN-OPS.md` and `60-PERSONALIZATION-LOCAL-ONLY-CONFIG.md`
+8. Add Cursor runtime controls with `77`, `78`, `79`, `82`, `83`
+9. Run one lab (`80` or `LAB-rn-insurance-20-tricks`)
+10. Add governance layers from `90`, `95`, `96`, `97`, `99`, `99B`, `99C`
