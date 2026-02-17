@@ -636,4 +636,4 @@ Why this works:
 
 - command gives repeatable invocation
 - skill gives reusable procedure
-- evidence schema prevents vibes-only recommendations
+- evidence schema prevents weak, non-evidence recommendations
