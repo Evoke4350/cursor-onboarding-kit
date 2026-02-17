@@ -1,0 +1,433 @@
+# Cursor Agent Surfaces (CLI, Web, Bugbot, Enterprise)
+
+This module documents advanced Cursor surfaces that are easy to miss in day-to-day editor use.
+
+Scope:
+
+- Cursor Agent CLI
+- Cursor Web/Cloud Agent workflows
+- Bugbot (PR review agent)
+- Enterprise controls (service accounts, GitHub integration patterns)
+- Update tracking and verification loop
+
+---
+
+## 1) Cursor Agent CLI (Terminal-First)
+
+What it is:
+
+- `agent` in terminal for interactive and non-interactive workflows
+- supports Agent/Plan/Ask modes
+- supports handoff to cloud agents (`&` prefix)
+
+Why teams use it:
+
+- headless workflows in shell scripts and CI-like automation
+- easy integration with existing terminal-heavy engineering habits
+- mode parity with editor workflows for planning vs execution
+
+Verified docs:
+
+- https://cursor.com/docs/cli/overview
+- https://cursor.com/docs/cli/reference/parameters
+- https://cursor.com/docs/cli/reference/permissions
+
+---
+
+## 2) Cursor Web/Cloud Agents
+
+What it is:
+
+- agent runs that continue outside local editor sessions
+- accessible on web/mobile (`cursor.com/agents`)
+- programmatic launch and follow-ups through API
+
+Key capabilities to know:
+
+- launch an agent against repo/ref/PR
+- follow up on existing run
+- stop/delete runs
+- list accessible repositories (rate-limited endpoint)
+- optional PR auto-creation behavior
+
+Verified docs:
+
+- https://cursor.com/docs/cloud-agent
+- https://cursor.com/docs/cloud-agent/api/endpoints
+- https://cursor.com/agents
+
+---
+
+## 3) GitHub Integration (Web + Agent Workflows)
+
+What it enables:
+
+- cloud agents working from PR/issue comments
+- repo cloning and PR creation from agent runs
+- optional team-level IP allowlist setup for restricted orgs
+
+Operational note:
+
+- for enterprise automation, team-level GitHub app install matters more than individual setup
+
+Verified docs:
+
+- https://cursor.com/docs/integrations/github
+
+---
+
+## 4) Bugbot (Cursor Bot for PR Review)
+
+What it is:
+
+- automated PR review agent that comments on likely bugs and issues
+- supports repo-level enablement and review triggers
+
+How it fits this kit:
+
+- run Bugbot as backpressure layer before merge
+- route findings into the same evidence/risk/rollback workflow used in this kit
+
+Verified docs:
+
+- https://cursor.com/docs/bugbot
+- https://cursor.com/bugbot
+
+---
+
+## 5) Enterprise Controls and API Keys
+
+What is relevant:
+
+- service accounts for non-human automation
+- API key lifecycle (creation/rotation/revocation)
+- centralized admin visibility and usage governance
+- GitHub team-level integration requirements for service account repo access
+
+Verified docs:
+
+- https://cursor.com/docs/account/enterprise/service-accounts
+
+Practical interpretation:
+
+- if you want "open-router-like" internal automation patterns, start with official Cloud Agents API + service accounts
+- treat this as governed platform automation, not ad hoc personal scripting
+
+---
+
+## 6) Tracking Rapid Product Changes
+
+Known update sources:
+
+- Changelog page: https://www.cursor.com/changelog
+- Alternate changelog host: https://changelog.cursor.sh/
+
+Verification finding:
+
+- `https://www.cursor.com/changelog/rss` returns not found
+- `https://changelog.cursor.sh/rss` currently redirects to changelog page (not a stable machine-readable feed)
+
+Recommendation:
+
+- track changelog URL directly
+- optionally use external change monitors if your team needs notifications
+
+---
+
+## 7) YOLO / Auto-Run Mode (Speed vs Safety)
+
+What it is:
+
+- a high-autonomy mode where the agent can execute more actions with fewer prompts
+- useful for tightly scoped, low-risk, or disposable environments
+
+Important caution:
+
+- this can dramatically increase speed and blast radius at the same time
+- use only with explicit boundaries and rollback confidence
+
+Practical guidance:
+
+- prefer sandboxed or constrained permissions first
+- for sensitive repos, default to approval mode and explicit allowlists
+- if using broad allow rules, keep scope narrow and monitor command output continuously
+
+Verified docs:
+
+- https://cursor.com/docs/cli/reference/permissions
+- https://cursor.com/docs/agent/security
+- https://cursor.com/docs/agent/terminal
+
+Note:
+
+- shortcut behavior and approval UX can vary by version and surface (editor vs CLI)
+- treat "approve all" habits as temporary accelerators, not baseline policy
+- keep personal high-autonomy aliases local-only (do not publish as team defaults)
+
+Troubleshooting bonus:
+
+- use `40-TEMPLATES/INSTRUCTION-STARTER-PACK/YOLO-TROUBLESHOOT-BONUS.sh` to inspect local CLI approval/sandbox posture before changing policies
+
+---
+
+## 8) Beta / Experimental Features
+
+Use beta features when:
+
+- your team can absorb occasional instability
+- you can isolate experiments from production-critical work
+- you have a rollback path
+
+Use stable path when:
+
+- onboarding new engineers
+- running regulated/compliance-heavy workflows
+- operating under strict enterprise controls
+
+Suggested practice:
+
+- test beta capabilities in one pilot repo first
+- document observed behavior and version notes
+- promote only proven patterns to team defaults
+
+---
+
+## 9) Enterprise Lock-Down Reality
+
+In enterprise environments, some controls are intentionally restricted:
+
+- MCP availability can be policy-governed
+- approval/permissions may be centrally constrained
+- service-account access depends on org-level integration setup
+- security tooling may be mandatory in your workflow
+
+Treat this as design input, not friction:
+
+- optimize prompts and boundaries within policy
+- encode required checks into your standard operating loop
+- avoid "works on my machine" assumptions for automation
+
+---
+
+## 10) Sandboxes (Execution Safety Layer)
+
+Use sandboxes to reduce blast radius while preserving agent speed.
+
+Recommended approach:
+
+1. local sandbox and permission boundaries first
+2. disposable branch and clean rollback path
+3. external sandbox service only when team workflow needs it
+
+Optional service example:
+
+- Daytona can run isolated sandboxes for automation-heavy workflows.
+- `nono` is an OSS kernel-enforced capability sandbox for agent/CLI workloads.
+
+Docs:
+
+- https://daytona.io/docs/en
+- https://www.daytona.io/docs/en/sandboxes/
+- https://github.com/always-further/nono
+
+Team guidance:
+
+- treat external sandbox services as infrastructure decisions
+- run a small pilot before broad rollout
+- document cost, latency, and credential handling trade-offs
+
+---
+
+## 11) WASM and Kernel-Level Sandboxes (What Is "Standard"?)
+
+Short answer:
+
+- there is no single universal "agent sandbox standard" yet
+- teams typically combine multiple layers depending on risk
+
+Current common patterns:
+
+- WASM runtime isolation (for tool/plugin execution) using engines such as Wasmtime
+- kernel-level isolation (for arbitrary code) using primitives such as gVisor, Kata, or Firecracker
+- managed sandbox platforms for faster adoption when infra ownership is not desired
+
+Practical recommendation:
+
+- use WASM-style sandboxing for bounded tools/components
+- use kernel-level isolation for untrusted general code execution
+- treat managed services as an ops trade-off (speed vs control)
+
+References:
+
+- https://developer.nvidia.com/blog/sandboxing-agentic-ai-workflows-with-webassembly/
+- https://opensource.microsoft.com/blog/2025/08/06/introducing-wassette-webassembly-based-tools-for-ai-agents/
+- https://www.e2b.dev/
+
+---
+
+## 12) Cursor Out-of-the-Box Safety Baseline
+
+What Cursor includes by default (verify on your version):
+
+- approvals for sensitive actions, especially terminal and privileged integrations
+- scoped permissions and approval modes in CLI config
+- security controls documented for agent operations and integrations
+- optional platform sandboxing support depending on OS/version surface
+
+Key docs:
+
+- https://cursor.com/docs/agent/security
+- https://cursor.com/docs/cli/reference/permissions
+- https://cursor.com/docs/agent/terminal
+
+Operator note:
+
+- default posture is usually safer than ad hoc "approve everything"
+- YOLO/auto-run shortcuts should be treated as temporary acceleration in controlled contexts
+
+---
+
+## 13) Destructive Command Guardrails
+
+Base layer (official Cursor controls):
+
+- permission policies and allow/deny rules
+- agent security settings
+- approval mode for risky command classes
+
+Docs:
+
+- https://cursor.com/docs/cli/reference/permissions
+- https://cursor.com/docs/agent/security
+
+Optional hardening layer (third-party):
+
+- tools like `destructive_command_guard` can add extra blocking logic for dangerous shell commands
+- useful in high-risk repos; evaluate operational overhead before team-wide rollout
+
+Reference:
+
+- https://github.com/Dicklesworthstone/destructive_command_guard
+
+Policy note:
+
+- do not rely on one guardrail
+- combine permissions, branch strategy, reviews, and runtime checks
+
+---
+
+## 14) Local Backpressure with Lefthook
+
+Lefthook is a practical local hook runner for pre-commit and pre-push checks.
+
+Why it fits this kit:
+
+- strong local backpressure
+- can be adopted personally before team-wide rollout
+- supports local override files for personal workflows
+
+Docs:
+
+- https://lefthook.dev/
+- https://lefthook.dev/usage/commands.html
+- https://lefthook.dev/usage/features.html
+
+Suggested pattern:
+
+- keep team hook config lightweight
+- keep personal extras in local override files
+- avoid turning hooks into slow, brittle pipelines
+
+---
+
+## 15) Bugbot Web Workflow (Practical)
+
+What teams usually miss:
+
+- Bugbot comments can include "Fix in Web" and "Fix in Cursor" entry points
+- these are not just review comments; they can start fix workflows
+
+Baseline flow:
+
+1. Bugbot flags issue on PR
+2. reviewer decides: fix now, defer, or dismiss with reason
+3. trigger fix via web/editor entry point
+4. agent proposes changes
+5. run verification gates before merge
+
+Manual trigger examples:
+
+- `cursor review`
+- `bugbot run`
+- `@cursor fix` (when enabled and appropriate)
+
+Docs:
+
+- https://cursor.com/docs/bugbot
+- https://cursor.com/docs/integrations/github
+
+---
+
+## 16) Update Tracking (Official + Third-Party)
+
+Official sources:
+
+- https://www.cursor.com/changelog
+- https://changelog.cursor.sh/
+
+Observed feed behavior:
+
+- `https://www.cursor.com/changelog/rss` -> not found
+- `https://changelog.cursor.sh/rss` -> currently redirects to changelog page
+
+Third-party monitor option:
+
+- release trackers (for example Releasebot) can provide feed/alert wrappers around Cursor releases
+
+Reference:
+
+- https://releasebot.io/updates/cursor
+
+Security note:
+
+- treat third-party feeds as convenience, not source of truth
+- confirm important changes against official Cursor docs/changelog
+
+---
+
+## 17) Extension and Module Caution
+
+For security-sensitive teams:
+
+- avoid recommending random extension stacks by default
+- prefer built-in Cursor capabilities first
+- add third-party modules only after security review and clear ownership
+
+If your personal setup enables many modules:
+
+- document which are mandatory vs optional
+- validate that baseline workflow still works without extras
+- keep enterprise-safe defaults in team docs
+
+---
+
+## 18) Verification Loop (Keep This Module Current)
+
+Use this monthly (or before sharing externally):
+
+1. Open every "Verified docs" URL in this file.
+2. Confirm major claims still exist in docs text:
+   - CLI modes and handoff behavior
+   - Cloud Agent API endpoints and auth method
+   - Bugbot setup and trigger behavior
+   - service account scope and GitHub integration requirements
+3. Update this file:
+   - add "Last verified: YYYY-MM-DD"
+   - mark any unstable claims as "Observed" instead of "Verified"
+4. If docs moved:
+   - update links
+   - add migration note for instructors
+
+Suggested footer line when verified:
+
+`Last verified against Cursor docs/changelog: YYYY-MM-DD`
