@@ -494,6 +494,11 @@ Compatibility note:
 - CodexBar advertises Cursor support, but community reports include occasional plan-detection edge cases
 - Gryph integrates through Cursor hooks and is better for action/audit traces than plan-usage meters
 
+Workflow note:
+
+- tools like DevSQL can query local history/transcript + git patterns to support reinforcement loops
+- use results to improve workflow policy and prompt structure, not to overfit one-off sessions
+
 ---
 
 ## 21) Voice Dictation Input (Optional)

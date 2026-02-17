@@ -295,3 +295,37 @@ When sharing this pattern internally:
 5. Human review package
 
 If a team can execute this chain consistently, they are ready for advanced orchestration.
+
+---
+
+## Self-Reinforcement Loop (Practical, Guardrailed)
+
+Goal:
+
+- improve workflow quality over time, not chase perfect prompts
+
+Loop:
+
+1. run normal work (ship code/docs with standard guardrails)
+2. collect artifacts (chat history, transcripts, commits, review notes)
+3. analyze patterns (what correlated with good outcomes vs rework)
+4. promote only proven deltas to local `AGENTS.local.md`
+5. promote stable deltas to team `AGENTS.md` or rules
+6. re-measure on next cycle
+
+Optional tool support:
+
+- DevSQL-style query tooling can correlate conversation patterns with commit/review outcomes
+- treat query outputs as signals, not truth
+
+Reflection prompts that work well:
+
+- `Notice any frustration patterns in the last 7 sessions and map each one to a concrete mitigation.`
+- `Find the 5 prompts that most often preceded clean commits; summarize common structure.`
+
+Guardrails:
+
+- cap loop cadence (for example weekly), not every session
+- cap active experiments (1-2 at a time)
+- require outcome evidence before policy promotion
+- reject perfection loops; optimize for reliable delivery

@@ -62,6 +62,8 @@ This list prioritizes practical onboarding resources.
   https://github.com/steipete/codexbar
 - cursor-otel-hook (OpenTelemetry integration)  
   https://github.com/LangGuard-AI/cursor-otel-hook
+- DevSQL (query coding history + git activity)  
+  https://github.com/douglance/devsql
 
 ## Dictation Input Tooling (Optional)
 

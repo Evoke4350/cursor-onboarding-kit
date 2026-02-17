@@ -43,3 +43,7 @@ Examples:
 - `Cast this as a senior reviewer. Goal: catch regressions. Constraints: findings only, severity ordered, include exact fix suggestion per finding.`
 
 Use prompt casting to force decision posture, not style.
+
+## 8) Reinforcement Review (Advanced)
+
+`Review my last <period> of chats + commits. Find recurring friction patterns, strongest prompt patterns, and top 3 policy updates to test next week. Require evidence for each recommendation.`
