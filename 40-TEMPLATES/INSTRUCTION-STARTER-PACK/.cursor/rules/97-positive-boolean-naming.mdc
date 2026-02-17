@@ -1,0 +1,13 @@
+---
+description: Prefer positive boolean naming
+globs:
+  - "**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Positive Boolean Naming
+
+- Prefer: `isEligible`, `hasCoverage`, `canSubmit`
+- Avoid: `isIneligible`, `hasNoCoverage`, `cannotSubmit`
+
+If external contracts are negative, normalize once locally and then use positive names in app logic.

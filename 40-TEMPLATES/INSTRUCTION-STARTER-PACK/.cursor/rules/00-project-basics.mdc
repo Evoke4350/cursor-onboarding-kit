@@ -1,0 +1,11 @@
+---
+description: Project baseline constraints for insurance lab
+alwaysApply: true
+---
+
+# Project Basics
+
+- Primary targets: `src/PolicyQuoteScreen.tsx`, `src/eligibility.ts`, `src/telemetry.ts`
+- Keep edits small and task-focused
+- Do not introduce unrelated refactors
+- Explicitly call out assumptions
