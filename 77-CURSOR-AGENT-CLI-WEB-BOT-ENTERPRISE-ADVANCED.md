@@ -26,7 +26,7 @@ Why teams use it:
 - easy integration with existing terminal-heavy engineering habits
 - mode parity with editor workflows for planning vs execution
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/cli/overview
 - https://cursor.com/docs/cli/reference/parameters
@@ -50,7 +50,7 @@ Key capabilities to know:
 - list accessible repositories (rate-limited endpoint)
 - optional PR auto-creation behavior
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/cloud-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints
@@ -58,7 +58,24 @@ Verified docs:
 
 ---
 
-## 3) GitHub Integration (Web + Agent Workflows)
+## 3) Web Agent Advanced Usage
+
+Useful advanced patterns:
+
+- queue long-running refactors from web while local IDE stays free
+- launch against PR/ref, then do follow-up prompts on the same run
+- split runs by task shape (explore, implement, review) to reduce context pollution
+- keep cloud-run output tied to PR comments for traceability
+
+Good fit:
+
+- large repo scans
+- repetitive doc or migration work
+- overnight non-blocking tasks
+
+---
+
+## 4) GitHub Integration (Web + Agent Workflows)
 
 What it enables:
 
@@ -70,13 +87,13 @@ Operational note:
 
 - for enterprise automation, team-level GitHub app install matters more than individual setup
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/integrations/github
 
 ---
 
-## 4) Bugbot (Cursor Bot for PR Review)
+## 5) Bugbot (Cursor Bot for PR Review)
 
 What it is:
 
@@ -88,14 +105,41 @@ How it fits this kit:
 - run Bugbot as backpressure layer before merge
 - route findings into the same evidence/risk/rollback workflow used in this kit
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/bugbot
 - https://cursor.com/bugbot
 
 ---
 
-## 5) Enterprise Controls and API Keys
+## 6) Bugbot Advanced Usage
+
+Practical advanced patterns:
+
+- treat Bugbot findings as triage queues, not auto-fix mandates
+- dismiss only with explicit rationale in PR thread
+- use "Fix in Web" for quick patch loops and "Fix in Cursor" for deeper local validation
+- rerun Bugbot after risky edits or rebases
+
+Reviewer workflow:
+
+1. classify finding (bug, style, false positive, out-of-scope)
+2. choose fix path (web or local)
+3. require tests for behavior changes
+4. close thread with rationale and result
+
+---
+
+## 7) Who Can Use What (Reality)
+
+- most surfaces are broadly available, but access depends on plan, org policy, and repo integration state
+- enterprise admins can restrict integrations, permissions, MCP, or network behavior
+- service accounts/API automation are typically enterprise-governed
+- if something is missing, check workspace policy and GitHub integration first
+
+---
+
+## 8) Enterprise Controls and API Keys
 
 What is relevant:
 
@@ -104,7 +148,7 @@ What is relevant:
 - centralized admin visibility and usage governance
 - GitHub team-level integration requirements for service account repo access
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/account/enterprise/service-accounts
 
@@ -115,26 +159,20 @@ Practical interpretation:
 
 ---
 
-## 6) Tracking Rapid Product Changes
+## 9) Doc Sync (Fast)
 
-Known update sources:
+Primary docs:
 
 - Changelog page: https://www.cursor.com/changelog
 - Alternate changelog host: https://changelog.cursor.sh/
 
-Verification finding:
+Quick check:
 
-- `https://www.cursor.com/changelog/rss` returns not found
-- `https://changelog.cursor.sh/rss` currently redirects to changelog page (not a stable machine-readable feed)
-
-Recommendation:
-
-- track changelog URL directly
-- optionally use external change monitors if your team needs notifications
+- run `scripts/check-cursor-docs.sh` to fetch key pages with `curl` and validate expected markers
 
 ---
 
-## 7) YOLO / Auto-Run Mode (Speed vs Safety)
+## 10) YOLO / Auto-Run Mode (Speed vs Safety)
 
 What it is:
 
@@ -152,7 +190,7 @@ Practical guidance:
 - for sensitive repos, default to approval mode and explicit allowlists
 - if using broad allow rules, keep scope narrow and monitor command output continuously
 
-Verified docs:
+Docs:
 
 - https://cursor.com/docs/cli/reference/permissions
 - https://cursor.com/docs/agent/security
@@ -170,7 +208,7 @@ Troubleshooting bonus:
 
 ---
 
-## 8) Beta / Experimental Features
+## 11) Beta / Experimental Features
 
 Use beta features when:
 
@@ -192,7 +230,7 @@ Suggested practice:
 
 ---
 
-## 9) Enterprise Lock-Down Reality
+## 12) Enterprise Lock-Down Reality
 
 In enterprise environments, some controls are intentionally restricted:
 
@@ -209,7 +247,7 @@ Treat this as design input, not friction:
 
 ---
 
-## 10) Sandboxes (Execution Safety Layer)
+## 13) Sandboxes (Execution Safety Layer)
 
 Use sandboxes to reduce blast radius while preserving agent speed.
 
@@ -238,7 +276,7 @@ Team guidance:
 
 ---
 
-## 11) WASM and Kernel-Level Sandboxes (What Is "Standard"?)
+## 14) WASM and Kernel-Level Sandboxes (What Is "Standard"?)
 
 Short answer:
 
@@ -265,7 +303,7 @@ References:
 
 ---
 
-## 12) Cursor Out-of-the-Box Safety Baseline
+## 15) Cursor Out-of-the-Box Safety Baseline
 
 What Cursor includes by default (verify on your version):
 
@@ -287,7 +325,7 @@ Operator note:
 
 ---
 
-## 13) Destructive Command Guardrails
+## 16) Destructive Command Guardrails
 
 Base layer (official Cursor controls):
 
@@ -316,7 +354,7 @@ Policy note:
 
 ---
 
-## 14) Local Backpressure with Lefthook
+## 17) Local Backpressure with Lefthook
 
 Lefthook is a practical local hook runner for pre-commit and pre-push checks.
 
@@ -340,7 +378,7 @@ Suggested pattern:
 
 ---
 
-## 15) Bugbot Web Workflow (Practical)
+## 18) Bugbot Web Workflow (Practical)
 
 What teams usually miss:
 
@@ -368,17 +406,12 @@ Docs:
 
 ---
 
-## 16) Update Tracking (Official + Third-Party)
+## 19) Update Tracking (Official + Third-Party)
 
 Official sources:
 
 - https://www.cursor.com/changelog
 - https://changelog.cursor.sh/
-
-Observed feed behavior:
-
-- `https://www.cursor.com/changelog/rss` -> not found
-- `https://changelog.cursor.sh/rss` -> currently redirects to changelog page
 
 Third-party monitor option:
 
@@ -395,7 +428,7 @@ Security note:
 
 ---
 
-## 17) Extension and Module Caution
+## 20) Extension and Module Caution
 
 For security-sensitive teams:
 
@@ -411,23 +444,8 @@ If your personal setup enables many modules:
 
 ---
 
-## 18) Verification Loop (Keep This Module Current)
+## 21) Lightweight Maintenance Loop
 
-Use this monthly (or before sharing externally):
-
-1. Open every "Verified docs" URL in this file.
-2. Confirm major claims still exist in docs text:
-   - CLI modes and handoff behavior
-   - Cloud Agent API endpoints and auth method
-   - Bugbot setup and trigger behavior
-   - service account scope and GitHub integration requirements
-3. Update this file:
-   - add "Last verified: YYYY-MM-DD"
-   - mark any unstable claims as "Observed" instead of "Verified"
-4. If docs moved:
-   - update links
-   - add migration note for instructors
-
-Suggested footer line when verified:
-
-`Last verified against Cursor docs/changelog: YYYY-MM-DD`
+- run `scripts/check-cursor-docs.sh`
+- update links that fail or redirect unexpectedly
+- keep guidance short and operational
