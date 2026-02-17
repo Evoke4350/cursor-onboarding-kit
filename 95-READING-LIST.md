@@ -59,6 +59,21 @@ This list prioritizes practical onboarding resources.
 - Release tracking wrapper (third-party)  
   https://releasebot.io/updates/cursor
 
+## Secrets + Vault Hygiene (Optional)
+
+- 1Password + Cursor hooks  
+  https://developer.1password.com/docs/cursor-hooks
+- 1Password announcement for Cursor  
+  https://1password.com/blog/bringing-secure-just-in-time-secrets-to-cursor-with-1password
+- Akeyless Cursor integration  
+  https://docs.akeyless.io/docs/cursor-akeyless-secrets-manager
+- Infisical (open-source secrets platform)  
+  https://github.com/Infisical/infisical
+- HashiCorp Vault OSS  
+  https://github.com/hashicorp/vault
+- SOPS (encrypted files for GitOps)  
+  https://github.com/getsops/sops
+
 ## Community Proxy Experiments (Unofficial)
 
 - cursor-openrouter-proxy  

@@ -183,7 +183,45 @@ Community examples (unofficial):
 
 ---
 
-## 9) Doc Sync (Fast)
+## 9) Secrets and Vault Hygiene
+
+Short answer:
+
+- Cursor supports API key configuration and enterprise service-account keys
+- Cursor does not position itself as your full secrets vault platform
+- for team-grade secret hygiene, pair Cursor with an external secrets manager
+
+Recommended pattern:
+
+1. store secrets in a dedicated vault
+2. inject secrets just-in-time at runtime (hooks/CI/session), not in repo files
+3. keep AI-visible context free of raw credentials
+4. rotate keys and enforce short-lived access where possible
+
+Good ecosystem options:
+
+- 1Password hooks integration (just-in-time secrets)
+- Akeyless extension/integration
+- Infisical (open-source secrets platform)
+- HashiCorp Vault OSS (mature vault baseline)
+- SOPS + age (GitOps/file-encryption workflow)
+
+References:
+
+- https://cursor.com/docs/settings/api-keys
+- https://cursor.com/docs/api
+- https://cursor.com/docs/account/enterprise/service-accounts
+- https://cursor.com/docs/agent/hooks
+- https://1password.com/blog/bringing-secure-just-in-time-secrets-to-cursor-with-1password
+- https://developer.1password.com/docs/cursor-hooks
+- https://docs.akeyless.io/docs/cursor-akeyless-secrets-manager
+- https://github.com/Infisical/infisical
+- https://github.com/hashicorp/vault
+- https://github.com/getsops/sops
+
+---
+
+## 10) Doc Sync (Fast)
 
 Primary docs:
 
@@ -196,7 +234,7 @@ Quick check:
 
 ---
 
-## 10) YOLO / Auto-Run Mode (Speed vs Safety)
+## 11) YOLO / Auto-Run Mode (Speed vs Safety)
 
 What it is:
 
@@ -232,7 +270,7 @@ Troubleshooting bonus:
 
 ---
 
-## 11) Beta / Experimental Features
+## 12) Beta / Experimental Features
 
 Use beta features when:
 
@@ -254,7 +292,7 @@ Suggested practice:
 
 ---
 
-## 12) Enterprise Lock-Down Reality
+## 13) Enterprise Lock-Down Reality
 
 In enterprise environments, some controls are intentionally restricted:
 
@@ -271,7 +309,7 @@ Treat this as design input, not friction:
 
 ---
 
-## 13) Sandboxes (Execution Safety Layer)
+## 14) Sandboxes (Execution Safety Layer)
 
 Use sandboxes to reduce blast radius while preserving agent speed.
 
@@ -300,7 +338,7 @@ Team guidance:
 
 ---
 
-## 14) WASM and Kernel-Level Sandboxes (What Is "Standard"?)
+## 15) WASM and Kernel-Level Sandboxes (What Is "Standard"?)
 
 Short answer:
 
@@ -327,7 +365,7 @@ References:
 
 ---
 
-## 15) Cursor Out-of-the-Box Safety Baseline
+## 16) Cursor Out-of-the-Box Safety Baseline
 
 What Cursor includes by default (verify on your version):
 
@@ -349,7 +387,7 @@ Operator note:
 
 ---
 
-## 16) Destructive Command Guardrails
+## 17) Destructive Command Guardrails
 
 Base layer (official Cursor controls):
 
@@ -378,7 +416,7 @@ Policy note:
 
 ---
 
-## 17) Local Backpressure with Lefthook
+## 18) Local Backpressure with Lefthook
 
 Lefthook is a practical local hook runner for pre-commit and pre-push checks.
 
@@ -402,7 +440,7 @@ Suggested pattern:
 
 ---
 
-## 18) Bugbot Web Workflow (Practical)
+## 19) Bugbot Web Workflow (Practical)
 
 What teams usually miss:
 
@@ -430,7 +468,7 @@ Docs:
 
 ---
 
-## 19) Update Tracking (Official + Third-Party)
+## 20) Update Tracking (Official + Third-Party)
 
 Official sources:
 
@@ -452,7 +490,7 @@ Security note:
 
 ---
 
-## 20) Agent Traces and Observability
+## 21) Agent Traces and Observability
 
 Official Cursor surfaces:
 
@@ -501,7 +539,7 @@ Workflow note:
 
 ---
 
-## 21) Voice Dictation Input (Optional)
+## 22) Voice Dictation Input (Optional)
 
 For prompt-heavy workflows, local dictation can speed up ideation and command entry.
 
@@ -525,7 +563,7 @@ Guidance:
 
 ---
 
-## 22) Extension and Module Caution
+## 23) Extension and Module Caution
 
 For security-sensitive teams:
 
@@ -541,7 +579,7 @@ If your personal setup enables many modules:
 
 ---
 
-## 23) Lightweight Maintenance Loop
+## 24) Lightweight Maintenance Loop
 
 - run `scripts/check-cursor-docs.sh`
 - update links that fail or redirect unexpectedly
@@ -549,7 +587,7 @@ If your personal setup enables many modules:
 
 ---
 
-## 24) Weekly Insights Workflow (Cursor Equivalent)
+## 25) Weekly Insights Workflow (Cursor Equivalent)
 
 Cursor does not currently document a native built-in `/insights` command equivalent.
 
