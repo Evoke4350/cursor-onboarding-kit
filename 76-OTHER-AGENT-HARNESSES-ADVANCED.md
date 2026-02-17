@@ -33,6 +33,12 @@ Then add cross-tool compatibility only when needed.
 - use it for pattern-finding, not automatic policy changes
 - promote outputs only after evidence from shipped work
 
+## Harness capability map (quick)
+
+- Cursor: slash commands + skills as the primary reusable workflow surface
+- Claude Code: `/insights` can be used for reflection loops in supported versions
+- mixed teams: keep one canonical policy file and map harness-specific workflows as thin overlays
+
 ## What to read next
 
 - `35-INSTRUCTION-FILES-ADVANCED.md` (AGENTS/CLAUDE compatibility)

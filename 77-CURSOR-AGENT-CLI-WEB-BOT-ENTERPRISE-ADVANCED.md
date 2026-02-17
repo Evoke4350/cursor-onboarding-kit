@@ -546,3 +546,23 @@ If your personal setup enables many modules:
 - run `scripts/check-cursor-docs.sh`
 - update links that fail or redirect unexpectedly
 - keep guidance short and operational
+
+---
+
+## 24) Weekly Insights Workflow (Cursor Equivalent)
+
+Cursor does not currently document a native built-in `/insights` command equivalent.
+
+Practical equivalent in Cursor:
+
+1. define `/weekly-insights` in `.cursor/commands/weekly-insights.md`
+2. attach a skill in `.cursor/skills/weekly-insights/SKILL.md`
+3. feed local evidence (history, transcripts, commits, review notes, optional DevSQL output)
+4. require output schema: friction patterns, high-yield prompts, policy updates, stop-list
+5. promote only evidence-backed deltas into `AGENTS.local.md` or team rules
+
+Why this works:
+
+- command gives repeatable invocation
+- skill gives reusable procedure
+- evidence schema prevents vibes-only recommendations
