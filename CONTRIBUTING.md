@@ -6,6 +6,7 @@
 - Keep changes small enough to review quickly.
 - Add or update tests when runtime behavior changes.
 - Docs/templates/process-only changes can mark testing as `N/A` with a one-line reason in the PR.
+- Some lab code is intentionally broken for pedagogy; preserving known bugs can be the correct outcome for this repository.
 
 ## Licensing Model (Read First)
 
