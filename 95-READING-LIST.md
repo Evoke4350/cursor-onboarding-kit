@@ -50,6 +50,19 @@ This list prioritizes practical onboarding resources.
 - cursor-deepseek  
   https://github.com/danilofalcao/cursor-deepseek
 
+## Agent Traces + Usage Observability (Optional)
+
+- Cursor chat history docs  
+  https://cursor.com/docs/agent/chat/history
+- Cursor shared transcripts docs  
+  https://cursor.com/docs/shared-transcripts
+- Gryph (local-first agent audit trail)  
+  https://github.com/safedep/gryph
+- CodexBar (local usage monitor)  
+  https://github.com/steipete/codexbar
+- cursor-otel-hook (OpenTelemetry integration)  
+  https://github.com/LangGuard-AI/cursor-otel-hook
+
 ## WASM + Isolation Landscape (Optional Advanced)
 
 - NVIDIA: sandboxing agentic workflows with WASM  

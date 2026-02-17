@@ -24,6 +24,8 @@ check "https://cursor.com/docs/settings/api-keys" "api key|openai|anthropic|mode
 check "https://cursor.com/docs/bugbot" "bugbot|review"
 check "https://cursor.com/docs/integrations/github" "github|integration"
 check "https://cursor.com/docs/agent/security" "security|permission"
+check "https://cursor.com/docs/agent/chat/history" "history|chat"
+check "https://cursor.com/docs/shared-transcripts" "transcript|share"
 check "https://cursor.com/docs/cli/reference/permissions" "allow|deny|permission"
 check "https://www.cursor.com/changelog" "changelog|release"
 check "https://changelog.cursor.sh/" "changelog|release"

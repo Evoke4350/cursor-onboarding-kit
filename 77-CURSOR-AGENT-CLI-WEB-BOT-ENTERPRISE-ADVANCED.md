@@ -452,7 +452,40 @@ Security note:
 
 ---
 
-## 20) Extension and Module Caution
+## 20) Agent Traces and Observability
+
+Official Cursor surfaces:
+
+- chat history for prior agent conversations
+- shared transcripts for review, handoff, and audit-style context
+- team controls and plan features can affect what is available
+
+Docs:
+
+- https://cursor.com/docs/agent/chat/history
+- https://cursor.com/docs/shared-transcripts
+
+Open-source observability tools (optional):
+
+- Gryph: local-first audit trail across coding agents, including Cursor
+- CodexBar: local usage visibility and model/session monitoring
+- cursor-otel-hook: OpenTelemetry-style instrumentation path
+
+References:
+
+- https://github.com/safedep/gryph
+- https://github.com/steipete/codexbar
+- https://github.com/LangGuard-AI/cursor-otel-hook
+
+Who can use these:
+
+- generally anyone can use OSS tools locally
+- org policy may restrict local hooks, telemetry forwarding, or extension installs
+- treat these tools as optional overlays, not required baseline workflow
+
+---
+
+## 21) Extension and Module Caution
 
 For security-sensitive teams:
 
@@ -468,7 +501,7 @@ If your personal setup enables many modules:
 
 ---
 
-## 21) Lightweight Maintenance Loop
+## 22) Lightweight Maintenance Loop
 
 - run `scripts/check-cursor-docs.sh`
 - update links that fail or redirect unexpectedly
