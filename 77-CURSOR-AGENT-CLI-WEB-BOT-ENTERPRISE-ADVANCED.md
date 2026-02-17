@@ -709,6 +709,39 @@ Stacked-diff mindset in practice:
 - keep commit message intent aligned with the visible diff layer
 - map this directly to `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`
 
+### Optional: Audio/TTS Notifications for Long Runs
+
+For personal workflows, sound notifications can reduce context polling during long agent runs.
+
+macOS examples:
+
+```bash
+# system sound
+afplay /System/Library/Sounds/Glass.aiff
+
+# built-in TTS
+say "Cursor task completed"
+
+# local desktop notification
+osascript -e 'display notification "Task completed" with title "Cursor Agent"'
+```
+
+Windows (PowerShell) examples:
+
+```powershell
+[console]::beep(1000,300)
+Add-Type -AssemblyName System.Speech
+$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer
+$speak.Speak("Cursor task completed")
+```
+
+Integration pattern:
+
+- call these commands from local hooks/scripts after long tasks
+- optional external TTS CLIs (including ElevenLabs-style tools) can be wired in the same way
+- custom sound effects are fine for personal setups, but keep them local-only
+- for API-based notifiers, treat tokens as secrets and keep them out of repo context
+
 ---
 
 ## 24) Lightweight Maintenance Loop
