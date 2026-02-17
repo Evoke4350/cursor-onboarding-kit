@@ -8,6 +8,7 @@ This pack mirrors a layered setup:
 - Cursor project rules in `.cursor/rules/*.mdc`
 - GitHub Copilot instruction files in `.github/**`
 - `SETUP-COMPAT-INSTRUCTIONS.sh` for fast mixed-tool setup
+- `YOLO-TROUBLESHOOT-BONUS.sh` for local approval/sandbox diagnostics
 
 All examples are generic and reference the insurance lab only:
 
@@ -60,6 +61,12 @@ The script:
 - creates Claude bridge (`import` or `symlink`)
 - updates `.git/info/exclude` for local-only files
 - creates local starter files when missing
+
+Bonus diagnostics:
+
+```bash
+bash .agentic-blackboard/CURSOR-ONBOARDING-KIT/40-TEMPLATES/INSTRUCTION-STARTER-PACK/YOLO-TROUBLESHOOT-BONUS.sh
+```
 
 ## Notes
 
