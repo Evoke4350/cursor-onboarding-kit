@@ -32,3 +32,14 @@ Use these as starting points. Replace placeholders.
 - Ask for assumptions and tradeoffs.
 - Ask for "minimal blast radius" to reduce incidental edits.
 - For reviews, ask for findings first, summary second.
+
+## 7) Prompt Casting (Advanced)
+
+`Cast this task as <role> for <goal>. Use <constraints>. Return <output shape>.`
+
+Examples:
+
+- `Cast this as a production incident responder. Goal: restore checkout flow fast. Constraints: no schema changes, no broad refactor. Output: root cause, patch, rollback, tests.`
+- `Cast this as a senior reviewer. Goal: catch regressions. Constraints: findings only, severity ordered, include exact fix suggestion per finding.`
+
+Use prompt casting to force decision posture, not style.

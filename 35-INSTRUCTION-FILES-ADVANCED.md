@@ -52,3 +52,50 @@ Store local-only preferences in:
 - private blackboard folders
 
 Exclude them locally via `.git/info/exclude`.
+
+## Nested AGENTS Files (Compression Pattern)
+
+Use root instructions for global policy and leaf instructions for local deltas.
+
+Recommended split:
+
+- root `AGENTS.md`: non-negotiables, safety, repo-wide standards
+- leaf `AGENTS.md`: only what differs for that subtree
+- leaf file starts with: `Inherit root AGENTS.md policy; this file adds local overrides only.`
+
+Keep leaf files compressed:
+
+- 5-12 bullets max
+- no repeated prose from root
+- include only high-value, task-local constraints
+
+## Compact Context Digest Format
+
+When docs are newer than model training or very long, store compact digests near code and reference them from `AGENTS.md`.
+
+Suggested shape:
+
+```md
+## Context Digest: <topic>
+- source: <url or doc path>
+- changed: <what changed in one line>
+- do: <required behavior>
+- avoid: <known failure mode>
+- verify: <single command/check>
+```
+
+This keeps recency signals high and reduces drift.
+
+## Columnar Encoding for Token Efficiency
+
+For repeated config/rules data, use compact rows instead of paragraph prose.
+
+Example:
+
+```text
+area|rule|why|verify
+checkout|no silent fallback|prevents hidden failures|npm run test checkout
+api-client|timeout 10s|limits hangs|unit:api-client-timeout
+```
+
+Use this for dense reference data, not narrative guidance.
