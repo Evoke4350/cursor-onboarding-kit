@@ -202,7 +202,7 @@ Adjacent tooling experiments:
 
 ---
 
-## Personal Style Layer (What To Keep)
+## Personal Style Layer
 
 Your high-performing style signals:
 
@@ -219,7 +219,7 @@ What to preserve when others copy this:
 
 ---
 
-## FAQ Pattern You Used (And Should Keep)
+## FAQ Pattern
 
 Every mature module eventually got:
 

@@ -71,7 +71,7 @@ Quote:
 
 Read next:
 
-- `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md` -> `## Position Statement (Generic Corporate Voice)`
+- `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md` -> `## Position Statement`
 - `02-NO-FLUFF-OPERATING-GUIDE.md` -> `## Track A: AI-Experienced Engineer`
 
 ## 6) "When should I use sub-agents vs just one agent?"
