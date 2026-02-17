@@ -28,7 +28,7 @@ Recommended loop:
 
 This is how policy architecting becomes implementation quickly and reliably.
 
-The reward structure is not "write code fast."  
+The objective is not "write code fast."  
 It is "satisfy constraints with verifiable evidence."
 
 ## Universal Task Contract (Use In Every Sub-Agent Prompt)
@@ -210,12 +210,12 @@ Guidelines:
 - No evidence requirements
 - Allowing sub-agents to redefine architecture silently
 
-## Minimal Rubric (Score 0-2 each)
+## Minimal Quality Check
 
-- Objective clarity
-- Scope clarity
-- Constraint quality
-- Evidence quality
-- Done-condition quality
+- Objective is clear.
+- Scope is clear.
+- Constraints are explicit.
+- Evidence requirements are explicit.
+- Done condition is explicit.
 
-If score < 7/10, rewrite prompt before delegating.
+If two or more are weak, rewrite before delegating.

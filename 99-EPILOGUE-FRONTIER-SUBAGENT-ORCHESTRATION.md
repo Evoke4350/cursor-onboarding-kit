@@ -45,9 +45,9 @@ Good split:
 - Agent B: map analytics/event payload contracts
 - Agent C: enumerate related tests and current coverage gaps
 
-## Reward Structure For Agent Success
+## Success Criteria For Agent Tasks
 
-Treat "reward" as measurable completion criteria.
+Treat completion criteria as measurable and auditable.
 
 Each sub-agent task should include:
 
@@ -57,7 +57,7 @@ Each sub-agent task should include:
 - **Quality gates:** lint/type/test checks relevant to scope
 - **Done definition:** binary, auditable completion condition
 
-Example reward contract:
+Example task contract:
 
 - "Return exactly: impacted files, root cause, proposed fix, and verification commands with pass/fail result."
 

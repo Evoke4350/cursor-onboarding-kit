@@ -95,8 +95,8 @@ Expected: yes/no decision with dependency rationale.
 Fallback:
 `Return binary parallel recommendation and two concrete coupling points.`
 
-## 13) Reward contract execution
-Expected: telemetry fixes + reward checklist pass/fail.
+## 13) Completion contract execution
+Expected: telemetry fixes + completion checklist pass/fail.
 Fallback:
 `Apply telemetry fixes and return checklist for is_eligible/monthly_premium/field names.`
 
@@ -140,7 +140,7 @@ Fallback:
 ## Quick Instructor Pass Criteria
 
 - Output is scoped to requested files
-- Reward definition is satisfied explicitly
+- Completion criteria are satisfied explicitly
 - No hidden or implied cross-scope edits
 - Verification evidence is present where requested
 - Language remains clear and mono-semantic

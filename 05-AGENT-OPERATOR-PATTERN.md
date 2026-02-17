@@ -14,7 +14,7 @@ It is not about reproducing identical output. It is about reproducing **reliable
 
 1. Conversation is the capture layer.
 2. Constraints are the control layer.
-3. Reward criteria are the reliability layer.
+3. Completion criteria are the reliability layer.
 4. Review artifacts are the transfer layer.
 
 Or, in one line:
@@ -35,7 +35,7 @@ With optional variants:
 - “turn this into a shareable rule/doc”
 - “add FAQs for likely objections”
 - “add adversarial take”
-- “score this and tell me what to change next”
+- “evaluate this and specify the next recommended change”
 
 This pattern is strong because it combines:
 
@@ -79,7 +79,7 @@ Example persona classes you used:
 - consultant needing portable, client-agnostic assets
 - instructor needing ready-to-run workshop content
 
-## Step 3 - Reward contract
+## Step 3 - Completion contract
 
 Goal: define “done” in measurable terms.
 
@@ -116,7 +116,7 @@ Goal: tune the formula after each structural change (for example explicit -> sem
 
 Pattern:
 
-- adjust scoring weights
+- adjust evaluation focus
 - add new metrics (for example steering efficiency)
 - update operating guidance
 
@@ -126,7 +126,7 @@ Pattern:
 
 - **Constraint salience**: explicit boundaries outrank implied intent.
 - **Mode control**: “no edits yet” switches behavior from generation to analysis.
-- **Reward shaping**: done criteria improve completion reliability.
+- **Completion shaping**: done criteria improve completion reliability.
 - **Variance reduction**: output schemas and narrow asks improve repeatability.
 - **Drift recovery**: steering prompts reduce waste from non-deterministic turns.
 
@@ -164,7 +164,7 @@ Memory-specific lesson:
 Use this pattern only when:
 
 - roles are strictly separated (research vs implementation vs review)
-- each agent has a measurable reward contract
+- each agent has a measurable task contract
 - handoff artifacts are explicit and short
 
 Recovery playbook when drift appears:
@@ -235,13 +235,13 @@ This is a strong transfer design because it handles both:
 
 ---
 
-## Deterministic-ish Output Recipe
+## Predictable Output Recipe
 
 Use this compact recipe to get predictable outcomes without robotic prompting:
 
 1. Start semantic and conversational.
 2. Add explicit scope boundaries.
-3. Add reward contract.
+3. Add completion contract.
 4. Require evidence output.
 5. Run adversarial pass.
 6. Capture deltas in experiment log.
@@ -261,7 +261,7 @@ It requires stable **workflow constraints**.
 
 `Make this medium-sized change with minimal blast radius. Do not touch unrelated areas.`
 
-## C) Reward block
+## C) Completion block
 
 `You are done only if: <criteria>. Return pass/fail checklist.`
 
@@ -291,7 +291,7 @@ When sharing this pattern internally:
 1. Discuss-first
 2. Scope lock
 3. Medium-sized execution
-4. Reward checklist
+4. Completion checklist
 5. Human review package
 
 If a team can execute this chain consistently, they are ready for advanced orchestration.

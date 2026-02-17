@@ -470,7 +470,7 @@ Suggested pattern:
 
 ## 19) Bugbot Web Workflow (Practical)
 
-What teams usually miss:
+Common workflow detail:
 
 - Bugbot comments can include "Fix in Web" and "Fix in Cursor" entry points
 - these are not just review comments; they can start fix workflows

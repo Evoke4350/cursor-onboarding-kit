@@ -10,7 +10,7 @@ This is a compact technical appendix for instructors who want light jargon witho
 - **Action bias**: models tend to start coding unless constrained to analyze first.
 - **Scope drift**: broad prompts expand edit surface unpredictably.
 - **Schema shaping**: fixed output formats improve consistency.
-- **Reward shaping**: explicit done criteria increases completion reliability.
+- **Completion shaping**: explicit done criteria increases completion reliability.
 - **Evaluator loop**: verification prompts convert generation into check mode.
 - **Retrieval collision**: mixed tasks in one session produce blended context and noisy edits.
 - **Variance control**: narrow prompts reduce response randomness.
@@ -41,7 +41,7 @@ This is a compact technical appendix for instructors who want light jargon witho
 10. Ternary guards -> explicit boolean semantics  
 11. Role split -> specialization  
 12. Parallel limits -> coordination overhead control  
-13. Reward contract -> completion shaping  
+13. Completion contract -> completion shaping  
 14. Commit grouping -> cognitive load reduction  
 15. PR schema -> output variance reduction  
 16. Markdown lifecycle -> retrieval hygiene  

@@ -74,9 +74,9 @@ Can UI bugfix and telemetry bugfix run in parallel safely, or do they share coup
 Binary answer first, then two concrete reasons.  
 No edits.
 
-## 13) Reward contract fix for telemetry
+## 13) Completion contract fix for telemetry
 
-Apply telemetry fixes only if you can satisfy this reward contract:
+Apply telemetry fixes only if you can satisfy this completion contract:
 - eligibility flag is not inverted
 - numeric premium fields stay numeric
 - field names remain stable
@@ -139,6 +139,6 @@ Use these to recover from fuzzy asks like “find auth bug” when it’s actual
 ## Technical Notes (short)
 
 - Fuzzy human prompts are normal; correction loops are part of good prompting.
-- Determinism comes from constraints + reward checks, not from perfect first phrasing.
+- Determinism comes from constraints + verification checks, not from perfect first phrasing.
 - “Grounded in files” reduces hallucinated context transfer.
 - Verification prompts move model behavior from generation to evaluation.

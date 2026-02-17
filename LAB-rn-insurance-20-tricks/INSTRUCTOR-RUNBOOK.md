@@ -20,7 +20,7 @@ This runbook is optimized for a single operator. Optional subagent variants are 
 2. Prompt 2 (contract definition)
 3. Prompt 3 (scoped implementation)
 4. Prompt 4 + 10 (UI correctness + explicit rendering guard)
-5. Prompt 13 (reward contract on telemetry)
+5. Prompt 13 (completion contract on telemetry)
 6. Prompt 5 (verification table)
 7. Prompt 14 + 15 (commit and PR narrative quality)
 8. Prompt 20 (adversarial risk review)
@@ -35,9 +35,9 @@ Show how the quality of the next implementation request improves when constraint
 Compare a broad ask vs Prompt 4 (minimal blast radius).
 Highlight reduced diff noise and faster reviewability.
 
-## Beat C - Reward shaping
+## Beat C - Completion criteria
 Run Prompt 13 and require checklist output.
-Show that binary done criteria produce less ambiguous completions.
+Show that explicit done criteria produce less ambiguous completions.
 
 ## Beat D - Human-readable delivery
 Run Prompt 14 and Prompt 15.
@@ -76,7 +76,7 @@ Keep orchestrator (instructor) as final integration owner.
 ## Instructor Checklist
 
 - [ ] Use discussion-first at least once
-- [ ] Use reward contract at least once
+- [ ] Use completion contract at least once
 - [ ] Show verification evidence before claiming done
 - [ ] Show commit/PR narrative workflow
 - [ ] Run adversarial pass before closing session

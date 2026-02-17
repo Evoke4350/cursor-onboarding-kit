@@ -89,15 +89,15 @@ Read next:
 
 ## 7) "How do I avoid letting sub-agents run wild?"
 
-Use measurable reward contracts: objective, boundary, evidence, done condition.
+Use measurable completion contracts: objective, boundary, evidence, done condition.
 
 Quote:
 
-> "Treat 'reward' as measurable completion criteria."
+> "Treat completion criteria as measurable and auditable."
 
 Read next:
 
-- `99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md` -> `## Reward Structure For Agent Success`
+- `99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md` -> `## Success Criteria For Agent Tasks`
 - `99B-SUBAGENT-PROMPT-LIBRARY.md` -> `## Universal Task Contract (Use In Every Sub-Agent Prompt)`
 
 ## 8) "How do I keep org policy, team rules, and personal setup from colliding?"

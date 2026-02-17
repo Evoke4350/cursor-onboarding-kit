@@ -9,11 +9,10 @@ Scope:
 - small/medium company contexts
 - product/vendor and community reports
 
-## Scoring Snapshot
+## Reference Coverage Snapshot
 
 - Target references: 20
 - Collected references: 20
-- "Bonus quote with background context": achieved
 
 ## High-Level Problem Themes
 
