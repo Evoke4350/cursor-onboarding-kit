@@ -55,7 +55,37 @@ If someone has 10 minutes, this is the first file they should read.
   **Why**: shared language, less confusion in docs.  
   **Read**: `90-GLOSSARY-AND-FRONTMATTER.md`
 
-### Advanced layers (add later)
+### Cursor runtime and UI (when you need the controls)
+
+- **Cursor Tab** (suggestions, popover, snooze, disable-for-markdown).  
+  **Why**: fast local edits without chat overhead; tune noise mid-task.  
+  **Read**: `07-CURSOR-TAB-KEY.md`
+- **Advanced Cursor surfaces** (CLI, Web/Cloud Agent, Bugbot, Git review, status bar, layout presets, audio notifications).  
+  **Why**: stacked-diff review, in-flight steering, layout modes, optional TTS/bell.  
+  **Read**: `77-CURSOR-AGENT-CLI-WEB-BOT-ENTERPRISE-ADVANCED.md`
+- **Hooks, skills, commands, subagents**.  
+  **Why**: repeatable workflows, guardrails, and parallel task shapes.  
+  **Read**: `78-HOOKS-SKILLS-COMMANDS-SUBAGENTS-ADVANCED.md`
+- **Context focus** (30 ways to target what the model sees).  
+  **Why**: less drift, better outputs.  
+  **Read**: `79-CURSOR-CONTEXT-FOCUS-30-WAYS.md`
+- **Config-first setup** (models, approval, MCP, shell).  
+  **Why**: if you tune IDE before use.  
+  **Read**: `83-CURSOR-SETTINGS-CONFIG-FIRST.md`
+- **Debug and shortcuts**.  
+  **Why**: run/debug affordances and keyboard habits.  
+  **Read**: `82-CURSOR-DEBUG-MODE-UI-AFFORDANCES.md`, `81-CURSOR-SHORTCUTS-ADVANCED-FOLLOW-UP.md`
+
+### Governance and review
+
+- **Commit history curation** (AI-assisted change, stacked diff, review-ready narrative).  
+  **Why**: readable history and rollback precision.  
+  **Read**: `99C-MANUAL-REVIEW-COMMIT-HISTORY-CURATION.md`
+- **Evidence map and adversarial take**.  
+  **Why**: align controls with risk; stress-test before scaling.  
+  **Read**: `96-EXTERNAL-EVIDENCE-MAP-2026.md`, `97-DEVILS-ADVOCATE-ADVERSARIAL-TAKE.md`
+
+### Advanced layers (add when needed)
 
 - **Model switching**.  
   **Why**: cost/perf trade-offs by task type.  
@@ -69,6 +99,8 @@ If someone has 10 minutes, this is the first file they should read.
 - **Other harness compatibility (optional)**.  
   **Why**: helps mixed-tool teams without bloating Cursor-first onboarding.  
   **Read**: `76-OTHER-AGENT-HARNESSES-ADVANCED.md`
+
+**Full navigation**: see `INDEX.md` for adoption sequence and all doc links.
 
 ---
 
@@ -189,6 +221,7 @@ Use this if you know TypeScript/React but this is your first team role with Curs
 
 - Read `00-START-HERE.md` and this guide.
 - Read `10-WORKFLOW-FOUNDATIONS.md`.
+- Skim `07-CURSOR-TAB-KEY.md` (Tab vs chat split; use Tab for small local edits).
 - Copy starter instruction files from `40-TEMPLATES/INSTRUCTION-STARTER-PACK/README.md`.
 
 ### Day 2
@@ -216,3 +249,5 @@ Rule of thumb:
 
 - If confused, simplify.
 - One ticket, one objective, one evidence-backed PR.
+
+**Next**: Use `INDEX.md` for the full adoption sequence and to find any doc by topic.
