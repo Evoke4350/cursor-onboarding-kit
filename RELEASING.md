@@ -1,32 +1,58 @@
 # Releasing
 
-This project publishes versioned release assets from Git tags.
+This project supports two release channels:
 
-## Trigger a Release
+1. Official tagged releases (`vX.Y.Z`)
+2. Branch snapshot releases (`branch-<branch>-vX.Y.Z`)
 
-1. Create a semantic version tag:
+Both channels can share the same semver.
+
+## Shared Semver
+
+- Canonical semver is stored in `VERSION`.
+- Keep `VERSION` identical across branches when snapshots should stay pinned to one semver line.
+- Example: `1.0.0` on `main` and `codex/cursor-ai-2026-02-17`.
+
+## Official Tagged Release
+
+Use this for the canonical public release.
 
 ```bash
 git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
 ```
 
-2. GitHub Actions workflow:
+Workflow:
 
 - `.github/workflows/release-package.yml`
 - Trigger: tag push matching `v*.*.*`
 
-## Published Assets
+Assets:
 
-Each release uploads:
+- `ai-engineering-workflow-jumpstart-kit-vX.Y.Z.zip`
+- `ai-engineering-workflow-jumpstart-docs-vX.Y.Z.zip`
+- `SHA256SUMS.txt`
 
-- `ai-engineering-workflow-jumpstart-kit-vX.Y.Z.zip` (full repository package)
-- `ai-engineering-workflow-jumpstart-docs-vX.Y.Z.zip` (Markdown docs bundle)
-- `SHA256SUMS.txt` (checksums for both zip files)
+## Branch Snapshot Release
 
-GitHub also provides built-in source archives (`zip` and `tar.gz`) on the release page.
+Use this for branch-specific downloadable packages while preserving the same semver.
 
-## Notes
+Workflow:
 
-- The docs bundle is a zip-first distribution path.
-- PDF packaging can be added later as an optional release job when the document set is finalized.
+- `.github/workflows/branch-release-package.yml`
+- Trigger: any branch push, or manual `workflow_dispatch`
+- Tag format: `branch-<branch-slug>-vX.Y.Z`
+- Release name: `vX.Y.Z (<branch-name>)`
+- Snapshot releases are marked as prerelease
+
+Assets:
+
+- `ai-engineering-workflow-jumpstart-kit-vX.Y.Z-<branch-slug>.zip`
+- `ai-engineering-workflow-jumpstart-docs-vX.Y.Z-<branch-slug>.zip`
+- `SHA256SUMS.txt`
+
+## Operational Notes
+
+- Branch snapshot tags are force-updated to the latest commit on that branch.
+- This keeps one stable release URL per branch+semver pair while assets track head.
+- GitHub also provides built-in source archives (`zip` and `tar.gz`) on each release page.
