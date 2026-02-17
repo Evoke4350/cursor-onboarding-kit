@@ -98,4 +98,71 @@ See `INSTRUCTOR-RUNBOOK.md` for the full 3-act demo sequence. Quick summary:
 | `JIRA-SCHED-2427.md` | Ticket for escalation fallback hardening and half-hour timezone support |
 | `JIRA-SCHED-2453-SEV1-CI-GREEN-PROD-BURNING.md` | Incident-style ticket where prod fails while CI stays green |
 | `JIRA-SCHED-2461-VAGUE-HANDOFF-IMPROVEMENTS.md` | Intentionally vague ticket for progressive-disclosure exercises |
+| `GHOST-REPO-EXERCISE.md` | Lab-specific ghost-codebase workflow for triage, scoped fixes, and PR-quality delivery |
 | `CONTEXT-VAGUE-SCHED-2461/` | 10 mixed-source context files (Slack, Confluence, Robo, Figma JSON, etc.) |
+| `ui/` | Tiny read-only scenario dashboard (no dependencies, preserves bugs) |
+| `WEBMCP-AGENT-QUICKSTART.md` | Compressed agent-first setup for MCP-style triage automation |
+| `AGENTS.md` | Compressed WebMCP-only docs index |
+| `webmcp-docs/` | Compressed MCP/WebMCP protocol, hosting, and runtime notes |
+| `Dockerfile` | Lean container runtime for the demo, with one intentional Docker-only bug |
+
+## Optional Tiny UI + Agent Menu
+
+This lab is code-first, but you can visualize behavior with a small read-only dashboard and an agent-only dev menu.
+
+```bash
+cd cursor-onboarding-kit/LAB-scheduling-demo
+export AGENT_DEV_KEY=lab-agent-key
+tsx ui/server.ts
+```
+
+Then open:
+
+- Dashboard: [http://localhost:4173](http://localhost:4173)
+- Agent menu: [http://localhost:4173/agent/dev-menu?agent=1](http://localhost:4173/agent/dev-menu?agent=1)
+
+Notes:
+
+- No package install is required.
+- This UI intentionally reflects current buggy behavior for teaching.
+- Set a custom port with `PORT=4310 tsx ui/server.ts`.
+- MCP-style endpoint is available at `POST /mcp` (header `x-agent-key` required).
+- WebMCP docs are in `webmcp-docs/` and should be read before MCP edits.
+- Agent-only autopilot demo: `AUTOPILOT_CYCLES=3 tsx ui/agent-autopilot-demo.ts` (with server running).
+- Autopilot has secure defaults (URL allowlist + execution/write limits).
+
+## Docker (Lean + Intentional Debug Exercise)
+
+Build:
+
+```bash
+cd cursor-onboarding-kit/LAB-scheduling-demo
+docker build -t scheduling-lab:2026 .
+```
+
+Run:
+
+```bash
+docker run --rm -p 4173:4173 --name scheduling-lab scheduling-lab:2026
+```
+
+Expected exercise behavior:
+
+- `/api/scenarios` works.
+- UI route (`/`) returns server error because container has an intentional bug: `PUBLIC_DIR_NAME=public-missing`.
+
+Use logs to debug:
+
+```bash
+docker logs scheduling-lab
+```
+
+You should see the static-directory path and an `ENOENT` file-read error.
+
+Quick fix (without rebuilding):
+
+```bash
+docker run --rm -p 4173:4173 --name scheduling-lab \
+  -e PUBLIC_DIR_NAME=public \
+  scheduling-lab:2026
+```

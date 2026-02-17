@@ -16,6 +16,13 @@ All examples are generic and reference the insurance lab only:
 - `src/eligibility.ts`
 - `src/telemetry.ts`
 
+## Extra AGENTS Templates
+
+- `AGENTS.template.learning-example.md`
+- `AGENTS.template.automatic-session-review.md`
+
+Use these as drop-in starting points when you want explicit learning capture or a strict end-of-session review loop.
+
 ## Recommended Usage
 
 1. Copy `AGENTS.md` and `.cursor/rules/*.mdc` into a repo as team defaults.

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Dev Menu</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">AGENT-ONLY</p>
+        <h1>Scheduling Demo Agent Dev Menu</h1>
+        <p class="subtitle">
+          This menu is intentionally built for AI agents. It calls the MCP-style
+          endpoint and generates a triage packet from one scenario.
+        </p>
+      </section>
+
+      <section class="panel">
+        <form id="agent-form" class="agent-form">
+          <label for="scenario-id">Scenario</label>
+          <select id="scenario-id" required></select>
+
+          <label for="ticket-hint">Ticket Hint (optional)</label>
+          <input
+            id="ticket-hint"
+            type="text"
+            placeholder="SCHED-2427"
+            autocomplete="off"
+          />
+
+          <label for="agent-key">Agent Key</label>
+          <input
+            id="agent-key"
+            type="password"
+            placeholder="lab-agent-key"
+            autocomplete="off"
+            required
+          />
+
+          <button type="submit">Generate Triage Packet</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h3>MCP Response</h3>
+        <pre id="output"></pre>
+      </section>
+    </main>
+    <script type="module" src="/agent/dev-menu.js"></script>
+  </body>
+</html>
+

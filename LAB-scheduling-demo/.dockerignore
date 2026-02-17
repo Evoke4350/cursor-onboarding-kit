@@ -1,0 +1,13 @@
+.git
+.gitignore
+node_modules
+agent-autopilot-output
+*.log
+.tmp*
+webmcp-docs
+CONTEXT-VAGUE-SCHED-2461
+INSTRUCTOR-RUNBOOK.md
+PROMPT-PACK.md
+SOLUTION-KEY.md
+RFP-ORBITAL-COVERAGE-REVIVAL.md
+JIRA-*.md

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scheduling Demo: Scenario Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">LAB VIEWER</p>
+        <h1>Scheduling Demo Scenario Dashboard</h1>
+        <p class="subtitle">
+          Tiny read-only UI for visualizing the current behavior. This preserves
+          all intentional bugs from the characterization baseline.
+        </p>
+      </section>
+
+      <section class="controls panel">
+        <label for="scenario">Scenario</label>
+        <select id="scenario"></select>
+      </section>
+
+      <section class="panel">
+        <strong>Agent mode:</strong>
+        <a href="/agent/dev-menu?agent=1">open dev menu</a>
+      </section>
+
+      <section class="panel">
+        <h2 id="scenario-title">Loading...</h2>
+        <p id="scenario-description"></p>
+      </section>
+
+      <section class="cards" id="cards"></section>
+
+      <section class="panel">
+        <h3>Signals</h3>
+        <ul id="signals"></ul>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h3>Weekly Report</h3>
+          <div class="detail-cards" id="report-cards"></div>
+        </article>
+        <article class="panel">
+          <h3>Notifications</h3>
+          <div class="detail-cards" id="notifications-cards"></div>
+        </article>
+        <article class="panel">
+          <h3>Conflicts</h3>
+          <div class="detail-cards" id="conflicts-cards"></div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
