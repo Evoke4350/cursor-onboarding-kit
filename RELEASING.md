@@ -56,3 +56,4 @@ Assets:
 - Branch snapshot tags are force-updated to the latest commit on that branch.
 - This keeps one stable release URL per branch+semver pair while assets track head.
 - GitHub also provides built-in source archives (`zip` and `tar.gz`) on each release page.
+- Provenance records for this line are tracked in `PROVENANCE/releases/v1.0.0/`.

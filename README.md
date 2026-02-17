@@ -76,3 +76,4 @@ This package is optimized for standard GitHub Markdown rendering:
 
 - Release guide: `RELEASING.md`
 - Automated release workflow: `.github/workflows/release-package.yml`
+- Release provenance dossier: `PROVENANCE/releases/v1.0.0/README.md`
