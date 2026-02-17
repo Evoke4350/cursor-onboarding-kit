@@ -86,6 +86,30 @@ Skill design rules:
 
 Reference: [Skills](https://cursor.com/docs/context/skills)
 
+## Skill implementation languages (what is true)
+
+Two layers matter:
+
+- the skill definition is Markdown (`SKILL.md`)
+- the executable pieces can call scripts/binaries in any language
+
+So yes, Python and TypeScript are strong defaults for scripting speed, and Rust is a strong default for fast local binaries.
+
+Other compiled personal-tool options (for teams that want them):
+
+- Zig
+- Odin
+
+Selection rule:
+
+- optimize for maintainability first, runtime speed second
+- use Rust/Zig/Odin when startup/runtime cost is the bottleneck
+- use Python/TypeScript when iteration speed and readability matter more
+
+Caveat:
+
+- language choice does not bypass security; hooks and tool boundaries still apply
+
 ## Subagents: parallelize the right things
 
 Subagents are best for decomposition, not delegation theater.
