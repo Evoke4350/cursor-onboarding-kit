@@ -1,0 +1,101 @@
+# Progress: Bootstrap Agentic Blackboard
+
+## 2026-02-17 Session 1
+
+### Completed
+- Cloned arscontexta to ~/arscontexta
+- Cloned agent-os to ~/agent-os
+- Explored arscontexta: 249 research claims, 6-phase setup, domain generation, hooks
+- Explored agent-os: shape-spec command, standards system, spec-driven development
+- Created epic bead: cursor-onboarding-kit-a4z
+- Created task beads for design work
+- User chose: Workshop naming, Engineering-first framework, File-based hooks
+
+### In Progress
+- Designing workshop naming scheme
+- Designing engineering-first framework (5 Cs)
+
+### Completed (Session 1 continued)
+- Researched Cursor extensibility → MCP-based, no hook API
+- Researched Dicklesworthstone repos (dcg, xf, coding_agent_session_search)
+- Scraped Universalis doc → taint analysis for AI agents
+- User chose: Workshop naming, Engineering-first framework, File-based hooks
+- User chose: Spec only, Tool architecture focus
+- Created TOOL-ARCHITECTURE.md spec
+
+### Next
+- Design the 5 Cs framework in detail (Capture, Cut, Carve, Chamfer, Check)
+- Design gum-based setup script
+- Create tool definition templates
+- Spec out search architecture (xf-style hybrid)
+
+### Key Decisions
+- bench/ = graph space (MOCs, identity, methodology)
+- shavings/ = notes (atomic insights)
+- sawdust/ = ops (session logs, queues)
+- Framework: 5 Cs (Capture, Cut, Carve, Chamfer, Check) + Sharpen
+- Hooks: File-based watching, no Cursor IDE API available
+
+### Learnings from arscontexta
+- Derivation > templating — conversation drives configuration
+- Domain adaptation is non-negotiable — users need their language
+- Three-space separation prevents predictable failures
+- Justification chains enable evolution
+- Fresh context per phase preserves quality
+- 249 research claims back every decision
+
+---
+
+## 2026-02-18 Session 2
+
+### Completed
+- Cloned agno and agent-os-prod repos
+- Explored Agno framework → memory schema, knowledge base, guardrails, events
+- Discovered Cursor SQLite hooks (UNDOCUMENTED GOLD!)
+  - state.vscdb in globalStorage and workspaceStorage
+  - cursorDiskKV table with composerData and bubbleId entries
+  - Full conversation history extraction possible
+- Created 7 domain epics for decomposition
+- Created ARCHITECTURE.md with full domain breakdown and user stories
+
+### Domain Structure Created
+1. Security & Taint [i5h] - Taint analysis, .cursorignore, .secrets protection
+2. Cursor Integration [0hq] - SQLite hooks, .cursor/hooks.json, session extraction
+3. Knowledge & Memory [kph] - Agno patterns, UserMemory schema, RAG
+4. Processing Pipeline [5gk] - 5 Cs framework, fresh context per phase
+5. Setup & Onboarding [i2s] - Gum-based interactive setup, 6-phase process
+6. Tool Architecture [j4b] - File-based tools, Cursor discovery pattern
+7. CLI & Runtime [7vp] - Rust CLI, SIMD, performance budgets
+
+### Key Learnings
+- Cursor hooks DO exist in .cursor/hooks.json but have reliability bugs
+- .cursorignore is recommended for hard denial
+- Agno provides production-ready memory/knowledge patterns
+- Dicklesworth's cursor.rs shows how to read Cursor's SQLite directly
+- Universalis taint analysis can be adapted for AI workflows
+
+### Completed (Session 2 continued)
+- Created 8th domain: Proof of Work [clz] - Showboat integration
+- Created CROSS-REFERENCE-MATRIX.md - All 29 tasks mapped to source code
+- Created INTEGRATION-PLAN.md - Module-by-module port details with code snippets
+- Updated RISK-ASSESSMENT-UPDATED.md - 85% confidence (up from 70%)
+- Created RALPH-METAPROMPT.md - Operating instructions for Ralph loop
+
+### Spot Check Findings (from beads-only analysis)
+**GAPS IDENTIFIED:**
+1. Source code refs not in beads - beads have descriptions but not source paths
+2. Acceptance criteria not in beads - 113 ACs in ACCEPTANCE-CRITERIA.md not linked
+3. O-04 multiple sources - needs all ~/arscontexta/generators/features/*.md
+4. No compose.rs task - integration composition not tracked
+5. R-03 complexity - xf hybrid.rs (1-859 lines) may need subtasks
+
+**BEAD AUDIT:**
+- 8 DOMAIN epics ✓
+- 21 P0 implementation tasks ✓
+- 8 P1 tasks ✓
+- 7 DOC tasks (unrelated to blackboard)
+- 16 research/design tasks (context only)
+
+### Next
+- Fix bead gaps (add source refs to descriptions)
+- Execute Ralph loop: `while :; do cat specs/blackboard-bootstrap/PROMPT.md | claude-code ; done`
