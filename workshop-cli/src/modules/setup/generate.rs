@@ -39,6 +39,7 @@ fn generate_identity(config: &DerivedConfig) -> String {
         super::derive::WorkType::Software => "software engineering",
         super::derive::WorkType::Research => "research",
         super::derive::WorkType::Writing => "writing",
+        super::derive::WorkType::Mixed => "mixed work",
     };
 
     format!(

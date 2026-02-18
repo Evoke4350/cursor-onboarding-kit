@@ -8,6 +8,6 @@ pub mod generate;
 pub mod prompts;
 
 pub use detect::{Environment, detect_environment, detect_environment_in};
-pub use derive::DerivedConfig;
+pub use derive::{DerivedConfig, WorkType, CodeRefMode, SecurityLevel, Editor, Features};
 pub use generate::generate_workshop;
 pub use prompts::{GumPrompts, WorkshopConfig, prompt_workshop_config};
