@@ -1,0 +1,66 @@
+[package]
+name = "workshop"
+version = "0.1.0"
+edition = "2021"
+authors = ["Agentic Blackboard Contributors"]
+description = "AI-native cognitive architecture for agentic operators"
+license = "MIT"
+
+[dependencies]
+# CLI
+clap = { version = "4", features = ["derive", "env", "wrap_help"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "1"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+
+# Database (Cursor SQLite)
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+# Performance
+memchr = "2"
+rayon = "1"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+async-trait = "0.1"
+
+# Command detection
+which = "6"
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# File system
+dirs = "5"
+walkdir = "2"
+glob = "0.3"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+tempfile = "3"
+assert_cmd = "2"
+predicates = "3"
+proptest = "1"
+criterion = "0.5"
+
+# [[bench]]
+# name = "taint_performance"
+# harness = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = 3
+strip = true
