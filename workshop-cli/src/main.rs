@@ -120,7 +120,7 @@ enum Commands {
         export: Option<String>,
     },
 
-    /// Taint analysis operations (S-01, S-02)
+    /// Taint analysis operations (S-01, S-02, SEC-01, SEC-03, SEC-04)
     Taint {
         /// Show current taint state
         #[arg(short, long)]
@@ -133,6 +133,14 @@ enum Commands {
         /// Check if command would be blocked
         #[arg(short, long)]
         check: Option<String>,
+
+        /// Hook mode: check file read (outputs JSON for Cursor)
+        #[arg(long)]
+        hook_read: Option<String>,
+
+        /// Hook mode: check shell command (outputs JSON for Cursor)
+        #[arg(long)]
+        hook_shell: Option<String>,
     },
 
     /// PM dashboard - see what's going on
@@ -170,8 +178,8 @@ fn main() -> Result<()> {
         Commands::Cursor { list, export } => {
             cli::cursor::run(list, export, cli.robot)
         }
-        Commands::Taint { status, mark, check } => {
-            cli::taint::run(status, mark, check, cli.robot)
+        Commands::Taint { status, mark, check, hook_read, hook_shell } => {
+            cli::taint::run(status, mark, check, hook_read, hook_shell, cli.robot)
         }
         Commands::Status => {
             cli::status::run(cli.robot)

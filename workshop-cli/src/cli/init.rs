@@ -184,9 +184,9 @@ fn parse_work_type(s: Option<&str>) -> WorkType {
 
 fn parse_security_level(s: Option<&str>) -> SecurityLevel {
     match s.map(|s| s.to_lowercase()).as_deref() {
-        Some("basic") => SecurityLevel::Basic,
+        Some("none") => SecurityLevel::None,
         Some("paranoid") => SecurityLevel::Paranoid,
-        _ => SecurityLevel::None,
+        _ => SecurityLevel::Basic,  // Default to Basic for safety
     }
 }
 

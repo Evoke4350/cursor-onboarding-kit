@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeFileRead": [
+      {
+        "command": "/path/to/workshop-cli/hooks/workshop-hook-read.py",
+        "env": {}
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "/path/to/workshop-cli/hooks/workshop-hook-shell.py",
+        "env": {}
+      }
+    ]
+  }
+}

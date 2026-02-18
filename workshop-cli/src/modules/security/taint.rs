@@ -2,11 +2,12 @@
 //!
 //! Concept from Universalis doc + ~/agno/libs/agno/agno/guardrails/pii.py
 
+use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::PathBuf;
 
 /// Taint level with explicit ordering
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Default)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Default, Serialize, Deserialize)]
 pub enum TaintLevel {
     #[default]
     Clean = 0,
@@ -17,7 +18,7 @@ pub enum TaintLevel {
 }
 
 /// Taint state tracker - immutable for safety
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct TaintTracker {
     /// Currently tainted paths with their levels
     tainted: BTreeMap<PathBuf, TaintLevel>,
