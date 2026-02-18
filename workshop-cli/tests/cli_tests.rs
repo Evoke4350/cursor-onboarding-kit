@@ -84,4 +84,11 @@ mod tests {
         TestCases::new()
             .case("tests/cli/cut_file.toml");
     }
+
+    /// Golden oracle tests - byte-for-byte output comparison
+    #[test]
+    fn golden_oracles() {
+        TestCases::new()
+            .case("tests/cli/golden/help.trycmd/help.toml");
+    }
 }
