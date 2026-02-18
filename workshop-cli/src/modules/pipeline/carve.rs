@@ -65,6 +65,11 @@ impl Default for SearchConfig {
 
 /// Search for query in directory
 pub fn search(query: &str, dir: &Path, config: &SearchConfig) -> Result<Vec<SearchResult>> {
+    // Reject empty queries
+    if query.trim().is_empty() {
+        return Ok(Vec::new());
+    }
+
     let mut results = Vec::new();
     let query_lower = query.to_lowercase();
 
@@ -104,10 +109,16 @@ pub fn search(query: &str, dir: &Path, config: &SearchConfig) -> Result<Vec<Sear
         }
     }
 
-    // Sort by score descending
+    // Deduplicate by file (keep only best match per file)
+    let mut seen_files = std::collections::HashSet::new();
     results.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap_or(std::cmp::Ordering::Equal));
+    let results: Vec<SearchResult> = results
+        .into_iter()
+        .filter(|r| seen_files.insert(r.path.clone()))
+        .collect();
 
     // Limit results
+    let mut results = results;
     results.truncate(config.max_results);
 
     Ok(results)
@@ -249,6 +260,73 @@ pub fn search_shavings(query: &str, workshop_dir: &Path) -> Result<Vec<SearchRes
 mod tests {
     use super::*;
     use tempfile::TempDir;
+
+    // Property-based tests with proptest
+    mod proptests {
+        use super::*;
+        use proptest::prelude::*;
+
+        proptest! {
+            #[test]
+            fn prop_empty_query_returns_empty(query in " *") {
+                // Any query that's only whitespace should return empty results
+                let temp_dir = TempDir::new().unwrap();
+                let test_file = temp_dir.path().join("test.md");
+                std::fs::write(&test_file, "test content").unwrap();
+
+                let config = SearchConfig::default();
+                let results = search(&query, temp_dir.path(), &config).unwrap();
+                prop_assert!(results.is_empty());
+            }
+
+            #[test]
+            fn prop_search_never_panics(query in ".*", content in ".*") {
+                // Search should never panic on any input
+                let temp_dir = TempDir::new().unwrap();
+                let test_file = temp_dir.path().join("test.md");
+                let _ = std::fs::write(&test_file, &content);
+
+                let config = SearchConfig {
+                    extensions: vec![],
+                    ..Default::default()
+                };
+                let results = search(&query, temp_dir.path(), &config);
+                prop_assert!(results.is_ok());
+            }
+
+            #[test]
+            fn prop_score_between_0_and_1(line in ".*", query in "[a-zA-Z]+", line_num in 0usize..1000) {
+                let score = calculate_score(&line, &query, MatchType::Exact, line_num);
+                prop_assert!(score >= 0.0 && score <= 1.0);
+            }
+
+            #[test]
+            fn prop_word_boundary_detects_words(word in "[a-zA-Z]{3,10}") {
+                let line = format!("foo {} bar", word);
+                let result = is_word_boundary_match(&line, &word);
+                prop_assert!(result);
+            }
+
+            #[test]
+            fn prop_dedup_by_file(query in "[a-zA-Z]+") {
+                // Multiple matches in same file should dedupe to single result
+                let temp_dir = TempDir::new().unwrap();
+                let test_file = temp_dir.path().join("test.md");
+                // Multiple occurrences of query
+                let content = format!("{}\nother\n{}\nmore\n{}", query, query, query);
+                std::fs::write(&test_file, &content).unwrap();
+
+                let config = SearchConfig {
+                    extensions: vec!["md".to_string()],
+                    max_results: 100,
+                    ..Default::default()
+                };
+                let results = search(&query, temp_dir.path(), &config).unwrap();
+                // Should only have one result per file
+                prop_assert!(results.len() <= 1);
+            }
+        }
+    }
 
     #[test]
     fn test_find_match_exact() {

@@ -14,10 +14,13 @@ use super::sqlite::{get_value, table_exists};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Bubble {
     /// Message text content
+    #[serde(default)]
     pub text: String,
-    /// Role: "user", "assistant", or "system"
+    /// Role: "user", "assistant", or "system" (optional in some formats)
+    #[serde(default)]
     pub role: String,
-    /// Unix timestamp of creation
+    /// Unix timestamp of creation (optional)
+    #[serde(default)]
     pub created_at: i64,
     /// Optional code blocks if present
     #[serde(default)]
@@ -172,6 +175,47 @@ pub fn search_bubbles(conn: &Connection, query: &str) -> Result<Vec<BubbleEntry>
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    // Property-based tests with proptest
+    mod proptests {
+        use super::*;
+        use proptest::prelude::*;
+
+        proptest! {
+            #[test]
+            fn prop_parse_minimal_bubble(text in ".*") {
+                // Minimal valid JSON should parse
+                let json = format!(r#"{{"text": "{}"}}"#, text.replace('"', "\\\""));
+                let result = parse_bubble(&json);
+                // Should parse successfully or fail gracefully (no panic)
+                if let Ok(bubble) = result {
+                    prop_assert_eq!(bubble.text, text.replace('"', "\\\"").replace("\\\"", "\""));
+                }
+            }
+
+            #[test]
+            fn prop_extract_bubble_ids_format(uuid1 in "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}", uuid2 in "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}") {
+                let key = format!("bubbleId:{}:{}", uuid1, uuid2);
+                let result = extract_bubble_ids(&key);
+                prop_assert!(result.is_some());
+                let (conv, msg) = result.unwrap();
+                prop_assert_eq!(conv, uuid1);
+                prop_assert_eq!(msg, uuid2);
+            }
+
+            #[test]
+            fn prop_extract_bubble_ids_rejects_invalid(prefix in "[a-zA-Z]+") {
+                // Only "bubbleId" prefix should work
+                let key = format!("{}:abc:def", prefix);
+                let result = extract_bubble_ids(&key);
+                if prefix == "bubbleId" {
+                    prop_assert!(result.is_some());
+                } else {
+                    prop_assert!(result.is_none());
+                }
+            }
+        }
+    }
 
     #[test]
     fn test_parse_bubble() {

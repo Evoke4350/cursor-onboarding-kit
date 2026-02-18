@@ -335,6 +335,67 @@ fn sanitize_filename(s: &str) -> String {
 mod tests {
     use super::*;
 
+    // Property-based tests with proptest
+    mod proptests {
+        use super::*;
+        use proptest::prelude::*;
+
+        proptest! {
+            #[test]
+            fn prop_sanitize_filename_no_special_chars(input in ".*") {
+                let result = sanitize_filename(&input);
+                // Result should never contain path separators or special chars
+                prop_assert!(!result.contains('/'));
+                prop_assert!(!result.contains('\\'));
+                prop_assert!(!result.contains('\0'));
+                prop_assert!(!result.contains(':'));
+            }
+
+            #[test]
+            fn prop_sanitize_filename_bounded_length(input in ".*") {
+                let result = sanitize_filename(&input);
+                // Result should always be bounded
+                prop_assert!(result.len() <= 50);
+                // Empty is valid if input had no alphanumeric chars
+            }
+
+            #[test]
+            fn prop_sanitize_filename_safe_chars(input in "[a-zA-Z0-9 -_]+") {
+                let result = sanitize_filename(&input);
+                // Safe chars should be preserved or turned to hyphens
+                for c in result.chars() {
+                    prop_assert!(
+                        c.is_alphanumeric() || c == '-' || c == '_',
+                        "Unexpected char: {}",
+                        c
+                    );
+                }
+            }
+
+            #[test]
+            fn prop_extract_tags_lowercase(input in "#[a-zA-Z]+") {
+                let text = format!("content {} more", input);
+                let tags = extract_tags(&text);
+                // Tags should always be lowercase
+                for tag in &tags {
+                    prop_assert!(tag == &tag.to_lowercase());
+                }
+            }
+
+            #[test]
+            fn prop_extract_tags_deduped(input in "[a-zA-Z]+") {
+                let tag = format!("#{}", input);
+                let text = format!("{} {} {}", tag, tag, tag);
+                let tags = extract_tags(&text);
+                // Should not have duplicates
+                let mut sorted = tags.clone();
+                sorted.sort();
+                sorted.dedup();
+                prop_assert_eq!(tags.len(), sorted.len());
+            }
+        }
+    }
+
     #[test]
     fn test_extract_shaving_basic() {
         let content = "# Test Header\n\nThis is the content.\n\n#test";
