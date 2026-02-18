@@ -5,7 +5,9 @@
 pub mod sqlite;
 pub mod composer;
 pub mod bubble;
+pub mod conversation;
 
 pub use sqlite::find_cursor_databases;
 pub use composer::ComposerData;
 pub use bubble::Bubble;
+pub use conversation::Conversation;
