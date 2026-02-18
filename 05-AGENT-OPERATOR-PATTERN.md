@@ -235,6 +235,50 @@ Adjacent tooling experiments:
 
 ---
 
+## Advanced Caution: Pre/Trans Fallacy in System Building
+
+When building agent systems, avoid confusing **pre-rational** (early developmental) stages with **trans-rational** (integrated/transcendent) stages.
+
+**The fallacy:** A system that *looks* complete but isn't *actually* integrated.
+
+Example mistake pattern:
+- "We built the taint tracker" → but Cursor hooks aren't calling it
+- "We have a 5 Cs pipeline" → but it creates plain markdown, not executable docs
+- "We documented the pattern" → but nobody follows it in practice
+
+**Diagnostic questions:**
+
+1. **Is it wired?** Does component A actually call component B, or just exist near it?
+2. **Is it tested end-to-end?** Can a new operator follow the docs and get working results?
+3. **Is it used?** Do real sessions actually invoke this system?
+
+**Pre-stage signals:**
+- Code exists but no integration tests
+- Docs describe ideal state, not current state
+- Manual steps required between components
+- "Works on my machine" without reproducibility
+
+**Trans-stage signals:**
+- Automatic handoff between components
+- Errors caught at integration boundaries
+- New operators succeed without expert help
+- Evidence trail from intent to delivery
+
+**Recovery pattern:**
+
+When you discover pre/trans confusion:
+
+1. Stop adding new features
+2. Map what actually connects vs what should connect
+3. Write integration tests for the gaps
+4. Only add new capability after current layer works end-to-end
+
+Rule of thumb:
+
+**A working prototype beats an elegant architecture that isn't wired.**
+
+---
+
 ## Personal Style Layer
 
 Your high-performing style signals:
