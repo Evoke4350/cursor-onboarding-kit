@@ -320,6 +320,94 @@ Each task has:
 
 ---
 
+## Proof of Work (5 tasks)
+
+### W-01: Integrate showboat CLI
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| W-01-1 | `uvx showboat --help` succeeds | `uvx showboat --help` |
+| W-01-2 | Rust wrapper for showboat init | Code review |
+| W-01-3 | Rust wrapper for showboat note | Code review |
+| W-01-4 | Rust wrapper for showboat exec | Code review |
+| W-01-5 | Rust wrapper for showboat verify | Code review |
+
+**Confidence**: 0.95
+
+### W-02: Store shavings as showboat docs
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| W-02-1 | Each shaving has UUID in frontmatter | `grep "uuid:" shavings/*.md` |
+| W-02-2 | Executable code blocks captured | `grep "\`\`\`bash" shavings/*.md` |
+| W-02-3 | Output blocks preserved | Code review |
+| W-02-4 | `showboat verify` passes | `uvx showboat verify shavings/*.md` |
+
+**Confidence**: 0.90
+
+### W-03: /check runs showboat verify
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| W-03-1 | `workshop check` runs verify on all shavings | Integration test |
+| W-03-2 | Reports diffs if output changed | Manual test |
+| W-03-3 | Exits 1 if any verification fails | Integration test |
+| W-03-4 | Exits 0 if all pass | Integration test |
+
+**Confidence**: 0.90
+
+### W-04: Remote streaming to sawdust
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| W-04-1 | SHOWBOAT_REMOTE_URL env var supported | Code review |
+| W-04-2 | POSTs updates to configured URL | Integration test |
+| W-04-3 | Includes UUID and timestamp | Integration test |
+| W-04-4 | Graceful fallback if URL unreachable | Integration test |
+
+**Confidence**: 0.80
+
+### W-05: Chartroom integration
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| W-05-1 | `uvx chartroom --help` succeeds | `uvx chartroom --help` |
+| W-05-2 | `workshop chart` subcommand exists | `workshop chart --help` |
+| W-05-3 | Auto-generates alt text | Integration test |
+| W-05-4 | Embeds chart in showboat doc | Integration test |
+
+**Confidence**: 0.85
+
+---
+
+## Integration (2 tasks)
+
+### INT-01: Compose all modules
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| INT-01-1 | `src/compose.rs` exists | `test -f src/compose.rs` |
+| INT-01-2 | Workshop struct defined | Code review |
+| INT-01-3 | All 8 modules composed | Code review |
+| INT-01-4 | `cargo build` succeeds | `cargo build` |
+| INT-01-5 | `cargo test` passes | `cargo test` |
+
+**Confidence**: 0.85
+
+### INT-02: End-to-end smoke test
+
+| AC | Criterion | Verify |
+|----|-----------|--------|
+| INT-02-1 | `workshop init --non-interactive` succeeds | Integration test |
+| INT-02-2 | Create secret file, run /cut, verify tainted | Integration test |
+| INT-02-3 | Attempt exfil, verify BLOCKED | Integration test |
+| INT-02-4 | `showboat verify` passes | Integration test |
+| INT-02-5 | All adversarial tests pass | `./tests/harness.sh` |
+
+**Confidence**: 0.80
+
+---
+
 ## Summary
 
 | Domain | Tasks | Total ACs | Avg Confidence |
@@ -331,7 +419,9 @@ Each task has:
 | Setup & Onboarding | 4 | 19 | 0.91 |
 | Tool Architecture | 2 | 9 | 0.95 |
 | CLI & Runtime | 3 | 14 | 0.94 |
-| **TOTAL** | **24** | **113** | **0.90** |
+| Proof of Work | 5 | 18 | 0.88 |
+| Integration | 2 | 10 | 0.82 |
+| **TOTAL** | **31** | **141** | **0.89** |
 
 ---
 
