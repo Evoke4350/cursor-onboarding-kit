@@ -105,7 +105,7 @@ enum Commands {
         adversarial: bool,
 
         /// Verify showboat documents
-        #[arg(short, long)]
+        #[arg(long)]
         verify: bool,
     },
 
