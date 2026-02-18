@@ -40,6 +40,54 @@ done
 - Don’t leave work stranded: `git pull --rebase` then `git push`.
 - If you can’t push, say why and leave a one-paragraph handoff note.
 
+## Beads: Track State Like You Mean It
+
+Beads is not a todo list. It's a **graph issue tracker** designed for agent memory persistence. Use it properly or you'll lose state across sessions.
+
+### The One Command That Matters
+
+```bash
+bd ready
+```
+
+This queries the dependency graph and tells you what to work on next. Use it constantly.
+
+### Typed Dependencies (Not Just "Blocked")
+
+```bash
+# Workflow blocking
+bd dep add <blocking-id> <blocked-id> blocks        # Hard blocker
+bd dep add <a-id> <b-id> conditional-blocks         # B runs if A fails
+
+# Association (doesn't block, creates knowledge graph)
+bd dep add <new-id> <old-id> supersedes             # Version chain
+bd dep add <this-id> <that-id> duplicates           # Dedupe
+bd dep add <agent-id> <issue-id> authored-by        # Attribution
+```
+
+### Formulas (Don't Create Issues One at a Time)
+
+```bash
+bd pour mol-feature --var component=auth
+# Creates 4 linked issues automatically
+```
+
+### Agent State (Track Yourself)
+
+```bash
+bd agent state gt-claude running
+bd agent heartbeat gt-claude  # Do this periodically
+```
+
+### Common Anti-Patterns
+
+- **Flat lists** — Not using dependencies means `bd ready` can't help
+- **Missing formulas** — Creating 10 issues manually instead of `bd pour`
+- **No agent state** — Losing track of what "you" were doing
+- **Ignoring compaction** — Letting closed issues bloat context
+
+See `BEADS-ARCHITECTURE.md` for the full design philosophy.
+
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
