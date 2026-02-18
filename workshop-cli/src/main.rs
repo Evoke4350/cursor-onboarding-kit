@@ -134,6 +134,9 @@ enum Commands {
         #[arg(short, long)]
         check: Option<String>,
     },
+
+    /// PM dashboard - see what's going on
+    Status,
 }
 
 fn main() -> Result<()> {
@@ -169,6 +172,9 @@ fn main() -> Result<()> {
         }
         Commands::Taint { status, mark, check } => {
             cli::taint::run(status, mark, check, cli.robot)
+        }
+        Commands::Status => {
+            cli::status::run(cli.robot)
         }
     }
 }

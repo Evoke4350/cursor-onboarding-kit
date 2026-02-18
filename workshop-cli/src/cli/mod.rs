@@ -7,3 +7,4 @@ pub mod chamfer;
 pub mod check;
 pub mod cursor;
 pub mod taint;
+pub mod status;
