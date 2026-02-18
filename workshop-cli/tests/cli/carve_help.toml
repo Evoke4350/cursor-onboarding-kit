@@ -1,0 +1,5 @@
+# Test: workshop carve --help shows options
+bin.name = "workshop"
+args = "carve --help"
+status.code = 0
+contains = ["Find connections", "query", "domain"]

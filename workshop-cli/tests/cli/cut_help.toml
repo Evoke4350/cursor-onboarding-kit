@@ -1,0 +1,5 @@
+# Test: workshop cut --help shows options
+bin.name = "workshop"
+args = "cut --help"
+status.code = 0
+contains = ["Extract", "source", "with-code-ref"]

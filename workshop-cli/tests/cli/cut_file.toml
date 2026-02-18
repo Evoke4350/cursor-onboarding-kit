@@ -1,0 +1,11 @@
+# Test: workshop cut extracts insight from file
+#
+# This tests the full Cut workflow:
+# 1. Read source file
+# 2. Extract content
+# 3. Add metadata (timestamp, tags)
+# 4. Write to shavings directory
+bin.name = "workshop"
+args = "cut /Users/nateb/cursor-onboarding-kit/workshop-cli/tests/cli/workflow/sample.md"
+status.code = 0
+contains = ["Created", "shaving"]

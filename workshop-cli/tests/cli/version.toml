@@ -1,0 +1,5 @@
+# Test: workshop --version shows version
+bin.name = "workshop"
+args = "--version"
+status.code = 0
+contains = ["workshop", "0.1.0"]

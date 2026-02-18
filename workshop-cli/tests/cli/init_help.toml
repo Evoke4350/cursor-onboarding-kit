@@ -1,0 +1,5 @@
+# Test: workshop init --help shows options
+bin.name = "workshop"
+args = "init --help"
+status.code = 0
+contains = ["Initialize", "non-interactive", "work-type", "security"]

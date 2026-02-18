@@ -1,0 +1,6 @@
+# Test: workshop with --robot outputs JSON
+bin.name = "workshop"
+args = "--robot status"
+status.code = 0
+# JSON output contains these keys
+contains = ['"status"', '"shavings"']
