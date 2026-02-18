@@ -1,40 +1,82 @@
 #!/usr/bin/env python3
 """
-Cursor hook: beforeShellExecution
-Calls workshop taint --hook-shell and blocks if tainted + sink.
+Cursor hook: beforeShellExecution with taint checking
+Integrates with workshop taint system to block exfiltration attempts.
+
+Input (from stdin):
+  {"command": "curl ...", "cwd": "/path/to/project"}
+
+Output (to stdout):
+  {"permission": "allow|deny", "continue": bool, "userMessage": "...", "agentMessage": "..."}
 """
-import sys
 import json
+import os
 import subprocess
+import sys
+
+def emit(payload):
+    sys.stdout.write(json.dumps(payload))
+    sys.stdout.flush()
+
+def allow():
+    emit({
+        "permission": "allow",
+        "continue": True,
+        "userMessage": "",
+        "agentMessage": "",
+        "user_message": "",
+        "agent_message": "",
+    })
+
+def deny(reason):
+    emit({
+        "permission": "deny",
+        "continue": False,
+        "userMessage": reason,
+        "agentMessage": reason,
+        "user_message": reason,
+        "agent_message": reason,
+    })
 
 def main():
-    if len(sys.argv) < 2:
-        print(json.dumps({"allow": True}))
-        sys.exit(0)
-
-    command = sys.argv[1]
-
     try:
-        result = subprocess.run(
+        payload = json.load(sys.stdin)
+    except Exception:
+        allow()
+        return 0
+
+    command = payload.get("command") or ""
+    cwd = payload.get("cwd") or ""
+
+    if not command:
+        allow()
+        return 0
+
+    # Check taint status via workshop CLI
+    try:
+        proc = subprocess.run(
             ["workshop", "taint", "--hook-shell", command],
             capture_output=True,
             text=True,
-            timeout=5
+            timeout=5,
+            cwd=cwd if cwd else None
         )
 
-        if result.returncode == 0 and result.stdout.strip():
-            output = json.loads(result.stdout.strip())
-            # Pass through the allow decision
-            print(json.dumps(output))
-        else:
-            # On error, allow but log
-            print(json.dumps({"allow": True, "error": result.stderr}))
+        if proc.returncode == 0 and proc.stdout.strip():
+            result = json.loads(proc.stdout.strip())
+
+            if result.get("blocked"):
+                reason = result.get("reason", "Blocked by taint analysis")
+                level = result.get("taint_level", "unknown")
+                deny(f"🛡️ {reason} (taint level: {level})")
+                return 0
 
     except Exception as e:
-        # On error, allow (fail open for usability)
-        print(json.dumps({"allow": True, "error": str(e)}))
+        # On error, fail open (allow) for usability
+        pass
 
-    sys.exit(0)
+    allow()
+    return 0
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -3,14 +3,12 @@
   "hooks": {
     "beforeFileRead": [
       {
-        "command": "/path/to/workshop-cli/hooks/workshop-hook-read.py",
-        "env": {}
+        "command": "/Users/nateb/cursor-onboarding-kit/workshop-cli/hooks/workshop-hook-read.py"
       }
     ],
     "beforeShellExecution": [
       {
-        "command": "/path/to/workshop-cli/hooks/workshop-hook-shell.py",
-        "env": {}
+        "command": "/Users/nateb/cursor-onboarding-kit/workshop-cli/hooks/workshop-hook-shell.py"
       }
     ]
   }

