@@ -10,7 +10,7 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 mod cli;
 mod modules;
 
-pub use modules::{security, cursor, memory, pipeline, setup, tools, proof};
+pub use modules::{security, cursor, memory, pipeline, setup, tools, proof, cli as cli_modules};
 
 /// Workshop - Agentic Blackboard CLI
 #[derive(Parser, Debug)]

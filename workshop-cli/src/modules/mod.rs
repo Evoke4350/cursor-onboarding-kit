@@ -7,3 +7,4 @@ pub mod pipeline;
 pub mod setup;
 pub mod tools;
 pub mod proof;
+pub mod cli;
