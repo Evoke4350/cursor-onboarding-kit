@@ -10,6 +10,7 @@ A rule activates when any of these are true:
 
 1. `alwaysApply: true` — Rule is always included
 2. Glob match + file in context — A file matching the rule's `globs` pattern is open, referenced, or in context
+3. **Apply Intelligently** — Rule has no `globs`; the agent may include it when the rule is relevant (e.g. description matches the task). See *27-CURSOR-META-EXTRACTION.md* → Rule Anatomy.
 
 ## Example Rules
 
@@ -79,7 +80,7 @@ Widen globs to activate more often:
 |---------------|---------|----------|
 | `true` | Any | Always active (globs ignored for activation) |
 | `false` | Present | Active when glob matches open/referenced file |
-| `false` | Absent | Never active (rule is dormant) |
+| `false` | Absent | Active when agent selects as relevant (Apply Intelligently); otherwise not included |
 
 ## Implications
 
@@ -92,7 +93,7 @@ Widen globs to activate more often:
 
 - `**/*` negates semantic triggering
 - `alwaysApply: true` with narrow globs is redundant
-- `alwaysApply: false` with no globs never activates
+- Assuming rules with no globs are "never active" — they can still activate via **Apply Intelligently**; add globs when you need deterministic, file-based activation
 
 ## References
 
