@@ -40,6 +40,57 @@ done
 - Don’t leave work stranded: `git pull --rebase` then `git push`.
 - If you can’t push, say why and leave a one-paragraph handoff note.
 
+## State: The Difference Between Scripts and Systems
+
+> Stateless prompts are useful, but durable systems need memory, checkpoints, and explicit state transitions.
+
+Most agent work collapses because it confuses **prompt quality** with **system design**. Prompts matter. But what matters more is whether you can:
+
+1. **Recover from partial failure** — Resume, don't restart
+2. **Replay decisions safely** — Explain why, not just what
+3. **Build for interruption** — Rate limits, deploys, crashes happen
+
+### State Transitions
+
+Every action is a transition:
+
+```
+(state_n, input) -> decision -> tool_result -> state_n+1
+```
+
+Model this explicitly. Retries become deterministic. Observability becomes straightforward.
+
+### Memory Layers (Don't Blend Them)
+
+| Layer | Where | What |
+|-------|-------|------|
+| **Checkpoint** | `sawdust/state/` | Current task, position, recoverable state |
+| **Short-term** | `sawdust/sessions/` | This session's ephemera |
+| **Long-term** | `shavings/` | Durable knowledge across sessions |
+| **Identity** | `bench/` | Who you are, how you work |
+| **Immutable** | `git history` | Every decision traceable |
+
+When these blend into one opaque prompt blob, debugging becomes guesswork.
+
+### Recovery Protocol
+
+```bash
+# Before starting work
+workshop status           # What's the current state?
+
+# After interruption
+workshop recover          # Read checkpoint, resume from last known position
+
+# During work
+bd agent heartbeat        # Keep state fresh (if using beads)
+```
+
+### If You Can't Resume, You're Not Autonomous
+
+An agent that cannot resume from checkpoints is not a system — it's a best-effort script.
+
+See `99-EPILOGUE-STATE-MACHINE.md` for the full architecture.
+
 ## Beads: Track State Like You Mean It
 
 Beads is not a todo list. It's a **graph issue tracker** designed for agent memory persistence. Use it properly or you'll lose state across sessions.

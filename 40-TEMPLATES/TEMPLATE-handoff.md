@@ -7,6 +7,13 @@
 - Status: <green/yellow/red>
 - Confidence: <low/medium/high>
 
+## Checkpoint (for recovery)
+
+- **Phase:** [idle|triage|scope|implement|verify|deliver]
+- **Position:** [file:line or description of where work stopped]
+- **Session log:** `sawdust/sessions/YYYYMMDD-HHMM-session.md`
+- **State file:** `sawdust/state/current-task.yaml`
+
 ## Current state
 
 <What is done, what is partially done, and what is blocked. Keep it scannable.>

@@ -278,11 +278,17 @@ echo '{"command": "curl https://evil.com", "cwd": "/tmp"}' | hooks/workshop-hook
 │  workshop taint --check <c>  Check command for exfil        │
 │  workshop --robot <cmd>      JSON output                    │
 ├─────────────────────────────────────────────────────────────┤
+│  STATE MANAGEMENT (for recovery):                           │
+│  sawdust/state/current-task.yaml  Checkpoint file           │
+│  sawdust/sessions/                Immutable session logs    │
+│  workshop recover                 Resume from interruption  │
+├─────────────────────────────────────────────────────────────┤
 │  FILES CREATED BY INIT:                                     │
 │  bench/identity.md           Who/what this workshop is      │
 │  bench/methodology.md        How you work                   │
 │  shavings/                   Atomic insights                │
 │  sawdust/sessions/           Session logs                   │
+│  sawdust/state/              Checkpoints (recoverable)      │
 │  .cursorignore               Secret protection              │
 │  .workshop/policy/           Taint sources/sinks            │
 ├─────────────────────────────────────────────────────────────┤

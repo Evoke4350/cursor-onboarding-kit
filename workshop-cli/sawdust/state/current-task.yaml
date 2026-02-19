@@ -1,0 +1,46 @@
+# State Schema: Workshop Checkpoint
+# Location: sawdust/state/current-task.yaml
+# Purpose: Recoverable state for interruption resilience
+
+# REQUIRED: Current task being worked on
+task:
+  id: null                    # Bead ID if using beads, or generated ID
+  title: ""                   # Human-readable task name
+  type: bugfix|feature|refactor|docs|research
+  priority: P0|P1|P2
+
+# REQUIRED: Current phase in work cycle
+phase: idle|triage|scope|implement|verify|deliver
+phase_entered: null           # ISO timestamp when phase started
+
+# REQUIRED: Current position in codebase
+position:
+  file: null                  # Current file being edited
+  line: null                  # Line number if relevant
+  context: []                 # Related files loaded in context
+
+# Optional: Previous decisions (for replay safety)
+decisions:
+  - timestamp: null
+    question: ""              # What was being decided
+    choice: ""                # What was chosen
+    alternatives: []          # What was rejected and why
+
+# Optional: Blockers
+blockers:
+  - type: dependency|clarification|external
+    description: ""
+    since: null               # ISO timestamp
+
+# REQUIRED: Session metadata
+session:
+  started: null               # ISO timestamp
+  last_activity: null         # ISO timestamp
+  agent_id: null              # If tracking agent state
+
+# State transitions log (append-only)
+transitions:
+  - from: null
+    to: null
+    at: null
+    trigger: ""               # What caused the transition

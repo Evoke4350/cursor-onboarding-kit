@@ -1,7 +1,20 @@
 # Agent Operator Pattern (Prompt Chain + Workflow Productization)
 
-This note captures the working pattern used to build this onboarding kit.  
+This note captures the working pattern used to build this onboarding kit.
 It is not about reproducing identical output. It is about reproducing **reliable trajectory**.
+
+## State-First Mindset
+
+Before any prompt chain: **where is state?**
+
+| Question | If No Answer | Result |
+|----------|--------------|--------|
+| Where's current work tracked? | In my head | Lost on interruption |
+| Can I resume after crash? | Start over | Not a system |
+| Why did I make that decision? | ¯\\_(ツ)_/¯ | Unexplainable |
+| What changed since yesterday? | Check git manually | Slow context recovery |
+
+**Every prompt chain should produce state artifacts, not just output.**
 
 ## Minimum Viable Chain (Default)
 
