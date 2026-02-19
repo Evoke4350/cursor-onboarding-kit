@@ -49,4 +49,4 @@
 
 - PRs: <links>
 - RFCs: <links>
-- Notes: <links>
+- Memory: `{{MEMORY:long}}/*.md`

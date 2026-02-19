@@ -1,0 +1,53 @@
+# Checkpoint Schema (Generic)
+# Location: {{MEMORY:state}}/checkpoint.yaml
+# Purpose: Recoverable state for any project
+# No project-specific terminology - works everywhere
+
+# REQUIRED: Current task being worked on
+task:
+  id: null                    # Task identifier (any format: bead, issue, ticket)
+  title: ""                   # Human-readable task name
+  type: bugfix|feature|refactor|docs|research|other
+  priority: P0|P1|P2|P3
+
+# REQUIRED: Current phase in work cycle
+# Standard phases work for most workflows
+phase: idle|triage|scope|implement|verify|deliver
+phase_entered: null           # ISO timestamp when phase started
+
+# REQUIRED: Current position in work
+position:
+  file: null                  # Current file being worked on
+  line: null                  # Line number if relevant
+  context: []                 # Related files/resources loaded
+  url: null                   # If web-based work
+
+# Optional: Previous decisions (for replay safety)
+# Enables "why did I do that?" recovery
+decisions:
+  - at: null                  # ISO timestamp
+    question: ""              # What was being decided
+    choice: ""                # What was chosen
+    rationale: ""             # Why
+    alternatives: []          # What was rejected
+
+# Optional: Current blockers
+blockers:
+  - type: dependency|clarification|external|unknown
+    description: ""
+    since: null               # ISO timestamp when blocked
+
+# REQUIRED: Session metadata
+session:
+  id: null                    # Session identifier
+  started: null               # ISO timestamp
+  last_activity: null         # ISO timestamp (update on each action)
+  log: null                   # Path to session log file
+
+# State transitions (append-only for audit trail)
+transitions:
+  - from: null                # Previous phase
+    to: null                  # New phase
+    at: null                  # ISO timestamp
+    trigger: ""               # What caused the transition
+    result: ""                # What happened (success/failure/partial)
