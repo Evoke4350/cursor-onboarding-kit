@@ -71,3 +71,11 @@ Use this when training a group:
 - No drop in quality gates
 - Lower review noise (smaller diffs, clearer PRs)
 - At least one prompt or rule promoted after proving value
+
+## Deeper Dives (Optional)
+
+After the five-step chain is working:
+
+- `20-PROMPT-PATTERNS.md` - More prompt templates
+- `21-DSPY-TERMINOLOGY.md` - Formal terminology for prompts (signatures, adapters, modules)
+- `optional/specs/semantic/PROMPT-SEMANTIC-MAP.md` - Universal prompt addressing

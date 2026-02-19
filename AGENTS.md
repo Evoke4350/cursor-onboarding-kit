@@ -39,3 +39,185 @@ done
 - If you changed code: run lint/typecheck/tests relevant to what you touched.
 - Don’t leave work stranded: `git pull --rebase` then `git push`.
 - If you can’t push, say why and leave a one-paragraph handoff note.
+
+## State: The Difference Between Scripts and Systems
+
+> Stateless prompts are useful, but durable systems need memory, checkpoints, and explicit state transitions.
+
+Most agent work collapses because it confuses **prompt quality** with **system design**. Prompts matter. But what matters more is whether you can:
+
+1. **Recover from partial failure** — Resume, don't restart
+2. **Replay decisions safely** — Explain why, not just what
+3. **Build for interruption** — Rate limits, deploys, crashes happen
+
+### State Transitions
+
+Every action is a transition:
+
+```
+(state_n, input) -> decision -> tool_result -> state_n+1
+```
+
+Model this explicitly. Retries become deterministic. Observability becomes straightforward.
+
+### Memory Layers (Don't Blend Them)
+
+| Layer | Where | What |
+|-------|-------|------|
+| **Checkpoint** | `sawdust/state/` | Current task, position, recoverable state |
+| **Short-term** | `sawdust/sessions/` | This session's ephemera |
+| **Long-term** | `shavings/` | Durable knowledge across sessions |
+| **Identity** | `bench/` | Who you are, how you work |
+| **Immutable** | `git history` | Every decision traceable |
+
+When these blend into one opaque prompt blob, debugging becomes guesswork.
+
+### Recovery Protocol
+
+```bash
+# Before starting work
+workshop status           # What's the current state?
+
+# After interruption
+workshop recover          # Read checkpoint, resume from last known position
+
+# During work
+bd agent heartbeat        # Keep state fresh (if using beads)
+```
+
+### If You Can't Resume, You're Not Autonomous
+
+An agent that cannot resume from checkpoints is not a system — it's a best-effort script.
+
+See `99-EPILOGUE-FRONTIER-SUBAGENT-ORCHESTRATION.md` for the full architecture.
+
+## Beads: Your Autonomy Layer
+
+Beads is not a todo list. It's a **graph issue tracker** designed for agent memory persistence. Use it properly or you'll lose state across sessions.
+
+### Session Recovery
+
+```bash
+bd prime              # Load workflow context after compaction/new session
+bd ready              # Find available work (no blockers)
+bd status             # See project health
+```
+
+Run `bd prime` after any context reset. It's your anchor.
+
+### The One Command That Matters
+
+```bash
+bd ready
+```
+
+This queries the dependency graph and tells you what to work on next. Use it constantly.
+
+### Typed Dependencies (Not Just "Blocked")
+
+```bash
+# Workflow blocking
+bd dep add <blocking-id> <blocked-id> blocks        # Hard blocker
+bd dep add <a-id> <b-id> conditional-blocks         # B runs if A fails
+
+# Association (doesn't block, creates knowledge graph)
+bd dep add <new-id> <old-id> supersedes             # Version chain
+bd dep add <this-id> <that-id> duplicates           # Dedupe
+bd dep add <agent-id> <issue-id> authored-by        # Attribution
+```
+
+### Formulas (Don't Create Issues One at a Time)
+
+```bash
+bd pour mol-feature --var component=auth
+# Creates 4 linked issues automatically
+```
+
+### Agent State (Track Yourself)
+
+```bash
+bd agent state gt-claude running
+bd agent heartbeat gt-claude  # Do this periodically
+```
+
+### Common Anti-Patterns
+
+- **Flat lists** — Not using dependencies means `bd ready` can't help
+- **Missing formulas** — Creating 10 issues manually instead of `bd pour`
+- **No agent state** — Losing track of what "you" were doing
+- **Ignoring compaction** — Letting closed issues bloat context
+
+See `.beads/README.md` for the full design philosophy.
+
+## Landing the Plane (Session Completion)
+
+**When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
+
+**MANDATORY WORKFLOW:**
+
+1. **File issues for remaining work** - Create issues for anything that needs follow-up
+2. **Run quality gates** (if code changed) - Tests, linters, builds
+3. **Update issue status** - Close finished work, update in-progress items
+4. **PUSH TO REMOTE** - This is MANDATORY:
+   ```bash
+   git pull --rebase
+   bd sync
+   git push
+   git status  # MUST show "up to date with origin"
+   ```
+5. **Clean up** - Clear stashes, prune remote branches
+6. **Verify** - All changes committed AND pushed
+7. **Hand off** - Provide context for next session
+
+**CRITICAL RULES:**
+- Work is NOT complete until `git push` succeeds
+- NEVER stop before pushing - that leaves work stranded locally
+- NEVER say "ready to push when you are" - YOU must push
+- If push fails, resolve and retry until it succeeds
+
+### Session Close Checklist
+
+```
+[ ] 1. git status              (check what changed)
+[ ] 2. git add <files>         (stage code changes)
+[ ] 3. bd sync                 (sync beads to JSONL)
+[ ] 4. git commit -m "..."     (commit code)
+[ ] 5. bd sync                 (sync any new beads changes)
+[ ] 6. git push                (push to remote)
+[ ] 7. git status              (verify "up to date")
+```
+
+## Semantic Prompt Map
+
+Prompts map to semantic dimensions (AQAL-inspired):
+
+| Quadrant | Purpose | Examples |
+|----------|---------|----------|
+| **UL** (Self) | Reflection, recovery | `reflect`, `recover`, `prioritize` |
+| **UR** (Action) | Implementation | `implement`, `fix`, `refactor` |
+| **LL** (Shared) | Communication | `handoff`, `explain`, `onboard` |
+| **LR** (Structure) | Systems | `init`, `validate`, `capture` |
+
+See `optional/specs/semantic/PROMPT-SEMANTIC-MAP.md` for the full mapping.
+
+### DSPy Terminology
+
+These semantic addresses map to DSPy's formal terminology:
+- **Signature** = Input/output types (what the prompt takes and returns)
+- **Adapter** = Formatting/parsing (how inputs are structured)
+- **Module Logic** = Strategies (chain of thought, tool use, workflows)
+- **Manual Optimization** = Iterative refinement (trial and error)
+
+See `21-DSPY-TERMINOLOGY.md` for the full mapping.
+
+## Drop-In Package Structure
+
+```
+AGENTS.md           # This file (project instructions)
+CLAUDE.md           # Symlink to AGENTS.md
+00-START-HERE.md    # Entry point
+01-WEEK-ONE-CHECKLIST.md  # Quick start
+drop-in.sh          # Install to any project
+40-TEMPLATES/       # Starter pack + templates
+optional/           # Deep integration (specs, workshop-cli)
+```

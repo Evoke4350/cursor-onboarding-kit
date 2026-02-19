@@ -192,7 +192,18 @@ run_all_cases() {
     echo "case_id,result,expected_blocked,actual_blocked" > "${RESULTS_DIR}/results.csv"
 
     # Find and run all test cases
-    for case_file in "$CASES_DIR"/*.yaml "$CASES_DIR"/**/*.yaml 2>/dev/null; do
+    # globstar requires Bash 4+, fallback for Bash 3.2 (macOS)
+    local case_files
+    shopt -s nullglob
+    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+        shopt -s globstar
+        case_files=("$CASES_DIR"/**/*.yaml)
+    else
+        # Fallback: check root and one level deep
+        case_files=("$CASES_DIR"/*.yaml "$CASES_DIR"/*/*.yaml)
+    fi
+
+    for case_file in "${case_files[@]}"; do
         [[ -f "$case_file" ]] || continue
 
         ((count++))
