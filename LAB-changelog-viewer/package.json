@@ -1,0 +1,13 @@
+{
+  "name": "lab-changelog-viewer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx ui/server.ts",
+    "dump": "tsx scripts/dump-markdown.ts",
+    "test": "tsx --test src/__tests__/*.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

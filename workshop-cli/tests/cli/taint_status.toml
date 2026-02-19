@@ -1,5 +1,0 @@
-# Test: workshop taint --status shows current state
-bin.name = "workshop"
-args = "taint --status"
-status.code = 0
-contains = ["Taint", "Level"]

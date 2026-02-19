@@ -1,4 +1,0 @@
-# Test: workshop --help shows usage
-bin.name = "workshop"
-args = "--help"
-status.code = 0

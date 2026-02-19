@@ -1,5 +1,0 @@
-# Test: workshop check --help shows options
-bin.name = "workshop"
-args = "check --help"
-status.code = 0
-contains = ["Validate", "adversarial", "verify"]

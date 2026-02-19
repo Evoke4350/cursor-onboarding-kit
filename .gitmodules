@@ -1,0 +1,3 @@
+[submodule "optional/workshop-cli"]
+	path = optional/workshop-cli
+	url = https://github.com/Evoke4350/agent-os.git

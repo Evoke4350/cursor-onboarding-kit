@@ -1,5 +1,0 @@
-# Test: workshop status shows dashboard
-bin.name = "workshop"
-args = "status"
-status.code = 0
-contains = ["Workshop Status", "Shavings", "Taint"]

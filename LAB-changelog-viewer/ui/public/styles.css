@@ -1,0 +1,304 @@
+/* ── Design tokens ─────────────────────────────────────────────── */
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --ink: #e6edf3;
+  --muted: #7d8590;
+  --cyan: #79c0ff;
+  --green: #3fb950;
+  --yellow: #d29922;
+  --red: #f85149;
+  --accent: #388bfd;
+  --mono: "JetBrains Mono", "Fira Code", ui-monospace, "Cascadia Code", monospace;
+}
+
+/* ── Reset & base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Page layout ───────────────────────────────────────────────── */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "status  status";
+  gap: 0 16px;
+}
+
+/* ── Header ────────────────────────────────────────────────────── */
+.log-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.header-title {
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+#search {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 5px 10px;
+  outline: none;
+}
+#search:focus { border-color: var(--accent); }
+#search::placeholder { color: var(--muted); }
+
+#btn-top {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+#btn-top:hover { color: var(--ink); border-color: var(--muted); }
+
+/* ── Version jump sidebar ──────────────────────────────────────── */
+.version-jump {
+  grid-area: sidebar;
+  position: sticky;
+  top: 16px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.version-jump::-webkit-scrollbar { display: none; }
+
+.version-jump a {
+  color: var(--muted);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.version-jump a:hover { color: var(--cyan); background: var(--surface); }
+.version-jump a.pre { color: var(--red); opacity: 0.7; }
+
+/* ── Log stack ─────────────────────────────────────────────────── */
+.log-stack {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Log entry ─────────────────────────────────────────────────── */
+.log-entry {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 0 6px;
+  position: relative;
+}
+
+/* Vertical connector line between entries */
+.log-entry:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.log-entry.hidden { display: none; }
+
+/* ── Dot ───────────────────────────────────────────────────────── */
+.dot {
+  grid-column: 1;
+  color: var(--cyan);
+  font-size: 9px;
+  padding-top: 9px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.log-entry.pre .dot { color: var(--red); }
+
+/* ── Summary row (collapsed view) ─────────────────────────────── */
+.log-summary {
+  grid-column: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+}
+.log-summary:hover { background: var(--surface); }
+
+.tag {
+  color: var(--cyan);
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 72px;
+}
+.log-entry.pre .tag { color: var(--red); }
+
+.date {
+  color: var(--muted);
+  flex-shrink: 0;
+  min-width: 90px;
+}
+
+.preview {
+  color: var(--ink);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.8;
+}
+
+.badge-pre {
+  font-size: 9px;
+  background: var(--red);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.chevron {
+  color: var(--muted);
+  font-size: 10px;
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+.log-entry.expanded .chevron { transform: rotate(90deg); }
+
+/* ── Body (expanded view) ──────────────────────────────────────── */
+.log-body {
+  grid-column: 2;
+  padding: 8px 12px 20px 12px;
+  border-left: 2px solid var(--border);
+  margin-left: 1px;
+  font-size: 12.5px;
+}
+
+.log-body[hidden] { display: none; }
+
+.log-body .loading {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Markdown line types ───────────────────────────────────────── */
+.md-block { margin: 12px 0 4px; }
+
+.md-h2, .md-h3 {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 14px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.md-bullet, .md-add, .md-change, .md-fix, .md-line {
+  display: block;
+  padding: 1px 0;
+}
+
+.md-bullet { color: var(--ink); }
+.md-bullet::before { content: "  · "; color: var(--muted); }
+
+.md-add { color: var(--green); }
+.md-add::before { content: "+ "; }
+
+.md-change { color: var(--yellow); }
+.md-change::before { content: "~ "; }
+
+.md-fix { color: var(--accent); }
+.md-fix::before { content: "# "; }
+
+.md-line { color: var(--ink); opacity: 0.85; }
+
+.md-link { color: var(--accent); }
+.md-link:hover { text-decoration: underline; }
+
+.md-code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+.md-strong { font-weight: 700; }
+
+/* ── Status bar ────────────────────────────────────────────────── */
+.status-bar {
+  grid-area: status;
+  font-size: 11px;
+  color: var(--muted);
+  padding-top: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.status-bar.stale { color: var(--yellow); }
+
+/* ── Loading / error states ────────────────────────────────────── */
+.log-placeholder {
+  color: var(--muted);
+  padding: 20px 8px;
+  font-style: italic;
+}
+
+/* ── Narrow layout ─────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "status";
+  }
+  .version-jump { display: none; }
+}

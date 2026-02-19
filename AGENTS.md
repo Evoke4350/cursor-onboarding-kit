@@ -91,9 +91,19 @@ An agent that cannot resume from checkpoints is not a system — it's a best-eff
 
 See `99-EPILOGUE-STATE-MACHINE.md` for the full architecture.
 
-## Beads: Track State Like You Mean It
+## Beads: Your Autonomy Layer
 
 Beads is not a todo list. It's a **graph issue tracker** designed for agent memory persistence. Use it properly or you'll lose state across sessions.
+
+### Session Recovery
+
+```bash
+bd prime              # Load workflow context after compaction/new session
+bd ready              # Find available work (no blockers)
+bd status             # See project health
+```
+
+Run `bd prime` after any context reset. It's your anchor.
 
 ### The One Command That Matters
 
@@ -164,3 +174,40 @@ See `BEADS-ARCHITECTURE.md` for the full design philosophy.
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push
 - If push fails, resolve and retry until it succeeds
+
+### Session Close Checklist
+
+```
+[ ] 1. git status              (check what changed)
+[ ] 2. git add <files>         (stage code changes)
+[ ] 3. bd sync                 (sync beads to JSONL)
+[ ] 4. git commit -m "..."     (commit code)
+[ ] 5. bd sync                 (sync any new beads changes)
+[ ] 6. git push                (push to remote)
+[ ] 7. git status              (verify "up to date")
+```
+
+## Semantic Prompt Map
+
+Prompts map to semantic dimensions (AQAL-inspired):
+
+| Quadrant | Purpose | Examples |
+|----------|---------|----------|
+| **UL** (Self) | Reflection, recovery | `reflect`, `recover`, `prioritize` |
+| **UR** (Action) | Implementation | `implement`, `fix`, `refactor` |
+| **LL** (Shared) | Communication | `handoff`, `explain`, `onboard` |
+| **LR** (Structure) | Systems | `init`, `validate`, `capture` |
+
+See `specs/semantic/PROMPT-SEMANTIC-MAP.md` for the full mapping.
+
+## Drop-In Package Structure
+
+```
+AGENTS.md           # This file (project instructions)
+CLAUDE.md           # Symlink to AGENTS.md
+00-START-HERE.md    # Entry point
+01-WEEK-ONE-CHECKLIST.md  # Quick start
+drop-in.sh          # Install to any project
+40-TEMPLATES/       # Starter pack + templates
+optional/           # Deep integration (specs, workshop-cli)
+```

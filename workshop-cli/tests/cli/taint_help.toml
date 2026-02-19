@@ -1,5 +1,0 @@
-# Test: workshop taint --help shows options
-bin.name = "workshop"
-args = "taint --help"
-status.code = 0
-contains = ["Taint", "status", "mark", "check"]

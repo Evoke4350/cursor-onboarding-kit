@@ -1,5 +1,0 @@
-# Test: workshop chamfer --help shows options
-bin.name = "workshop"
-args = "chamfer --help"
-status.code = 0
-contains = ["Update", "shaving", "context"]

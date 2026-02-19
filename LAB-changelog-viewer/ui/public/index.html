@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cursor changelog</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="log-header">
+        <span class="header-title">cursor changelog</span>
+        <input
+          type="search"
+          id="search"
+          placeholder="filter releases…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="btn-top" type="button">↑ top</button>
+      </header>
+
+      <nav class="version-jump" id="version-jump" aria-label="version index"></nav>
+
+      <section class="log-stack" id="log-stack" aria-label="release log"></section>
+
+      <div class="status-bar" id="status-bar"></div>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

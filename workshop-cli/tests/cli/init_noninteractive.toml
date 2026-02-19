@@ -1,6 +1,0 @@
-# Test: workshop init in non-interactive mode
-bin.name = "workshop"
-args = "init --non-interactive"
-env = { "HOME" = "/tmp" }
-status.code = 0
-contains = ["Workshop initialized", "Next steps"]

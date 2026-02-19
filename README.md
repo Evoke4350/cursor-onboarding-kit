@@ -1,6 +1,24 @@
-# Agentic Blackboard - AI Engineering and Workflow Jumpstart Kit
+# Cursor Onboarding Kit - AI Engineering Jumpstart
+
+**Quick start:** `./drop-in.sh /path/to/your-project`
 
 This repo is intentionally deep. Treat it like a library, not required reading.
+
+## Drop-In Installation
+
+Copy essentials to any project:
+
+```bash
+# Clone and run
+git clone https://github.com/example/cursor-onboarding-kit.git
+./cursor-onboarding-kit/drop-in.sh /path/to/your-project
+
+# Or copy manually:
+# - AGENTS.md (project instructions)
+# - CLAUDE.md (symlink to AGENTS.md)
+# - 00-START-HERE.md (entry point)
+# - 01-WEEK-ONE-CHECKLIST.md (quick start)
+```
 
 If you're drowning: forget the repo. Pick one file that's breaking your flow and fix that first.
 
