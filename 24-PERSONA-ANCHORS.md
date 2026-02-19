@@ -118,7 +118,7 @@ When in doubt, ask: "Would [Name] approach it this way?"
 | Concept | Kit Location |
 |---------|--------------|
 | Persona anchors | Vibe section in `AGENTS.md` |
-| Style direction | Project-specific `.claude.md` extensions |
+| Style direction | Project-specific `CLAUDE.md` extensions |
 | Probe for recognition | Interactive onboarding sessions |
 
 ---
