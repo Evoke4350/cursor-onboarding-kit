@@ -1,0 +1,189 @@
+# Semantic Vocabulary Template
+# Location: {{MEMORY:config}}/vocabulary.yaml
+# Purpose: Map semantic prompt IDs to project-specific commands
+
+# Project identity (filled by bootstrap)
+project:
+  name: "{{PROJECT_NAME}}"
+  slug: "{{PROJECT_SLUG}}"
+  type: "{{PROJECT_TYPE}}"
+
+# Command vocabulary - how semantic operations are expressed
+# Each entry maps a semantic ID to actual command/prompt
+
+commands:
+  # === LR QUADRANT: Structure ===
+
+  LR-L2-init:
+    semantic: "Create structure"
+    command: "{{WORKFLOW_PREFIX}} init"
+    alias: "bootstrap"
+
+  LR-L2-capture:
+    semantic: "Save insight to long-term memory"
+    command: "{{WORKFLOW_PREFIX}} cut"
+    alias: "note, save"
+
+  LR-L3-search:
+    semantic: "Find existing knowledge"
+    command: "{{WORKFLOW_PREFIX}} carve"
+    alias: "find, search"
+
+  LR-L2-update:
+    semantic: "Modify existing knowledge"
+    command: "{{WORKFLOW_PREFIX}} chamfer"
+    alias: "edit, append"
+
+  LR-L3-validate:
+    semantic: "Check structure correctness"
+    command: "{{WORKFLOW_PREFIX}} check"
+    alias: "validate, verify"
+
+  LR-L4-discover:
+    semantic: "Extract patterns from codebase"
+    command: "{{WORKFLOW_PREFIX}} discover"
+    alias: "extract, standards"
+
+  LR-L4-plan:
+    semantic: "Create structured plan"
+    command: "{{WORKFLOW_PREFIX}} shape"
+    alias: "plan, spec"
+
+  LR-L3-index:
+    semantic: "Make content findable"
+    command: "{{WORKFLOW_PREFIX}} index"
+    alias: "catalog, index"
+
+  # === UR QUADRANT: Action (typically native) ===
+
+  UR-L2-implement:
+    semantic: "Build code/functionality"
+    command: "native"
+    note: "Agent's native coding capability"
+
+  UR-L2-fix:
+    semantic: "Repair broken code"
+    command: "native"
+    note: "Agent's native debugging capability"
+
+  UR-L3-refactor:
+    semantic: "Improve code structure"
+    command: "native"
+    note: "Agent's native refactoring capability"
+
+  UR-L2-debug:
+    semantic: "Find root cause"
+    command: "native"
+    note: "Agent's native analysis capability"
+
+  # === LL QUADRANT: Communication ===
+
+  LL-L2-explain:
+    semantic: "Clarify for others"
+    command: "prompt:Explain this for a new team member"
+    alias: "document, clarify"
+
+  LL-L3-handoff:
+    semantic: "Transfer context to next session"
+    command: "template:{{MEMORY:config}}/../templates/handoff.md"
+    alias: "transfer, handoff"
+
+  LL-L2-onboard:
+    semantic: "Get started with this project"
+    command: "read:{{MEMORY:identity}}"
+    alias: "start, orient"
+
+  LL-L4-align:
+    semantic: "Ensure shared understanding"
+    command: "prompt:Verify we're aligned on scope, done criteria, and approach"
+    alias: "verify, sync"
+
+  LL-L3-review:
+    semantic: "Check others' work"
+    command: "prompt:Review this for correctness, clarity, and completeness"
+    alias: "review, critique"
+
+  # === UL QUADRANT: Self-Management ===
+
+  UL-L3-reflect:
+    semantic: "Learn from completed work"
+    command: "prompt:What did I learn from this? What would I do differently?"
+    alias: "learn, retrospect"
+
+  UL-L2-recover:
+    semantic: "Resume from interruption"
+    command: "read:{{MEMORY:state}}/checkpoint.yaml"
+    alias: "resume, restore"
+
+  UL-L4-prioritize:
+    semantic: "Choose next work"
+    command: "bd ready"
+    alias: "next, ready"
+    note: "If using beads; otherwise manual"
+
+  UL-L2-decide:
+    semantic: "Make a logged choice"
+    command: "prompt:Choose and explain why. Log to checkpoint."
+    alias: "choose, decide"
+
+  UL-L5-retrospect:
+    semantic: "Improve methodology"
+    command: "prompt:What patterns should we adopt? What should we stop doing?"
+    alias: "improve, meta"
+
+# Pre-defined workflows (sequences of semantic IDs)
+
+workflows:
+  bugfix:
+    name: "Bug Fix Flow"
+    steps:
+      - UL-L2-recover      # Where was I?
+      - LR-L3-search       # Related work?
+      - UR-L2-debug        # Find root cause
+      - UR-L2-fix          # Repair
+      - LR-L3-validate     # Check
+      - LL-L3-handoff      # Document
+
+  feature:
+    name: "Feature Flow"
+    steps:
+      - LR-L4-plan         # Plan
+      - UR-L2-implement    # Build
+      - LR-L2-capture      # Document insight
+      - LR-L3-validate     # Check
+      - LL-L3-handoff      # Handoff
+
+  refactor:
+    name: "Refactor Flow"
+    steps:
+      - LR-L3-search       # Find related
+      - UR-L3-refactor     # Restructure
+      - LR-L2-update       # Update docs
+      - LR-L3-validate     # Check
+
+  session-start:
+    name: "Session Start"
+    steps:
+      - LL-L2-onboard      # Orient
+      - UL-L2-recover      # Resume state
+      - UL-L4-prioritize   # What's next?
+
+  session-end:
+    name: "Session End"
+    steps:
+      - UL-L3-reflect      # What learned?
+      - LR-L3-validate     # All good?
+      - LL-L3-handoff      # Handoff
+      - LR-L2-update       # Update checkpoint
+
+# State machine for work phases
+
+phases:
+  idle: { next: [triage], on: "start work" }
+  triage: { next: [scope, defer], on: "categorize" }
+  scope: { next: [implement, blocked], on: "define boundaries" }
+  implement: { next: [verify, blocked], on: "build" }
+  verify: { next: [deliver, implement], on: "check" }
+  deliver: { next: [idle], on: "ship" }
+  blocked: { next: [scope, defer], on: "unblock" }
+  deferred: { next: [triage], on: "resume" }

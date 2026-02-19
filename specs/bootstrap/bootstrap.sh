@@ -214,6 +214,43 @@ transitions: []
 EOF
 fi
 
+# Phase 7: Create vocabulary.yaml (semantic command map)
+if [ ! -f "$CONFIG_DIR/vocabulary.yaml" ]; then
+  # Resolve semantic delimiters in vocabulary template
+  sed -e "s|{{PROJECT_NAME}}|$PROJECT_NAME|g" \
+      -e "s|{{PROJECT_SLUG}}|$PROJECT_SLUG|g" \
+      -e "s|{{PROJECT_TYPE}}|$PROJECT_TYPE|g" \
+      -e "s|{{WORKFLOW_PREFIX}}|$WORKFLOW_PREFIX|g" \
+      -e "s|{{MEMORY:config}}|$CONFIG_DIR|g" \
+      -e "s|{{MEMORY:identity}}|$IDENTITY_DIR/$IDENTITY_FILE|g" \
+      -e "s|{{MEMORY:state}}|$STATE_DIR|g" \
+      "$SCRIPT_DIR/templates/vocabulary.yaml" > "$CONFIG_DIR/vocabulary.yaml" 2>/dev/null || \
+  cat > "$CONFIG_DIR/vocabulary.yaml" << EOF
+# Semantic Vocabulary - Map semantic IDs to commands
+project:
+  name: "$PROJECT_NAME"
+  slug: "$PROJECT_SLUG"
+  type: $PROJECT_TYPE
+
+commands:
+  LR-L2-capture:
+    semantic: "Save insight"
+    command: "$WORKFLOW_PREFIX capture"
+  LR-L3-search:
+    semantic: "Find knowledge"
+    command: "$WORKFLOW_PREFIX search"
+  UL-L2-recover:
+    semantic: "Resume work"
+    command: "read:$STATE_DIR/checkpoint.yaml"
+
+workflows:
+  session-start:
+    steps: [onboard, recover, prioritize]
+  session-end:
+    steps: [reflect, validate, handoff]
+EOF
+fi
+
 # Phase 7: Create .gitignore additions if not present
 if [ -f ".gitignore" ]; then
   if ! grep -q "# Agent memory" .gitignore 2>/dev/null; then
