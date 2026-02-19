@@ -55,7 +55,7 @@ The framework generates hundreds or thousands of random inputs automatically. Yo
 
 | Property Type | Description | Example |
 |---------------|-------------|---------|
-| **Round-trip** | Encode → decode returns original | JSON.parse(JSON.stringify(x)) ≡ x |
+| **Round-trip** | Encode → decode returns original | JSON.parse(JSON.stringify(x)) ≡ x (for JSON-serializable values) |
 | **Idempotence** | f(f(x)) ≡ f(x) | `Math.abs(Math.abs(x))` |
 | **Commutativity** | f(a, b) ≡ f(b, a) | `a + b` |
 | **Associativity** | f(f(a, b), c) ≡ f(a, f(b, c)) | `(a + b) + c` |
