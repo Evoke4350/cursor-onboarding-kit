@@ -2,6 +2,8 @@
 
 Use these as starting points. Replace placeholders.
 
+> **DSPy Lens:** Each pattern below has an implicit **signature** (inputs → outputs), an **adapter** (format), and **module logic** (strategy). See `21-DSPY-TERMINOLOGY.md` for the formal decomposition.
+
 ## 1) Small Feature
 
 `Implement <feature> in <area>. Keep blast radius minimal and follow existing conventions. Add/update tests for changed behavior. Run lint/typecheck/relevant tests and report results.`

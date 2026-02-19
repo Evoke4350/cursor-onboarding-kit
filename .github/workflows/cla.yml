@@ -15,6 +15,7 @@ permissions:
 jobs:
   cla-assistant:
     runs-on: ubuntu-latest
+    environment: Default
     steps:
       - name: Contributor Assistant
         if: |

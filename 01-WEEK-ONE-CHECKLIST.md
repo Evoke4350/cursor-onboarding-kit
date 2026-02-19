@@ -95,6 +95,10 @@ Use this as a practical week-one guide for new engineers shipping with Cursor.
 - [ ] For large JSON/docs, use REPL/script first.
 - [ ] Ask for summary table before deep reads.
 
+### Optional: Prompt terminology
+
+- [ ] Skim `21-DSPY-TERMINOLOGY.md` for formal prompt concepts (signature, adapter, module logic)
+
 ---
 
 ## 🚀 Day 5: Ship One PR
