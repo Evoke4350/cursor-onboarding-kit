@@ -89,6 +89,33 @@ Rationale: Auto-approving into execution and Debug ↔ Agent maintains flow. Not
 
 ---
 
+## Workflow Effects
+
+### Interruption Rate
+
+Each "approve this transition?" prompt is a context switch. Auto-approve reduces these interruptions. When the user says "implement X," the mode can change without a separate approval step—the intent was already expressed.
+
+### Flow
+
+Fewer context switches. Mode changes become a continuation of the conversation instead of a separate decision point. Modes feel like tools in one workflow rather than separate guarded steps.
+
+### Control
+
+Auto-approving only forward transitions means:
+- When the user asks for action, it proceeds
+- When in Agent/Debug, the user is not pulled back to Ask/Plan without consent
+- Regression requires explicit approval
+
+### Unattended Runs
+
+Without auto-approve, long runs stall on approval prompts. With the right transitions auto-approved, sequences like Plan → Agent → Debug → Agent can complete without user presence.
+
+### Discoverability
+
+The setting is easy to miss and doesn't persist without pressing Enter. Many users never configure it, or try it and think it doesn't work because they didn't save.
+
+---
+
 ## Anti-Patterns
 
 - **Agent-only:** No Ask or Plan; action without understanding or design
